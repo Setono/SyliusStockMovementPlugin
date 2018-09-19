@@ -1,0 +1,20 @@
+sylius_grid:
+    grids:
+        setono_sylius_stock_admin_report_configuration:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%setono_sylius_stock.model.report_configuration.class%"
+            fields:
+                name:
+                    type: string
+                    label: setono_sylius_stock.ui.name
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete

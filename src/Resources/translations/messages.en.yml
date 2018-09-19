@@ -1,0 +1,13 @@
+setono_sylius_stock:
+    ui:
+        report_configurations: Report configurations
+        manage_report_configurations: Manage report configurations
+        new_report_configuration: New report configuration
+        edit_report_configuration: Edit report configuration
+
+    menu:
+        admin:
+            main:
+                stock:
+                    header: Stock
+                    report_configurations: Report configurations

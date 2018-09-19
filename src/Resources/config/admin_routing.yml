@@ -1,0 +1,13 @@
+setono_sylius_stock_admin_report_configuration:
+    resource: |
+        alias: setono_sylius_stock.report_configuration
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: update
+        grid: setono_sylius_stock_admin_report_configuration
+        vars:
+            all:
+                subheader: setono_sylius_stock.ui.manage_report_configurations
+            index:
+                icon: 'chart bar'
+    type: sylius.resource
