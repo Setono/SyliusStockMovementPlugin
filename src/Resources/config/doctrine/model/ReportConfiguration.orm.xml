@@ -9,7 +9,15 @@
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
+
         <field name="name" type="string" length="191" nullable="false" />
+        <field name="schedule" type="cron_expression" nullable="false" />
+
+        <one-to-many field="deliveryMethods" target-entity="Setono\SyliusStockPlugin\Model\ReportConfigurationDeliveryMethodInterface" mapped-by="reportConfiguration" orphan-removal="true">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
     </mapped-superclass>
 
 </doctrine-mapping>

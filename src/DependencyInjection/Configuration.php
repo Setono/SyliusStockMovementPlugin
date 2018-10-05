@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Setono\SyliusStockPlugin\DependencyInjection;
 
 use Setono\SyliusStockPlugin\Model\ReportConfiguration;
+use Setono\SyliusStockPlugin\Model\ReportConfigurationDeliveryMethod;
+use Setono\SyliusStockPlugin\Model\ReportConfigurationDeliveryMethodInterface;
 use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\Form\Type\DefaultResourceType;
@@ -47,14 +49,31 @@ final class Configuration implements ConfigurationInterface
                     ->addDefaultsIfNotSet()
                     ->children()
                         ->arrayNode('report_configuration')
-                        ->addDefaultsIfNotSet()
-                        ->children()
-                            ->variableNode('options')->end()
-                            ->arrayNode('classes')
-                                ->addDefaultsIfNotSet()
-                                ->children()
-                                    ->scalarNode('model')->defaultValue(ReportConfiguration::class)->cannotBeEmpty()->end()
-                                    ->scalarNode('interface')->defaultValue(ReportConfigurationInterface::class)->cannotBeEmpty()->end()
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode('options')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(ReportConfiguration::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('interface')->defaultValue(ReportConfigurationInterface::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->scalarNode('form')->defaultValue(DefaultResourceType::class)->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('report_configuration_delivery_method')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode('options')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                    ->scalarNode('model')->defaultValue(ReportConfigurationDeliveryMethod::class)->cannotBeEmpty()->end()
+                                    ->scalarNode('interface')->defaultValue(ReportConfigurationDeliveryMethodInterface::class)->cannotBeEmpty()->end()
                                     ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
                                     ->scalarNode('repository')->cannotBeEmpty()->end()
                                     ->scalarNode('factory')->defaultValue(Factory::class)->end()

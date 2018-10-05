@@ -6,6 +6,7 @@
     "require": {
         "php": "^7.1",
 
+        "setono/cron-expression-bundle": "dev-master",
         "sylius/sylius": "~1.2.3",
         "symfony/symfony": "^3.4|^4.1"
     },
@@ -45,6 +46,12 @@
         }
     },
     "config": {
-        "bin-dir": "bin"
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit",
+        "check-style": "./vendor/bin/ecs check src/",
+        "fix-style": "./vendor/bin/ecs check --fix src/",
+        "analyse": "./vendor/bin/phpstan analyse -c phpstan.neon -l max src"
     }
 }
