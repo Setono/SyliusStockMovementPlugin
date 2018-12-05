@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusStockPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 
 class StockMovementReport implements StockMovementInterface
@@ -22,7 +23,7 @@ class StockMovementReport implements StockMovementInterface
     protected $reportConfiguration;
 
     /**
-     * @var StockMovementInterface[]
+     * @var StockMovementInterface[]|Collection
      */
     protected $stockMovements;
 

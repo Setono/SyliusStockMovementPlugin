@@ -39,7 +39,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     protected $previousRun;
 
     /**
-     * @var ReportConfigurationDeliveryMethod[]
+     * @var ReportConfigurationDeliveryMethod[]|Collection
      */
     protected $deliveryMethods;
 

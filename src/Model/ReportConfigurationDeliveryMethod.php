@@ -22,7 +22,7 @@ class ReportConfigurationDeliveryMethod implements ReportConfigurationDeliveryMe
     protected $configuration;
 
     /**
-     * @var ReportConfigurationInterface
+     * @var ReportConfigurationInterface|null
      */
     protected $reportConfiguration;
 
