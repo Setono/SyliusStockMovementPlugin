@@ -32,11 +32,29 @@ in the `config/bundles.php` file of your project:
 return [
     // ...
     
+    JK\MoneyBundle\JKMoneyBundle::class => ['all' => true],
     Setono\CronExpressionBundle\SetonoCronExpressionBundle::class => ['all' => true],
     Setono\SyliusStockPlugin\SetonoSyliusStockPlugin::class => ['all' => true],
+    
+    // It is important to add plugin before the grid bundle
+    Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
         
     // ...
 ];
+```
+
+**NOTE** that you must instantiate the plugin before the grid bundle, else you will see an exception like `You have requested a non-existent parameter "setono_sylius_stock.model.report_configuration.class".`
+
+### Step 3: Import config
+Import the config file somewhere in your application. Could be the `config/packages/_sylius.yaml` file.
+
+```yaml
+imports:
+    # ...
+    
+    - { resource: "@SetonoSyliusStockPlugin/Resources/config/config.yaml" }
+    
+    # ...
 ```
 
 [ico-version]: https://img.shields.io/packagist/v/setono/sylius-stock-plugin.svg?style=flat-square

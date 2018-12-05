@@ -8,20 +8,5 @@
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addAdminMenuItems" />
         </service>
 
-        <service id="setono_sylius_stock.registry.delivery_method" class="Sylius\Component\Registry\ServiceRegistry">
-            <argument>Setono\SyliusStockPlugin\DeliveryMethod\DeliveryMethodInterface</argument>
-            <argument>delivery method</argument>
-        </service>
-
-        <service id="setono_sylius_stock.form_registry.delivery_method" class="Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry" />
-
-        <!-- Delivery methods -->
-        <service id="Setono\SyliusStockPlugin\DeliveryMethod\EmailDeliveryMethod">
-            <tag name="setono_sylius_stock.delivery_method" type="email" label="setono_sylius_stock.delivery_method.email" form_type="Setono\SyliusStockPlugin\Form\Type\DeliveryMethod\EmailConfigurationType" />
-        </service>
-
-        <service id="Setono\SyliusStockPlugin\DeliveryMethod\FtpDeliveryMethod">
-            <tag name="setono_sylius_stock.delivery_method" type="ftp" label="setono_sylius_stock.delivery_method.ftp" form_type="Setono\SyliusStockPlugin\Form\Type\DeliveryMethod\FtpConfigurationType" />
-        </service>
     </services>
 </container>

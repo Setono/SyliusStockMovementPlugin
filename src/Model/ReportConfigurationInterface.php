@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Setono\SyliusStockPlugin\Model;
 
 use Cron\CronExpression;
-use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 interface ReportConfigurationInterface extends ResourceInterface
@@ -46,42 +45,102 @@ interface ReportConfigurationInterface extends ResourceInterface
     public function setSchedule(CronExpression $schedule): void;
 
     /**
-     * @return \DateTime|null
+     * @return string
      */
-    public function getPreviousRun(): ?\DateTime;
+    public function getFtpHost(): ?string;
 
     /**
-     * @param \DateTime|null $previousRun
+     * @param string $ftpHost
      */
-    public function setPreviousRun(?\DateTime $previousRun): void;
+    public function setFtpHost(string $ftpHost): void;
 
     /**
-     * @return Collection
+     * @return string
      */
-    public function getDeliveryMethods(): Collection;
+    public function getFtpUsername(): ?string;
 
     /**
-     * @return bool
+     * @param string $ftpUsername
      */
-    public function hasDeliveryMethods(): bool;
+    public function setFtpUsername(string $ftpUsername): void;
 
     /**
-     * @param ReportConfigurationDeliveryMethodInterface $reportConfigurationDeliveryMethod
-     *
-     * @return bool
+     * @return string
      */
-    public function hasDeliveryMethod(ReportConfigurationDeliveryMethodInterface $reportConfigurationDeliveryMethod
-    ): bool;
+    public function getFtpPassword(): ?string;
 
     /**
-     * @param ReportConfigurationDeliveryMethodInterface $reportConfigurationDeliveryMethod
+     * @param string $ftpPassword
      */
-    public function addDeliveryMethod(ReportConfigurationDeliveryMethodInterface $reportConfigurationDeliveryMethod
-    ): void;
+    public function setFtpPassword(string $ftpPassword): void;
 
     /**
-     * @param ReportConfigurationDeliveryMethodInterface $reportConfigurationDeliveryMethod
+     * @return string
      */
-    public function removeDeliveryMethod(ReportConfigurationDeliveryMethodInterface $reportConfigurationDeliveryMethod
-    ): void;
+    public function getFtpPort(): ?string;
+
+    /**
+     * @param string $ftpPort
+     */
+    public function setFtpPort(string $ftpPort): void;
+
+    /**
+     * @return string
+     */
+    public function getFtpPath(): ?string;
+
+    /**
+     * @param string $ftpPath
+     */
+    public function setFtpPath(string $ftpPath): void;
+
+    /**
+     * @return string
+     */
+    public function getEmailTo(): ?string;
+
+    /**
+     * @param string $emailTo
+     */
+    public function setEmailTo(string $emailTo): void;
+
+    /**
+     * @return string
+     */
+    public function getEmailCc(): ?string;
+
+    /**
+     * @param string $emailCc
+     */
+    public function setEmailCc(string $emailCc): void;
+
+    /**
+     * @return string
+     */
+    public function getEmailBcc(): ?string;
+
+    /**
+     * @param string $emailBcc
+     */
+    public function setEmailBcc(string $emailBcc): void;
+
+    /**
+     * @return string
+     */
+    public function getEmailSubject(): ?string;
+
+    /**
+     * @param string $emailSubject
+     */
+    public function setEmailSubject(string $emailSubject): void;
+
+    /**
+     * @return string
+     */
+    public function getEmailBody(): ?string;
+
+    /**
+     * @param string $emailBody
+     */
+    public function setEmailBody(string $emailBody): void;
 }

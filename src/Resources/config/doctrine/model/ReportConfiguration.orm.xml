@@ -5,19 +5,25 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Setono\SyliusStockPlugin\Model\ReportConfiguration" table="setono_report_configuration">
+    <mapped-superclass name="Setono\SyliusStockPlugin\Model\ReportConfiguration" table="setono_sylius_stock__report_configuration">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
 
-        <field name="name" type="string" length="191" nullable="false" />
-        <field name="schedule" type="cron_expression" nullable="false" />
+        <field name="name" type="string" />
+        <field name="type" type="string" />
+        <field name="schedule" type="cron_expression" />
+        <field name="ftpHost" type="string" />
+        <field name="ftpUsername" type="string" />
+        <field name="ftpPassword" type="string" />
+        <field name="ftpPort" type="string" />
+        <field name="ftpPath" type="string" />
+        <field name="emailTo" type="string" />
+        <field name="emailCc" type="string" />
+        <field name="emailBcc" type="string" />
+        <field name="emailSubject" type="string" />
+        <field name="emailBody" type="text" />
 
-        <one-to-many field="deliveryMethods" target-entity="Setono\SyliusStockPlugin\Model\ReportConfigurationDeliveryMethodInterface" mapped-by="reportConfiguration" orphan-removal="true">
-            <cascade>
-                <cascade-all />
-            </cascade>
-        </one-to-many>
     </mapped-superclass>
 
 </doctrine-mapping>

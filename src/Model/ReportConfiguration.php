@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace Setono\SyliusStockPlugin\Model;
 
 use Cron\CronExpression;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 class ReportConfiguration implements ReportConfigurationInterface
 {
@@ -31,22 +29,54 @@ class ReportConfiguration implements ReportConfigurationInterface
     protected $schedule;
 
     /**
-     * This is the time when the previous run started
-     * This way this value can be used as a threshold for future runs
-     *
-     * @var \DateTime|null
+     * @var string
      */
-    protected $previousRun;
+    protected $ftpHost;
 
     /**
-     * @var ReportConfigurationDeliveryMethod[]|Collection
+     * @var string
      */
-    protected $deliveryMethods;
+    protected $ftpUsername;
 
-    public function __construct()
-    {
-        $this->deliveryMethods = new ArrayCollection();
-    }
+    /**
+     * @var string
+     */
+    protected $ftpPassword;
+
+    /**
+     * @var string
+     */
+    protected $ftpPort;
+
+    /**
+     * @var string
+     */
+    protected $ftpPath;
+
+    /**
+     * @var string
+     */
+    protected $emailTo;
+
+    /**
+     * @var string
+     */
+    protected $emailCc;
+
+    /**
+     * @var string
+     */
+    protected $emailBcc;
+
+    /**
+     * @var string
+     */
+    protected $emailSubject;
+
+    /**
+     * @var string
+     */
+    protected $emailBody;
 
     /**
      * {@inheritdoc}
@@ -107,60 +137,160 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getPreviousRun(): ?\DateTime
+    public function getFtpHost(): ?string
     {
-        return $this->previousRun;
+        return $this->ftpHost;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function setPreviousRun(?\DateTime $previousRun): void
+    public function setFtpHost(string $ftpHost): void
     {
-        $this->previousRun = $previousRun;
+        $this->ftpHost = $ftpHost;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getDeliveryMethods(): Collection
+    public function getFtpUsername(): ?string
     {
-        return $this->deliveryMethods;
+        return $this->ftpUsername;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function hasDeliveryMethods(): bool
+    public function setFtpUsername(string $ftpUsername): void
     {
-        return !$this->deliveryMethods->isEmpty();
+        $this->ftpUsername = $ftpUsername;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function hasDeliveryMethod(ReportConfigurationDeliveryMethodInterface $reportConfigurationDeliveryMethod): bool
+    public function getFtpPassword(): ?string
     {
-        return $this->deliveryMethods->contains($reportConfigurationDeliveryMethod);
+        return $this->ftpPassword;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function addDeliveryMethod(ReportConfigurationDeliveryMethodInterface $reportConfigurationDeliveryMethod): void
+    public function setFtpPassword(string $ftpPassword): void
     {
-        if (!$this->hasDeliveryMethod($reportConfigurationDeliveryMethod)) {
-            $reportConfigurationDeliveryMethod->setReportConfiguration($this);
-            $this->deliveryMethods->add($reportConfigurationDeliveryMethod);
-        }
+        $this->ftpPassword = $ftpPassword;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function removeDeliveryMethod(ReportConfigurationDeliveryMethodInterface $reportConfigurationDeliveryMethod): void
+    public function getFtpPort(): ?string
     {
-        $reportConfigurationDeliveryMethod->setReportConfiguration(null);
-        $this->deliveryMethods->removeElement($reportConfigurationDeliveryMethod);
+        return $this->ftpPort;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFtpPort(string $ftpPort): void
+    {
+        $this->ftpPort = $ftpPort;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFtpPath(): ?string
+    {
+        return $this->ftpPath;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFtpPath(string $ftpPath): void
+    {
+        $this->ftpPath = $ftpPath;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmailTo(): ?string
+    {
+        return $this->emailTo;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmailTo(string $emailTo): void
+    {
+        $this->emailTo = $emailTo;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmailCc(): ?string
+    {
+        return $this->emailCc;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmailCc(string $emailCc): void
+    {
+        $this->emailCc = $emailCc;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmailBcc(): ?string
+    {
+        return $this->emailBcc;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmailBcc(string $emailBcc): void
+    {
+        $this->emailBcc = $emailBcc;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmailSubject(): ?string
+    {
+        return $this->emailSubject;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmailSubject(string $emailSubject): void
+    {
+        $this->emailSubject = $emailSubject;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmailBody(): ?string
+    {
+        return $this->emailBody;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmailBody(string $emailBody): void
+    {
+        $this->emailBody = $emailBody;
     }
 }
