@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Setono\SyliusStockPlugin\Model;
 
 use Cron\CronExpression;
@@ -9,12 +11,12 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 interface ReportConfigurationInterface extends ResourceInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getId(): ?int;
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getName(): ?string;
 
@@ -24,7 +26,7 @@ interface ReportConfigurationInterface extends ResourceInterface
     public function setName(string $name): void;
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getType(): ?string;
 
@@ -65,6 +67,7 @@ interface ReportConfigurationInterface extends ResourceInterface
 
     /**
      * @param ReportConfigurationDeliveryMethodInterface $reportConfigurationDeliveryMethod
+     *
      * @return bool
      */
     public function hasDeliveryMethod(ReportConfigurationDeliveryMethodInterface $reportConfigurationDeliveryMethod

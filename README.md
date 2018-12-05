@@ -24,27 +24,19 @@ This command requires you to have Composer installed globally, as explained in t
 ### Step 2: Enable the plugin
 
 Then, enable the plugin by adding it to the list of registered plugins/bundles
-in the `app/AppKernel.php` file of your project:
+in the `config/bundles.php` file of your project:
 
 ```php
 <?php
-// app/AppKernel.php
 
-use Sylius\Bundle\CoreBundle\Application\Kernel;
-
-final class AppKernel extends Kernel
-{
-    public function registerBundles(): array
-    {
-        return array_merge(parent::registerBundles(), [
-            // ...
-            new \Setono\SyliusStockPlugin\SetonoSyliusStockPlugin(),
-            // ...
-        ]);
-    }
-    
+return [
     // ...
-}
+    
+    Setono\CronExpressionBundle\SetonoCronExpressionBundle::class => ['all' => true],
+    Setono\SyliusStockPlugin\SetonoSyliusStockPlugin::class => ['all' => true],
+        
+    // ...
+];
 ```
 
 [ico-version]: https://img.shields.io/packagist/v/setono/sylius-stock-plugin.svg?style=flat-square

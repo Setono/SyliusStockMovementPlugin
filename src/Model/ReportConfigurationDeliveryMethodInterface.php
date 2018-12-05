@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Setono\SyliusStockPlugin\Model;
 
 use Sylius\Component\Resource\Model\ResourceInterface;
@@ -12,7 +14,7 @@ interface ReportConfigurationDeliveryMethodInterface extends ResourceInterface
     public function getId(): ?int;
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getType(): ?string;
 
@@ -32,12 +34,12 @@ interface ReportConfigurationDeliveryMethodInterface extends ResourceInterface
     public function setConfiguration(array $configuration): void;
 
     /**
-     * @return null|ReportConfigurationInterface
+     * @return ReportConfigurationInterface|null
      */
     public function getReportConfiguration(): ?ReportConfigurationInterface;
 
     /**
-     * @param null|ReportConfigurationInterface $reportConfiguration
+     * @param ReportConfigurationInterface|null $reportConfiguration
      */
     public function setReportConfiguration(?ReportConfigurationInterface $reportConfiguration): void;
 }
