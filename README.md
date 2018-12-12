@@ -57,6 +57,9 @@ imports:
     # ...
 ```
 
+## Important
+If you use the `ExchangeRateCurrencyConverter` (which is default) you **must** have an existing exchange rate between all your accepted currencies and your base currency.
+
 [ico-version]: https://img.shields.io/packagist/v/setono/sylius-stock-plugin.svg?style=flat-square
 [ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
 [ico-travis]: https://img.shields.io/travis/Setono/SyliusStockPlugin/master.svg?style=flat-square

@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 
-class StockMovementReport implements StockMovementInterface
+class StockMovementReport implements StockMovementReportInterface
 {
     use TimestampableTrait;
 
@@ -35,5 +35,34 @@ class StockMovementReport implements StockMovementInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    /**
+     * @return ReportConfigurationInterface
+     */
+    public function getReportConfiguration(): ?ReportConfigurationInterface
+    {
+        return $this->reportConfiguration;
+    }
+
+    /**
+     * @param ReportConfigurationInterface $reportConfiguration
+     */
+    public function setReportConfiguration(ReportConfigurationInterface $reportConfiguration): void
+    {
+        $this->reportConfiguration = $reportConfiguration;
+    }
+
+    /**
+     * @return Collection|StockMovementInterface[]
+     */
+    public function getStockMovements(): Collection
+    {
+        return $this->stockMovements;
+    }
+
+    public function getItems(): Collection
+    {
+        return $this->getStockMovements();
     }
 }

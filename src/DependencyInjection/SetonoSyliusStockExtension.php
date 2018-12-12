@@ -21,6 +21,8 @@ final class SetonoSyliusStockExtension extends AbstractResourceExtension
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
+        $container->setParameter('setono.sylius_stock.base_currency', $config['base_currency']);
+
         $loader->load('services.xml');
 
         $this->registerResources('setono_sylius_stock', $config['driver'], $config['resources'], $container);

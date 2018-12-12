@@ -54,17 +54,17 @@ class ReportConfiguration implements ReportConfigurationInterface
     protected $ftpPath;
 
     /**
-     * @var string
+     * @var array
      */
     protected $emailTo;
 
     /**
-     * @var string
+     * @var array
      */
     protected $emailCc;
 
     /**
-     * @var string
+     * @var array
      */
     protected $emailBcc;
 
@@ -217,7 +217,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getEmailTo(): ?string
+    public function getEmailTo(): ?array
     {
         return $this->emailTo;
     }
@@ -225,7 +225,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function setEmailTo(string $emailTo): void
+    public function setEmailTo(array $emailTo): void
     {
         $this->emailTo = $emailTo;
     }
@@ -233,7 +233,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getEmailCc(): ?string
+    public function getEmailCc(): ?array
     {
         return $this->emailCc;
     }
@@ -241,7 +241,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function setEmailCc(string $emailCc): void
+    public function setEmailCc(array $emailCc): void
     {
         $this->emailCc = $emailCc;
     }
@@ -249,7 +249,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getEmailBcc(): ?string
+    public function getEmailBcc(): ?array
     {
         return $this->emailBcc;
     }
@@ -257,7 +257,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function setEmailBcc(string $emailBcc): void
+    public function setEmailBcc(array $emailBcc): void
     {
         $this->emailBcc = $emailBcc;
     }

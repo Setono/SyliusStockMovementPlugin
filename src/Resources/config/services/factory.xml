@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono.sylius_stock.factory.stock_movement" class="Setono\SyliusStockPlugin\Factory\StockMovementFactory">
+            <argument>%setono_sylius_stock.model.stock_movement.class%</argument>
+            <argument>%setono.sylius_stock.base_currency%</argument>
+            <argument type="service" id="setono.sylius_stock.currency_converter.default" />
+        </service>
+    </services>
+</container>

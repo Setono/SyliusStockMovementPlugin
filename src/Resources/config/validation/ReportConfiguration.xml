@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/constraint-mapping http://symfony.com/schema/dic/services/constraint-mapping-1.0.xsd">
+    <class name="Setono\SyliusStockPlugin\Model\ReportConfiguration">
+        <property name="name">
+            <constraint name="NotBlank">
+                <option name="message">setono_sylius_stock.report_configuration.name.not_blank</option>
+                <option name="groups">sylius</option>
+            </constraint>
+        </property>
+
+        <property name="ftpHost">
+            <constraint name="Url">
+                <option name="message">setono_sylius_stock.report_configuration.ftp_host.url</option>
+                <option name="groups">sylius</option>
+                <option name="protocols">
+                    <value>ftp</value>
+                </option>
+            </constraint>
+        </property>
+
+        <property name="ftpPort">
+            <constraint name="GreaterThan">
+                <option name="message">setono_sylius_stock.report_configuration.ftp_port.greater_than</option>
+                <option name="groups">sylius</option>
+                <option name="value">0</option>
+            </constraint>
+        </property>
+
+        <property name="emailTo">
+            <constraint name="All">
+                <option name="constraints">
+                    <constraint name="Email">
+                        <option name="message">setono_sylius_stock.report_configuration.email_to.email</option>
+                        <option name="groups">sylius</option>
+                    </constraint>
+                </option>
+            </constraint>
+        </property>
+    </class>
+</constraint-mapping>

@@ -9,6 +9,8 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 
 interface ReportConfigurationInterface extends ResourceInterface
 {
+    public const TYPE_STOCK_MOVEMENT = 'stock_movement';
+
     /**
      * {@inheritdoc}
      */
@@ -95,34 +97,34 @@ interface ReportConfigurationInterface extends ResourceInterface
     public function setFtpPath(string $ftpPath): void;
 
     /**
-     * @return string
+     * @return array
      */
-    public function getEmailTo(): ?string;
+    public function getEmailTo(): ?array;
 
     /**
-     * @param string $emailTo
+     * @param array $emailTo
      */
-    public function setEmailTo(string $emailTo): void;
+    public function setEmailTo(array $emailTo): void;
 
     /**
-     * @return string
+     * @return array
      */
-    public function getEmailCc(): ?string;
+    public function getEmailCc(): ?array;
 
     /**
-     * @param string $emailCc
+     * @param array $emailCc
      */
-    public function setEmailCc(string $emailCc): void;
+    public function setEmailCc(array $emailCc): void;
 
     /**
-     * @return string
+     * @return array
      */
-    public function getEmailBcc(): ?string;
+    public function getEmailBcc(): ?array;
 
     /**
-     * @param string $emailBcc
+     * @param array $emailBcc
      */
-    public function setEmailBcc(string $emailBcc): void;
+    public function setEmailBcc(array $emailBcc): void;
 
     /**
      * @return string

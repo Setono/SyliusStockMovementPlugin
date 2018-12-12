@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\DependencyInjection;
 
+use Setono\SyliusStockPlugin\Factory\StockMovementFactory;
 use Setono\SyliusStockPlugin\Form\Type\ReportConfigurationType;
 use Setono\SyliusStockPlugin\Model\ReportConfiguration;
 use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
@@ -31,6 +32,11 @@ final class Configuration implements ConfigurationInterface
             ->addDefaultsIfNotSet()
             ->children()
                 ->scalarNode('driver')->defaultValue(SyliusResourceBundle::DRIVER_DOCTRINE_ORM)->end()
+                ->scalarNode('base_currency')
+                    ->info('This is the currency stock movement prices are converted into')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
             ->end()
         ;
 
@@ -77,7 +83,7 @@ final class Configuration implements ConfigurationInterface
                                         ->scalarNode('interface')->defaultValue(StockMovementInterface::class)->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
                                         ->scalarNode('repository')->cannotBeEmpty()->end()
-                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->scalarNode('factory')->defaultValue(StockMovementFactory::class)->end()
                                         ->scalarNode('form')->defaultValue(DefaultResourceType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
