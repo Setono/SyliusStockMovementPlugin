@@ -1,2 +1,5 @@
 setono_sylius_stock:
     base_currency: USD
+    templates:
+        - { identifier: test, class: vildt }
+        - { identifier: test, class: vildt2 }

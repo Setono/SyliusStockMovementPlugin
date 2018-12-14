@@ -6,5 +6,6 @@
         <import resource="services/factory.xml"/>
         <import resource="services/form.xml"/>
         <import resource="services/menu.xml"/>
+        <import resource="services/registry.xml"/>
     </imports>
 </container>

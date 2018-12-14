@@ -86,11 +86,10 @@ class StockMovement implements StockMovementInterface
      */
     public function setProductVariant(?ProductVariantInterface $productVariant): void
     {
-        $this->productVariantCode = null;
         $this->productVariant = $productVariant;
 
         if (null !== $productVariant) {
-            $this->productVariantCode = $productVariant->getCode();
+            $this->productVariantCode = (string) $productVariant->getCode();
         }
     }
 

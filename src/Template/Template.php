@@ -4,24 +4,12 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\Template;
 
-use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\ReportInterface;
+use Setono\SyliusStockPlugin\Model\ReportAwareInterface;
+use Setono\SyliusStockPlugin\Model\ReportAwareTrait;
+use Setono\SyliusStockPlugin\Model\ReportConfigurationAwareInterface;
+use Setono\SyliusStockPlugin\Model\ReportConfigurationAwareTrait;
 
-abstract class Template implements TemplateInterface
+abstract class Template implements TemplateInterface, ReportAwareInterface, ReportConfigurationAwareInterface
 {
-    /**
-     * @var ReportInterface
-     */
-    protected $report;
-
-    /**
-     * @var ReportConfigurationInterface
-     */
-    protected $reportConfiguration;
-
-    public function __construct(ReportInterface $report, ReportConfigurationInterface $reportConfiguration)
-    {
-        $this->report = $report;
-        $this->reportConfiguration = $reportConfiguration;
-    }
+    use ReportAwareTrait, ReportConfigurationAwareTrait;
 }

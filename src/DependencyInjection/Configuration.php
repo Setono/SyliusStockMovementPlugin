@@ -30,12 +30,21 @@ final class Configuration implements ConfigurationInterface
 
         $rootNode
             ->addDefaultsIfNotSet()
+            ->fixXmlConfig('template')
             ->children()
                 ->scalarNode('driver')->defaultValue(SyliusResourceBundle::DRIVER_DOCTRINE_ORM)->end()
                 ->scalarNode('base_currency')
                     ->info('This is the currency stock movement prices are converted into')
                     ->isRequired()
                     ->cannotBeEmpty()
+                ->end()
+                ->arrayNode('templates')
+                    ->arrayPrototype()
+                        ->children()
+                            ->scalarNode('class')->end()
+                            ->scalarNode('identifier')->end()
+                        ->end()
+                    ->end()
                 ->end()
             ->end()
         ;

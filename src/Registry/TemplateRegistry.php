@@ -6,7 +6,7 @@ namespace Setono\SyliusStockPlugin\Registry;
 
 use Setono\SyliusStockPlugin\Template\TemplateInterface;
 
-class TemplateRegistry
+class TemplateRegistry implements TemplateRegistryInterface
 {
     /**
      * An array of class names
@@ -17,8 +17,12 @@ class TemplateRegistry
 
     public function register(string $identifier, string $className): void
     {
-        if(!is_a($className, TemplateInterface::class, true)) {
+        if (!is_a($className, TemplateInterface::class, true)) {
             throw new \InvalidArgumentException(sprintf('The class `%s` is not a child of %s', $className, TemplateInterface::class));
+        }
+
+        if ($this->has($identifier)) {
+            throw new \InvalidArgumentException(sprintf('A template with identifier `%s` already exists', $identifier));
         }
 
         $this->templates[$identifier] = $className;
