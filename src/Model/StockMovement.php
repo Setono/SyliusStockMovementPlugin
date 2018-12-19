@@ -18,11 +18,6 @@ class StockMovement implements StockMovementInterface
     protected $id;
 
     /**
-     * The number of items.
-     *
-     * If the quantity is negative it means an outgoing stock movement, i.e. you've sold a product
-     * Contrary a positive number means an ingoing stock movement, i.e. you had a return or a delivery
-     *
      * @var int
      */
     protected $quantity;
@@ -60,7 +55,7 @@ class StockMovement implements StockMovementInterface
     /**
      * @return int
      */
-    public function getQuantity(): int
+    public function getQuantity(): ?int
     {
         return $this->quantity;
     }
@@ -96,7 +91,7 @@ class StockMovement implements StockMovementInterface
     /**
      * @return string
      */
-    public function getProductVariantCode(): string
+    public function getProductVariantCode(): ?string
     {
         return $this->productVariantCode;
     }
@@ -112,7 +107,7 @@ class StockMovement implements StockMovementInterface
     /**
      * @return Money
      */
-    public function getPrice(): Money
+    public function getPrice(): ?Money
     {
         return $this->price;
     }
@@ -128,7 +123,7 @@ class StockMovement implements StockMovementInterface
     /**
      * @return Money
      */
-    public function getConvertedPrice(): Money
+    public function getConvertedPrice(): ?Money
     {
         return $this->convertedPrice;
     }

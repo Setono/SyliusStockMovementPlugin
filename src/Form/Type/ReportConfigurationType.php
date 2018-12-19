@@ -16,6 +16,18 @@ use Symfony\Component\Form\FormBuilderInterface;
 final class ReportConfigurationType extends AbstractResourceType
 {
     /**
+     * @var string[]
+     */
+    private $templateLabels;
+
+    public function __construct(string $dataClass, array $templateLabels, $validationGroups = [])
+    {
+        parent::__construct($dataClass, $validationGroups);
+
+        $this->templateLabels = $templateLabels;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -35,6 +47,10 @@ final class ReportConfigurationType extends AbstractResourceType
             ])
             ->add('schedule', null, [
                 'label' => 'setono_sylius_stock.form.report_configuration.schedule',
+            ])
+            ->add('template', ChoiceType::class, [
+                'label' => 'setono_sylius_stock.form.report_configuration.template',
+                'choices' => array_flip($this->templateLabels),
             ])
             ->add('ftpHost', null, [
                 'label' => 'setono_sylius_stock.form.report_configuration.ftp_host',
@@ -66,20 +82,6 @@ final class ReportConfigurationType extends AbstractResourceType
                 ],
                 'required' => false,
             ])
-            ->add('emailCc', null, [
-                'label' => 'setono_sylius_stock.form.report_configuration.email_cc',
-                'attr' => [
-                    'placeholder' => 'setono_sylius_stock.form.report_configuration.email_placeholder',
-                ],
-                'required' => false,
-            ])
-            ->add('emailBcc', null, [
-                'label' => 'setono_sylius_stock.form.report_configuration.email_bcc',
-                'attr' => [
-                    'placeholder' => 'setono_sylius_stock.form.report_configuration.email_placeholder',
-                ],
-                'required' => false,
-            ])
             ->add('emailSubject', null, [
                 'label' => 'setono_sylius_stock.form.report_configuration.email_subject',
                 'attr' => [
@@ -98,8 +100,6 @@ final class ReportConfigurationType extends AbstractResourceType
 
         $builder->get('ftpHost')->addModelTransformer(new UrlToHostTransformer());
         $builder->get('emailTo')->addModelTransformer(new EmailsToArrayTransformer());
-        $builder->get('emailCc')->addModelTransformer(new EmailsToArrayTransformer());
-        $builder->get('emailBcc')->addModelTransformer(new EmailsToArrayTransformer());
     }
 
     /**

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono.sylius_stock.transport.composite_report" class="Setono\SyliusStockPlugin\Transport\CompositeReportTransport">
+            <argument type="collection">
+                <argument type="service" id="setono.sylius_stock.transport.ftp_report"/>
+                <argument type="service" id="setono.sylius_stock.transport.email_report"/>
+            </argument>
+        </service>
+        <service id="setono.sylius_stock.transport.ftp_report" class="Setono\SyliusStockPlugin\Transport\FtpReportTransport" />
+        <service id="setono.sylius_stock.transport.email_report" class="Setono\SyliusStockPlugin\Transport\EmailReportTransport">
+            <argument type="service" id="sylius.email_sender"/>
+        </service>
+    </services>
+</container>

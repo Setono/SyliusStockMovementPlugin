@@ -6,6 +6,7 @@ namespace Setono\SyliusStockPlugin\Command;
 
 use Setono\SyliusStockPlugin\Generator\ReportGeneratorInterface;
 use Setono\SyliusStockPlugin\Provider\ReportConfigurationProviderInterface;
+use Setono\SyliusStockPlugin\Writer\ReportWriterInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -24,14 +25,21 @@ final class GenerateCommand extends Command
      */
     private $reportGenerator;
 
+    /**
+     * @var ReportWriterInterface
+     */
+    private $reportWriter;
+
     public function __construct(
         ReportConfigurationProviderInterface $reportConfigurationProvider,
-        ReportGeneratorInterface $reportGenerator
+        ReportGeneratorInterface $reportGenerator,
+        ReportWriterInterface $reportWriter
     ) {
         parent::__construct();
 
         $this->reportConfigurationProvider = $reportConfigurationProvider;
         $this->reportGenerator = $reportGenerator;
+        $this->reportWriter = $reportWriter;
     }
 
     protected function configure(): void
@@ -45,6 +53,8 @@ final class GenerateCommand extends Command
 
         foreach ($reportConfigurations as $reportConfiguration) {
             $report = $this->reportGenerator->generate($reportConfiguration);
+            $file = $this->reportWriter->write($report, $reportConfiguration);
+            var_dump($file->getPathname());
         }
     }
 }

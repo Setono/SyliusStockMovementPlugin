@@ -18,3 +18,8 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+                        
+sylius_mailer:
+    emails:
+        report:
+            template: '@SetonoSyliusStockPlugin:Email:report.html.twig'

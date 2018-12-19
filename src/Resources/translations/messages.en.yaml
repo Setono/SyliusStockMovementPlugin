@@ -5,6 +5,7 @@ setono_sylius_stock:
             name_placeholder: The name is only used as a reference
             type: Type
             schedule: Schedule
+            template: Template
             ftp_host: FTP host
             ftp_username: FTP username
             ftp_password: FTP password
@@ -13,8 +14,6 @@ setono_sylius_stock:
             ftp_path: FTP path
             email_placeholder: Separate multiple email adresses with a comma
             email_to: Email recipient
-            email_cc: Email CC
-            email_bcc: Email BCC
             email_subject: Email subject
             email_body: Email body
             email_subject_body_placeholder: You can use the variable %report_id% to insert the report id

@@ -61,6 +61,11 @@ class StockMovementReport implements StockMovementReportInterface
         return $this->stockMovements;
     }
 
+    public function addStockMovement(StockMovementInterface $stockMovement): void
+    {
+        $this->stockMovements->add($stockMovement);
+    }
+
     public function getItems(): Collection
     {
         return $this->getStockMovements();

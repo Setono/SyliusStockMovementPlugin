@@ -31,6 +31,11 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * @var string
      */
+    protected $template;
+
+    /**
+     * @var string
+     */
     protected $ftpHost;
 
     /**
@@ -44,7 +49,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     protected $ftpPassword;
 
     /**
-     * @var string
+     * @var int
      */
     protected $ftpPort;
 
@@ -57,16 +62,6 @@ class ReportConfiguration implements ReportConfigurationInterface
      * @var array
      */
     protected $emailTo;
-
-    /**
-     * @var array
-     */
-    protected $emailCc;
-
-    /**
-     * @var array
-     */
-    protected $emailBcc;
 
     /**
      * @var string
@@ -137,6 +132,22 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
+    public function getTemplate(): ?string
+    {
+        return $this->template;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setTemplate(string $template): void
+    {
+        $this->template = $template;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function getFtpHost(): ?string
     {
         return $this->ftpHost;
@@ -145,7 +156,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function setFtpHost(string $ftpHost): void
+    public function setFtpHost(?string $ftpHost): void
     {
         $this->ftpHost = $ftpHost;
     }
@@ -161,7 +172,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function setFtpUsername(string $ftpUsername): void
+    public function setFtpUsername(?string $ftpUsername): void
     {
         $this->ftpUsername = $ftpUsername;
     }
@@ -177,7 +188,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function setFtpPassword(string $ftpPassword): void
+    public function setFtpPassword(?string $ftpPassword): void
     {
         $this->ftpPassword = $ftpPassword;
     }
@@ -185,7 +196,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getFtpPort(): ?string
+    public function getFtpPort(): ?int
     {
         return $this->ftpPort;
     }
@@ -193,7 +204,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function setFtpPort(string $ftpPort): void
+    public function setFtpPort(?int $ftpPort): void
     {
         $this->ftpPort = $ftpPort;
     }
@@ -209,7 +220,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function setFtpPath(string $ftpPath): void
+    public function setFtpPath(?string $ftpPath): void
     {
         $this->ftpPath = $ftpPath;
     }
@@ -233,38 +244,6 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function getEmailCc(): ?array
-    {
-        return $this->emailCc;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setEmailCc(array $emailCc): void
-    {
-        $this->emailCc = $emailCc;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getEmailBcc(): ?array
-    {
-        return $this->emailBcc;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setEmailBcc(array $emailBcc): void
-    {
-        $this->emailBcc = $emailBcc;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
     public function getEmailSubject(): ?string
     {
         return $this->emailSubject;
@@ -273,7 +252,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function setEmailSubject(string $emailSubject): void
+    public function setEmailSubject(?string $emailSubject): void
     {
         $this->emailSubject = $emailSubject;
     }
@@ -289,7 +268,7 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * {@inheritdoc}
      */
-    public function setEmailBody(string $emailBody): void
+    public function setEmailBody(?string $emailBody): void
     {
         $this->emailBody = $emailBody;
     }

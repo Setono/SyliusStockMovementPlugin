@@ -47,6 +47,18 @@ interface ReportConfigurationInterface extends ResourceInterface
     public function setSchedule(CronExpression $schedule): void;
 
     /**
+     * Returns the template identifier
+     *
+     * @return string
+     */
+    public function getTemplate(): ?string;
+
+    /**
+     * @param string $template
+     */
+    public function setTemplate(string $template): void;
+
+    /**
      * @return string
      */
     public function getFtpHost(): ?string;
@@ -54,7 +66,7 @@ interface ReportConfigurationInterface extends ResourceInterface
     /**
      * @param string $ftpHost
      */
-    public function setFtpHost(string $ftpHost): void;
+    public function setFtpHost(?string $ftpHost): void;
 
     /**
      * @return string
@@ -64,7 +76,7 @@ interface ReportConfigurationInterface extends ResourceInterface
     /**
      * @param string $ftpUsername
      */
-    public function setFtpUsername(string $ftpUsername): void;
+    public function setFtpUsername(?string $ftpUsername): void;
 
     /**
      * @return string
@@ -74,17 +86,17 @@ interface ReportConfigurationInterface extends ResourceInterface
     /**
      * @param string $ftpPassword
      */
-    public function setFtpPassword(string $ftpPassword): void;
+    public function setFtpPassword(?string $ftpPassword): void;
 
     /**
-     * @return string
+     * @return int
      */
-    public function getFtpPort(): ?string;
+    public function getFtpPort(): ?int;
 
     /**
-     * @param string $ftpPort
+     * @param int $ftpPort
      */
-    public function setFtpPort(string $ftpPort): void;
+    public function setFtpPort(?int $ftpPort): void;
 
     /**
      * @return string
@@ -94,7 +106,7 @@ interface ReportConfigurationInterface extends ResourceInterface
     /**
      * @param string $ftpPath
      */
-    public function setFtpPath(string $ftpPath): void;
+    public function setFtpPath(?string $ftpPath): void;
 
     /**
      * @return array
@@ -107,26 +119,6 @@ interface ReportConfigurationInterface extends ResourceInterface
     public function setEmailTo(array $emailTo): void;
 
     /**
-     * @return array
-     */
-    public function getEmailCc(): ?array;
-
-    /**
-     * @param array $emailCc
-     */
-    public function setEmailCc(array $emailCc): void;
-
-    /**
-     * @return array
-     */
-    public function getEmailBcc(): ?array;
-
-    /**
-     * @param array $emailBcc
-     */
-    public function setEmailBcc(array $emailBcc): void;
-
-    /**
      * @return string
      */
     public function getEmailSubject(): ?string;
@@ -134,7 +126,7 @@ interface ReportConfigurationInterface extends ResourceInterface
     /**
      * @param string $emailSubject
      */
-    public function setEmailSubject(string $emailSubject): void;
+    public function setEmailSubject(?string $emailSubject): void;
 
     /**
      * @return string
@@ -144,5 +136,5 @@ interface ReportConfigurationInterface extends ResourceInterface
     /**
      * @param string $emailBody
      */
-    public function setEmailBody(string $emailBody): void;
+    public function setEmailBody(?string $emailBody): void;
 }

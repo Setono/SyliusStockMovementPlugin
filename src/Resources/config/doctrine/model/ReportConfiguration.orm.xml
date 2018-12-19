@@ -13,14 +13,13 @@
         <field name="name" type="string" />
         <field name="type" type="string" />
         <field name="schedule" type="cron_expression" />
+        <field name="template" type="string" />
         <field name="ftpHost" type="string" nullable="true" />
         <field name="ftpUsername" type="string" nullable="true" />
         <field name="ftpPassword" type="string" nullable="true" />
-        <field name="ftpPort" type="string" nullable="true" />
+        <field name="ftpPort" type="integer" nullable="true" />
         <field name="ftpPath" type="string" nullable="true" />
         <field name="emailTo" type="json_array" nullable="true" />
-        <field name="emailCc" type="json_array" nullable="true" />
-        <field name="emailBcc" type="json_array" nullable="true" />
         <field name="emailSubject" type="string" nullable="true" />
         <field name="emailBody" type="text" nullable="true" />
 

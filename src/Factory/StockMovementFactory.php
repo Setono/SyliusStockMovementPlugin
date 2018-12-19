@@ -8,13 +8,14 @@ use Money\Money;
 use Setono\SyliusStockPlugin\CurrencyConverter\CurrencyConverterInterface;
 use Setono\SyliusStockPlugin\Model\StockMovementInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class StockMovementFactory implements StockMovementFactoryInterface
 {
     /**
-     * @var string
+     * @var FactoryInterface
      */
-    private $className;
+    private $decoratedFactory;
 
     /**
      * @var string
@@ -26,9 +27,9 @@ final class StockMovementFactory implements StockMovementFactoryInterface
      */
     private $currencyConverter;
 
-    public function __construct(string $className, string $baseCurrency, CurrencyConverterInterface $currencyConverter)
+    public function __construct(FactoryInterface $decoratedFactory, string $baseCurrency, CurrencyConverterInterface $currencyConverter)
     {
-        $this->className = $className;
+        $this->decoratedFactory = $decoratedFactory;
         $this->baseCurrency = $baseCurrency;
         $this->currencyConverter = $currencyConverter;
     }
@@ -38,15 +39,17 @@ final class StockMovementFactory implements StockMovementFactoryInterface
      */
     public function createNew(): StockMovementInterface
     {
-        return new $this->className();
+        /** @var StockMovementInterface $obj */
+        $obj = $this->decoratedFactory->createNew();
+
+        return $obj;
     }
 
     public function createValid(int $quantity, ProductVariantInterface $productVariant, Money $price, ?string $reference = null): StockMovementInterface
     {
-        $convertedPrice = $this->currencyConverter->convertFromMoney($price, $this->baseCurrency);
+        $obj = $this->createNew();
 
-        /** @var StockMovementInterface $obj */
-        $obj = new $this->className();
+        $convertedPrice = $this->currencyConverter->convertFromMoney($price, $this->baseCurrency);
 
         $obj->setProductVariant($productVariant);
         $obj->setPrice($price);
