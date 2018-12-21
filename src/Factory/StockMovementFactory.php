@@ -45,13 +45,13 @@ final class StockMovementFactory implements StockMovementFactoryInterface
         return $obj;
     }
 
-    public function createValid(int $quantity, ProductVariantInterface $productVariant, Money $price, ?string $reference = null): StockMovementInterface
+    public function createValid(int $quantity, ProductVariantInterface $variant, Money $price, ?string $reference = null): StockMovementInterface
     {
         $obj = $this->createNew();
 
         $convertedPrice = $this->currencyConverter->convertFromMoney($price, $this->baseCurrency);
 
-        $obj->setProductVariant($productVariant);
+        $obj->setVariant($variant);
         $obj->setPrice($price);
         $obj->setQuantity($quantity);
         $obj->setReference($reference);

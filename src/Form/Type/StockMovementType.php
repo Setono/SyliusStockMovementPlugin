@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\Form\Type;
 
+use Setono\SyliusStockPlugin\Form\DataTransformer\MoneyToStringTransformer;
+use Sylius\Bundle\ResourceBundle\Form\DataTransformer\ResourceToIdentifierTransformer;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Sylius\Component\Product\Repository\ProductVariantRepositoryInterface;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -13,15 +16,15 @@ use Symfony\Component\Form\FormBuilderInterface;
 final class StockMovementType extends AbstractResourceType
 {
     /**
-     * @var string
+     * @var ProductVariantRepositoryInterface
      */
-    private $productVariantClass;
+    private $variantRepository;
 
-    public function __construct(string $dataClass, string $productVariantClass, $validationGroups = [])
+    public function __construct(string $dataClass, ProductVariantRepositoryInterface $variantRepository, $validationGroups = [])
     {
         parent::__construct($dataClass, $validationGroups);
 
-        $this->productVariantClass = $productVariantClass;
+        $this->variantRepository = $variantRepository;
     }
 
     /**
@@ -37,11 +40,21 @@ final class StockMovementType extends AbstractResourceType
             ->add('reference', TextType::class, [
                 'label' => 'setono_sylius_stock.form.stock_movement.reference',
             ])
-            ->add('productVariant', EntityType::class, [
-                'label' => 'setono_sylius_stock.form.stock_movement.product_variant',
-                'class' => $this->productVariantClass,
+            ->add('variant', TextType::class, [
+                'label' => 'setono_sylius_stock.form.stock_movement.variant',
+                'invalid_message' => 'setono_sylius_stock.stock_movement.variant_invalid'
+            ])
+            ->add('price', TextType::class, [
+                'label' => 'setono_sylius_stock.form.stock_movement.price',
+                'invalid_message' => 'setono_sylius_stock.stock_movement.price_invalid'
             ])
         ;
+
+        $builder->get('variant')->addModelTransformer(
+            new ResourceToIdentifierTransformer($this->variantRepository, 'code')
+        );
+
+        $builder->get('price')->addModelTransformer(new MoneyToStringTransformer());
     }
 
     /**

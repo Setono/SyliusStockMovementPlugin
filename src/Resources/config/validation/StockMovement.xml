@@ -19,16 +19,16 @@
             </constraint>
         </property>
 
-        <property name="productVariant">
+        <property name="variant">
             <constraint name="NotNull">
-                <option name="message">setono_sylius_stock.stock_movement.product_variant.not_null</option>
+                <option name="message">setono_sylius_stock.stock_movement.variant.not_null</option>
                 <option name="groups">sylius</option>
             </constraint>
         </property>
 
-        <property name="productVariantCode">
+        <property name="variantCode">
             <constraint name="NotBlank">
-                <option name="message">setono_sylius_stock.stock_movement.product_variant_code.not_blank</option>
+                <option name="message">setono_sylius_stock.stock_movement.variant_code.not_blank</option>
                 <option name="groups">sylius</option>
             </constraint>
         </property>

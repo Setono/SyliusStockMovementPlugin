@@ -25,12 +25,12 @@ class StockMovement implements StockMovementInterface
     /**
      * @var ProductVariantInterface|null
      */
-    protected $productVariant;
+    protected $variant;
 
     /**
      * @var string
      */
-    protected $productVariantCode;
+    protected $variantCode;
 
     /**
      * @var Money
@@ -71,37 +71,37 @@ class StockMovement implements StockMovementInterface
     /**
      * @return ProductVariantInterface|null
      */
-    public function getProductVariant(): ?ProductVariantInterface
+    public function getVariant(): ?ProductVariantInterface
     {
-        return $this->productVariant;
+        return $this->variant;
     }
 
     /**
-     * @param ProductVariantInterface|null $productVariant
+     * @param ProductVariantInterface|null $variant
      */
-    public function setProductVariant(?ProductVariantInterface $productVariant): void
+    public function setVariant(?ProductVariantInterface $variant): void
     {
-        $this->productVariant = $productVariant;
+        $this->variant = $variant;
 
-        if (null !== $productVariant) {
-            $this->productVariantCode = (string) $productVariant->getCode();
+        if (null !== $variant) {
+            $this->variantCode = (string) $variant->getCode();
         }
     }
 
     /**
      * @return string
      */
-    public function getProductVariantCode(): ?string
+    public function getVariantCode(): ?string
     {
-        return $this->productVariantCode;
+        return $this->variantCode;
     }
 
     /**
-     * @param string $productVariantCode
+     * @param string $variantCode
      */
-    public function setProductVariantCode(string $productVariantCode): void
+    public function setVariantCode(string $variantCode): void
     {
-        $this->productVariantCode = $productVariantCode;
+        $this->variantCode = $variantCode;
     }
 
     /**

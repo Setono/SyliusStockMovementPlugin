@@ -28,17 +28,17 @@ interface StockMovementInterface extends ResourceInterface
     /**
      * @return ProductVariantInterface|null
      */
-    public function getProductVariant(): ?ProductVariantInterface;
+    public function getVariant(): ?ProductVariantInterface;
 
     /**
      * @param ProductVariantInterface|null $productVariant
      */
-    public function setProductVariant(?ProductVariantInterface $productVariant): void;
+    public function setVariant(?ProductVariantInterface $productVariant): void;
 
     /**
      * @return string
      */
-    public function getProductVariantCode(): ?string;
+    public function getVariantCode(): ?string;
 
     /**
      * This is the original sales price

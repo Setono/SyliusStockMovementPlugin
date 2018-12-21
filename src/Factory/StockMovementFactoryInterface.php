@@ -15,7 +15,7 @@ interface StockMovementFactoryInterface extends FactoryInterface
      * Will create a valid stock movement that can be persisted
      *
      * @param int $quantity
-     * @param ProductVariantInterface $productVariant
+     * @param ProductVariantInterface $variant
      * @param Money $price
      * @param string|null $reference
      *
@@ -23,7 +23,7 @@ interface StockMovementFactoryInterface extends FactoryInterface
      */
     public function createValid(
         int $quantity,
-        ProductVariantInterface $productVariant,
+        ProductVariantInterface $variant,
         Money $price,
         ?string $reference = null
     ): StockMovementInterface;

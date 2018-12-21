@@ -19,12 +19,12 @@
             <gedmo:timestampable on="update"/>
         </field>
 
-        <many-to-one field="productVariant" target-entity="Sylius\Component\Product\Model\ProductVariantInterface">
+        <many-to-one field="variant" target-entity="Sylius\Component\Product\Model\ProductVariantInterface">
             <join-column on-delete="SET NULL" />
         </many-to-one>
 
         <field name="quantity" type="integer" />
-        <field name="productVariantCode" type="string" />
+        <field name="variantCode" type="string" />
 
         <embedded name="price" class="Money\Money" />
         <embedded name="convertedPrice" class="Money\Money" />

@@ -8,3 +8,5 @@ setono_sylius_stock:
             greater_than: The port number must be greater than 0
         email_to:
             email: All emails must be valid emails
+    stock_movement:
+        variant_invalid: The variant does not exist
