@@ -18,11 +18,11 @@ final class MoneyToStringTransformer implements DataTransformerInterface
      */
     public function transform($money): ?string
     {
-        if(null === $money) {
+        if (null === $money) {
             return null;
         }
 
-        return $money->getCurrency()->getCode().' '.$money->getAmount();
+        return $money->getCurrency()->getCode() . ' ' . $money->getAmount();
     }
 
     /**
@@ -40,7 +40,7 @@ final class MoneyToStringTransformer implements DataTransformerInterface
             return null;
         }
 
-        if(!preg_match('/^([A-Z]{3}) ([0-9]+)$/', $str, $matches)) {
+        if (!preg_match('/^([A-Z]{3}) ([\d]+)$/', $str, $matches)) {
             throw new TransformationFailedException('The currency format is not correct. A correct example could be USD 100 representing $1');
         }
 

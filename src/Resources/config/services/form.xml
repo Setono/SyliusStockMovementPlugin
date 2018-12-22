@@ -20,8 +20,14 @@
         <service id="setono.sylius_stock.form.type.stock_movement" class="Setono\SyliusStockPlugin\Form\Type\StockMovementType">
             <argument>%setono_sylius_stock.model.stock_movement.class%</argument>
             <argument type="service" id="sylius.repository.product_variant"/>
+            <argument type="service" id="setono.sylius_stock.form.event_listener.convert_price"/>
             <argument>%setono.sylius_stock.form.type.stock_movement.validation_groups%</argument>
             <tag name="form.type" />
+        </service>
+
+        <service id="setono.sylius_stock.form.event_listener.convert_price" class="Setono\SyliusStockPlugin\Form\EventListener\ConvertPriceListener">
+            <argument type="service" id="setono.sylius_stock.currency_converter.default"/>
+            <argument>%setono.sylius_stock.base_currency%</argument>
         </service>
     </services>
 </container>
