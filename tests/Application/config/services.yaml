@@ -2,3 +2,10 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en_US
+
+services:
+    Tests\Setono\SyliusStockPlugin\Application\src\DataSource\AllStockMovementsDataSource:
+        arguments:
+            - "@setono_sylius_stock.repository.stock_movement"
+        tags:
+            - { name: setono.sylius_stock.data_source, identifier: all_stock_movements, label: All stock movements }

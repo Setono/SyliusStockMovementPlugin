@@ -4,8 +4,9 @@
     <services>
         <service id="setono.sylius_stock.command.generate" class="Setono\SyliusStockPlugin\Command\GenerateCommand">
             <argument type="service" id="setono.sylius_stock.provider.due_report_configuration"/>
-            <argument type="service" id="setono.sylius_stock.generator.report"/>
+            <argument type="service" id="setono.sylius_stock.generator.stock_movement_report"/>
             <argument type="service" id="setono.sylius_stock.writer.report"/>
+            <argument type="service" id="setono.sylius_stock.transport.composite_report"/>
             <tag name="console.command" />
         </service>
     </services>

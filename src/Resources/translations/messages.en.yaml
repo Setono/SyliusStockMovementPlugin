@@ -6,6 +6,7 @@ setono_sylius_stock:
             type: Type
             schedule: Schedule
             template: Template
+            data_source: Data source
             ftp_host: FTP host
             ftp_username: FTP username
             ftp_password: FTP password
@@ -19,6 +20,9 @@ setono_sylius_stock:
             email_subject_body_placeholder: You can use the variable %report_id% to insert the report id
                 
     ui:
+        id: Id
+        stock_movement_reports: Stock movement reports
+        manage_stock_movement_reports: Manage stock movement reports
         report_configurations: Report configurations
         manage_report_configurations: Manage report configurations
         new_report_configuration: New report configuration
@@ -30,3 +34,4 @@ setono_sylius_stock:
                 stock:
                     header: Stock
                     report_configurations: Report configurations
+                    stock_movement_reports: Stock movement reports

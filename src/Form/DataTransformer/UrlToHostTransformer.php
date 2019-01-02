@@ -35,7 +35,7 @@ final class UrlToHostTransformer implements DataTransformerInterface
         }
 
         $host = parse_url($url, PHP_URL_HOST);
-        if (null === $host) {
+        if (null === $host || false === $host) {
             throw new TransformationFailedException(sprintf('It was not possible to extract the host from the url: "%s"', $url));
         }
 

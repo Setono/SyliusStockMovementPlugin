@@ -9,16 +9,6 @@
             </constraint>
         </property>
 
-        <property name="ftpHost">
-            <constraint name="Url">
-                <option name="message">setono_sylius_stock.report_configuration.ftp_host.url</option>
-                <option name="groups">sylius</option>
-                <option name="protocols">
-                    <value>ftp</value>
-                </option>
-            </constraint>
-        </property>
-
         <property name="ftpPort">
             <constraint name="GreaterThan">
                 <option name="message">setono_sylius_stock.report_configuration.ftp_port.greater_than</option>

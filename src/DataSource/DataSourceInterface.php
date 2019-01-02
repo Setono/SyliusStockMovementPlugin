@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\DataFilter;
+namespace Setono\SyliusStockPlugin\DataSource;
 
 use Pagerfanta\Pagerfanta;
 use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
 
-interface DataFilterInterface
+interface DataSourceInterface
 {
     /**
      * Returns true if this data filter supports the given report configuration

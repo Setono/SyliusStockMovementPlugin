@@ -25,6 +25,16 @@ abstract class Template implements TemplateInterface, ReportAwareInterface, Repo
         return 'report-' . $this->report->getId() . '---' . $now->format('YmdHis.u');
     }
 
+    public function renderHeader(): string
+    {
+        return '';
+    }
+
+    public function renderFooter(): string
+    {
+        return '';
+    }
+
     public function renderItems(): \Generator
     {
         foreach ($this->report->getItems() as $item) {

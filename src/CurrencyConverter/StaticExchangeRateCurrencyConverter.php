@@ -8,7 +8,7 @@ use Money\Currency;
 use Money\Money;
 use Sylius\Component\Currency\Converter\CurrencyConverterInterface;
 
-final class ExchangeRateCurrencyConverter extends CurrencyConverter
+final class StaticExchangeRateCurrencyConverter extends CurrencyConverter
 {
     private $currencyConverter;
 
@@ -19,6 +19,9 @@ final class ExchangeRateCurrencyConverter extends CurrencyConverter
 
     public function convert(int $money, string $sourceCurrency, string $targetCurrency): Money
     {
+        // notice that Sylius' currency converter will return the same amount if the source > target currency pair does not exist
+        // i.e. if you give an input like EUR 100 and your target is USD, but no exchange rate exists between EUR and USD
+        // Sylius' currency converter will return 100
         $converted = $this->currencyConverter->convert($money, $sourceCurrency, $targetCurrency);
 
         return new Money($converted, new Currency($targetCurrency));

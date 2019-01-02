@@ -31,7 +31,7 @@ final class EmailReportTransport implements ReportTransportInterface
 
     public function supports(ReportInterface $report, ReportConfigurationInterface $reportConfiguration): bool
     {
-        return null !== $reportConfiguration->getEmailTo();
+        return null !== $reportConfiguration->getEmailTo() && count($reportConfiguration->getEmailTo()) > 0;
     }
 
     private function resolveSubject(?string $subject, ReportInterface $report): string

@@ -13,6 +13,7 @@
         <service id="setono.sylius_stock.form.type.report_configuration" class="Setono\SyliusStockPlugin\Form\Type\ReportConfigurationType">
             <argument>%setono_sylius_stock.model.report_configuration.class%</argument>
             <argument>%setono.sylius_stock.template_labels%</argument>
+            <argument>%setono.sylius_stock.data_source_labels%</argument>
             <argument>%setono.sylius_stock.form.type.report_configuration.validation_groups%</argument>
             <tag name="form.type" />
         </service>

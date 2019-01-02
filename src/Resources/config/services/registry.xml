@@ -3,5 +3,10 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="setono.sylius_stock.registry.template" class="Setono\SyliusStockPlugin\Registry\TemplateRegistry" />
+
+        <service id="setono.sylius_stock.registry.data_source" class="Sylius\Component\Registry\ServiceRegistry">
+            <argument>Setono\SyliusStockPlugin\DataSource\DataSourceInterface</argument>
+            <argument>data sources</argument>
+        </service>
     </services>
 </container>

@@ -36,6 +36,11 @@ class ReportConfiguration implements ReportConfigurationInterface
     /**
      * @var string
      */
+    protected $dataSource;
+
+    /**
+     * @var string
+     */
     protected $ftpHost;
 
     /**
@@ -143,6 +148,22 @@ class ReportConfiguration implements ReportConfigurationInterface
     public function setTemplate(string $template): void
     {
         $this->template = $template;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDataSource(): ?string
+    {
+        return $this->dataSource;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setDataSource(string $dataSource): void
+    {
+        $this->dataSource = $dataSource;
     }
 
     /**

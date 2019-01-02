@@ -11,3 +11,17 @@ setono_sylius_stock_admin_report_configuration:
             index:
                 icon: 'chart bar'
     type: sylius.resource
+    
+setono_sylius_stock_admin_stock_movement_report:
+    resource: |
+        alias: setono_sylius_stock.stock_movement_report
+        section: admin
+        templates: SyliusAdminBundle:Crud
+        redirect: update
+        grid: setono_sylius_stock_admin_stock_movement_report
+        vars:
+            all:
+                subheader: setono_sylius_stock.ui.manage_stock_movement_reports
+            index:
+                icon: 'chart bar'
+    type: sylius.resource

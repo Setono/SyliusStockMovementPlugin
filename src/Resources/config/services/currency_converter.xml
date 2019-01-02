@@ -2,9 +2,9 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono.sylius_stock.currency_converter.default" alias="setono.sylius_stock.currency_converter.exchange_rate" />
+        <service id="setono.sylius_stock.currency_converter.default" alias="setono.sylius_stock.currency_converter.static_exchange_rate" />
 
-        <service id="setono.sylius_stock.currency_converter.exchange_rate" class="Setono\SyliusStockPlugin\CurrencyConverter\ExchangeRateCurrencyConverter">
+        <service id="setono.sylius_stock.currency_converter.static_exchange_rate" class="Setono\SyliusStockPlugin\CurrencyConverter\StaticExchangeRateCurrencyConverter">
             <argument type="service" id="sylius.currency_converter" />
         </service>
     </services>

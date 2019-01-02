@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\DataFilter;
+namespace Setono\SyliusStockPlugin\DataSource;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
 
-abstract class DataFilter implements DataFilterInterface
+abstract class DataSource implements DataSourceInterface
 {
     /**
      * @var QueryBuilder

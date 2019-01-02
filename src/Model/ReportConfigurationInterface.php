@@ -59,6 +59,16 @@ interface ReportConfigurationInterface extends ResourceInterface
     public function setTemplate(string $template): void;
 
     /**
+     * @return string|null
+     */
+    public function getDataSource(): ?string;
+
+    /**
+     * @param string $dataSource
+     */
+    public function setDataSource(string $dataSource): void;
+
+    /**
      * @return string
      */
     public function getFtpHost(): ?string;

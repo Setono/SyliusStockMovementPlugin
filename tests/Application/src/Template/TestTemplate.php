@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Setono\SyliusStockPlugin\Application\src\Template;
 
+use Setono\SyliusStockPlugin\Model\StockMovementInterface;
 use Setono\SyliusStockPlugin\Template\Template;
 
 class TestTemplate extends Template
@@ -13,18 +14,12 @@ class TestTemplate extends Template
         return parent::getFilename().'.txt';
     }
 
-    public function renderHeader(): string
-    {
-        return 'header';
-    }
-
-    public function renderFooter(): string
-    {
-        return 'footer';
-    }
-
+    /**
+     * @param StockMovementInterface $item
+     * @return string
+     */
     protected function renderItem($item): string
     {
-        return 'item';
+        return $item->getQuantity().';'.$item->getVariantCode().';'.$item->getConvertedPrice()->getCurrency()->getCode().' '.$item->getConvertedPrice()->getAmount()."\n";
     }
 }

@@ -14,14 +14,26 @@ final class AdminMenuListener
     public function addAdminMenuItems(MenuBuilderEvent $event): void
     {
         $menu = $event->getMenu();
-        $menu->addChild('stock')
+
+        $stockHeader = $menu->addChild('stock')
             ->setLabel('setono_sylius_stock.menu.admin.main.stock.header')
             ->setLabelAttribute('icon', 'building')
-                ->addChild('report_configurations', [
-                    'route' => 'setono_sylius_stock_admin_report_configuration_index',
-                ])
-                ->setLabel('setono_sylius_stock.menu.admin.main.stock.report_configurations')
-                ->setLabelAttribute('icon', 'chart bar')
+        ;
+
+        $stockHeader
+            ->addChild('report_configurations', [
+                'route' => 'setono_sylius_stock_admin_report_configuration_index',
+            ])
+            ->setLabel('setono_sylius_stock.menu.admin.main.stock.report_configurations')
+            ->setLabelAttribute('icon', 'chart bar')
+        ;
+
+        $stockHeader
+            ->addChild('stock_movement_reports', [
+                'route' => 'setono_sylius_stock_admin_stock_movement_report_index',
+            ])
+            ->setLabel('setono_sylius_stock.menu.admin.main.stock.stock_movement_reports')
+            ->setLabelAttribute('icon', 'chart bar')
         ;
     }
 }

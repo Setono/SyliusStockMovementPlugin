@@ -19,12 +19,7 @@
             </constraint>
         </property>
 
-        <property name="variant">
-            <constraint name="NotNull">
-                <option name="message">setono_sylius_stock.stock_movement.variant.not_null</option>
-                <option name="groups">sylius</option>
-            </constraint>
-        </property>
+        <!-- todo validate the property 'variant' on creation -->
 
         <property name="variantCode">
             <constraint name="NotBlank">

@@ -10,7 +10,6 @@ use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 final class ReportConfigurationType extends AbstractResourceType
@@ -20,11 +19,17 @@ final class ReportConfigurationType extends AbstractResourceType
      */
     private $templateLabels;
 
-    public function __construct(string $dataClass, array $templateLabels, $validationGroups = [])
+    /**
+     * @var string[]
+     */
+    private $dataSourceLabels;
+
+    public function __construct(string $dataClass, array $templateLabels, array $dataSourceLabels, $validationGroups = [])
     {
         parent::__construct($dataClass, $validationGroups);
 
         $this->templateLabels = $templateLabels;
+        $this->dataSourceLabels = $dataSourceLabels;
     }
 
     /**
@@ -33,7 +38,7 @@ final class ReportConfigurationType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
+            ->add('name', null, [
                 'label' => 'setono_sylius_stock.form.report_configuration.name',
                 'attr' => [
                     'placeholder' => 'setono_sylius_stock.form.report_configuration.name_placeholder',
@@ -51,6 +56,10 @@ final class ReportConfigurationType extends AbstractResourceType
             ->add('template', ChoiceType::class, [
                 'label' => 'setono_sylius_stock.form.report_configuration.template',
                 'choices' => array_flip($this->templateLabels),
+            ])
+            ->add('dataSource', ChoiceType::class, [
+                'label' => 'setono_sylius_stock.form.report_configuration.data_source',
+                'choices' => array_flip($this->dataSourceLabels),
             ])
             ->add('ftpHost', null, [
                 'label' => 'setono_sylius_stock.form.report_configuration.ftp_host',

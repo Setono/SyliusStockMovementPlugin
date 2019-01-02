@@ -18,6 +18,22 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+        setono_sylius_stock_admin_stock_movement_report:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%setono_sylius_stock.model.stock_movement_report.class%"
+            fields:
+                id:
+                    type: string
+                    label: setono_sylius_stock.ui.id
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    show:
+                        type: show
                         
 sylius_mailer:
     emails:

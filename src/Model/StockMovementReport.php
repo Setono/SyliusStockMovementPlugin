@@ -32,13 +32,16 @@ class StockMovementReport implements StockMovementReportInterface
         $this->stockMovements = new ArrayCollection();
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
     /**
-     * @return ReportConfigurationInterface
+     * {@inheritdoc}
      */
     public function getReportConfiguration(): ?ReportConfigurationInterface
     {
@@ -46,7 +49,7 @@ class StockMovementReport implements StockMovementReportInterface
     }
 
     /**
-     * @param ReportConfigurationInterface $reportConfiguration
+     * {@inheritdoc}
      */
     public function setReportConfiguration(ReportConfigurationInterface $reportConfiguration): void
     {
@@ -54,18 +57,24 @@ class StockMovementReport implements StockMovementReportInterface
     }
 
     /**
-     * @return Collection|StockMovementInterface[]
+     * {@inheritdoc}
      */
     public function getStockMovements(): Collection
     {
         return $this->stockMovements;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function addStockMovement(StockMovementInterface $stockMovement): void
     {
         $this->stockMovements->add($stockMovement);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getItems(): Collection
     {
         return $this->getStockMovements();
