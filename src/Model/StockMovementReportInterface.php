@@ -5,18 +5,20 @@ declare(strict_types=1);
 namespace Setono\SyliusStockPlugin\Model;
 
 use Doctrine\Common\Collections\Collection;
+use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\TimestampableInterface;
 
-interface StockMovementReportInterface extends ReportInterface
+interface StockMovementReportInterface extends ResourceInterface, TimestampableInterface
 {
     /**
-     * @return ReportConfigurationInterface
+     * @return StockMovementReportConfigurationInterface
      */
-    public function getReportConfiguration(): ?ReportConfigurationInterface;
+    public function getReportConfiguration(): ?StockMovementReportConfigurationInterface;
 
     /**
-     * @param ReportConfigurationInterface $reportConfiguration
+     * @param StockMovementReportConfigurationInterface $reportConfiguration
      */
-    public function setReportConfiguration(ReportConfigurationInterface $reportConfiguration): void;
+    public function setReportConfiguration(StockMovementReportConfigurationInterface $reportConfiguration): void;
 
     /**
      * @return Collection|StockMovementInterface[]

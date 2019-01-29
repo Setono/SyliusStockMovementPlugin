@@ -1,13 +1,13 @@
-setono_sylius_stock_admin_report_configuration:
+setono_sylius_stock_admin_stock_movement_report_configuration:
     resource: |
-        alias: setono_sylius_stock.report_configuration
+        alias: setono_sylius_stock.stock_movement_report_configuration
         section: admin
         templates: SyliusAdminBundle:Crud
         redirect: update
-        grid: setono_sylius_stock_admin_report_configuration
+        grid: setono_sylius_stock_admin_stock_movement_report_configuration
         vars:
             all:
-                subheader: setono_sylius_stock.ui.manage_report_configurations
+                subheader: setono_sylius_stock.ui.manage_stock_movement_report_configurations
             index:
                 icon: 'chart bar'
     type: sylius.resource
@@ -25,3 +25,13 @@ setono_sylius_stock_admin_stock_movement_report:
             index:
                 icon: 'chart bar'
     type: sylius.resource
+    
+setono_sylius_stock_admin_stock_movement_report_show:
+    path: /stock-movement-reports/{id}
+    methods: [GET]
+    defaults:
+        _controller: setono_sylius_stock.controller.stock_movement_report:showAction
+        _sylius:
+            section: admin
+            permission: true
+            template: "@SetonoSyliusStockPlugin/StockMovementReport/show.html.twig"

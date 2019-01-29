@@ -1,6 +1,6 @@
 setono_sylius_stock:
     form:
-        report_configuration:
+        stock_movement_report_configuration:
             name: Name
             name_placeholder: The name is only used as a reference
             type: Type
@@ -21,17 +21,18 @@ setono_sylius_stock:
                 
     ui:
         id: Id
+        stock_movement_report: Stock movement report
         stock_movement_reports: Stock movement reports
         manage_stock_movement_reports: Manage stock movement reports
-        report_configurations: Report configurations
-        manage_report_configurations: Manage report configurations
-        new_report_configuration: New report configuration
-        edit_report_configuration: Edit report configuration
+        stock_movement_report_configurations: Report configurations
+        manage_stock_movement_report_configurations: Manage report configurations
+        new_stock_movement_report_configuration: New report configuration
+        edit_stock_movement_report_configuration: Edit report configuration
 
     menu:
         admin:
             main:
                 stock:
                     header: Stock
-                    report_configurations: Report configurations
+                    stock_movement_report_configurations: Stock movement report configurations
                     stock_movement_reports: Stock movement reports

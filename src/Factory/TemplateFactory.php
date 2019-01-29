@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\Factory;
 
-use Setono\SyliusStockPlugin\Model\ReportAwareInterface;
-use Setono\SyliusStockPlugin\Model\ReportConfigurationAwareInterface;
-use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\ReportInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportAwareInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationAwareInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
 use Setono\SyliusStockPlugin\Registry\TemplateRegistryInterface;
 use Setono\SyliusStockPlugin\Template\TemplateInterface;
 
@@ -35,17 +35,17 @@ final class TemplateFactory implements TemplateFactoryInterface
 
     public function createWithReportAndReportConfiguration(
         string $identifier,
-        ReportInterface $report,
-        ReportConfigurationInterface $reportConfiguration
+        StockMovementReportInterface $report,
+        StockMovementReportConfigurationInterface $reportConfiguration
     ): TemplateInterface {
         $template = $this->create($identifier);
 
-        if (!$template instanceof ReportAwareInterface || !$template instanceof ReportConfigurationAwareInterface) {
-            throw new \RuntimeException(sprintf('The template %s does not implement one or both of the interfaces: %s, %s', \get_class($template), ReportAwareInterface::class, ReportConfigurationAwareInterface::class));
+        if (!$template instanceof StockMovementReportAwareInterface || !$template instanceof StockMovementReportConfigurationAwareInterface) {
+            throw new \RuntimeException(sprintf('The template %s does not implement one or both of the interfaces: %s, %s', \get_class($template), StockMovementReportAwareInterface::class, StockMovementReportConfigurationAwareInterface::class));
         }
 
-        $template->setReport($report);
-        $template->setReportConfiguration($reportConfiguration);
+        $template->setStockMovementReport($report);
+        $template->setStockMovementReportConfiguration($reportConfiguration);
 
         return $template;
     }

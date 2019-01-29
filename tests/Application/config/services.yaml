@@ -9,3 +9,9 @@ services:
             - "@setono_sylius_stock.repository.stock_movement"
         tags:
             - { name: setono.sylius_stock.data_source, identifier: all_stock_movements, label: All stock movements }
+
+    Tests\Setono\SyliusStockPlugin\Application\src\DataSource\StockMovementsGreaterThanUSD100DataSource:
+        arguments:
+            - "@setono_sylius_stock.repository.stock_movement"
+        tags:
+            - { name: setono.sylius_stock.data_source, identifier: stock_movements_greater_than_usd_100, label: Stock movements greater than USD 100 }

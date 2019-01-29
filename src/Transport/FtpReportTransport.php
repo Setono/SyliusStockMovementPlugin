@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\Transport;
 
-use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\ReportInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
 
 final class FtpReportTransport implements ReportTransportInterface
 {
@@ -14,7 +14,7 @@ final class FtpReportTransport implements ReportTransportInterface
      *
      * @throws \Exception
      */
-    public function send(\SplFileInfo $file, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void
+    public function send(\SplFileInfo $file, StockMovementReportInterface $report, StockMovementReportConfigurationInterface $reportConfiguration): void
     {
         $ftp = new \Ftp();
         $ftp->connect($reportConfiguration->getFtpHost(), $reportConfiguration->getFtpPort() ?? 21);
@@ -26,7 +26,7 @@ final class FtpReportTransport implements ReportTransportInterface
         $ftp->put($reportConfiguration->getFtpPath() ?? '/', $file->getPathname(), FTP_BINARY);
     }
 
-    public function supports(ReportInterface $report, ReportConfigurationInterface $reportConfiguration): bool
+    public function supports(StockMovementReportInterface $report, StockMovementReportConfigurationInterface $reportConfiguration): bool
     {
         return null !== $reportConfiguration->getFtpHost();
     }

@@ -7,10 +7,8 @@ namespace Setono\SyliusStockPlugin\Model;
 use Cron\CronExpression;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
-interface ReportConfigurationInterface extends ResourceInterface
+interface StockMovementReportConfigurationInterface extends ResourceInterface
 {
-    public const TYPE_STOCK_MOVEMENT = 'stock_movement';
-
     /**
      * {@inheritdoc}
      */
@@ -25,16 +23,6 @@ interface ReportConfigurationInterface extends ResourceInterface
      * @param string $name
      */
     public function setName(string $name): void;
-
-    /**
-     * @return string|null
-     */
-    public function getType(): ?string;
-
-    /**
-     * @param string $type
-     */
-    public function setType(string $type): void;
 
     /**
      * @return CronExpression|null

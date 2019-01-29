@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\Factory;
 
-use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\ReportInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
 use Setono\SyliusStockPlugin\Template\TemplateInterface;
 
 interface TemplateFactoryInterface
@@ -23,14 +23,14 @@ interface TemplateFactoryInterface
      * Creates a template with a report and report configuration set
      *
      * @param string $identifier
-     * @param ReportInterface $report
-     * @param ReportConfigurationInterface $reportConfiguration
+     * @param StockMovementReportInterface $report
+     * @param StockMovementReportConfigurationInterface $reportConfiguration
      *
      * @return TemplateInterface
      */
     public function createWithReportAndReportConfiguration(
         string $identifier,
-        ReportInterface $report,
-        ReportConfigurationInterface $reportConfiguration
+        StockMovementReportInterface $report,
+        StockMovementReportConfigurationInterface $reportConfiguration
     ): TemplateInterface;
 }

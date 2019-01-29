@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\Template;
 
-use Setono\SyliusStockPlugin\Model\ReportAwareInterface;
-use Setono\SyliusStockPlugin\Model\ReportAwareTrait;
-use Setono\SyliusStockPlugin\Model\ReportConfigurationAwareInterface;
-use Setono\SyliusStockPlugin\Model\ReportConfigurationAwareTrait;
+use Setono\SyliusStockPlugin\Model\StockMovementReportAwareInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportAwareTrait;
+use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationAwareInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationAwareTrait;
 
-abstract class Template implements TemplateInterface, ReportAwareInterface, ReportConfigurationAwareInterface
+abstract class Template implements TemplateInterface, StockMovementReportAwareInterface, StockMovementReportConfigurationAwareInterface
 {
-    use ReportAwareTrait, ReportConfigurationAwareTrait;
+    use StockMovementReportAwareTrait, StockMovementReportConfigurationAwareTrait;
 
     /**
      * {@inheritdoc}
@@ -22,7 +22,7 @@ abstract class Template implements TemplateInterface, ReportAwareInterface, Repo
     {
         $now = new \DateTime();
 
-        return 'report-' . $this->report->getId() . '---' . $now->format('YmdHis.u');
+        return 'report-' . $this->stockMovementReport->getId() . '---' . $now->format('YmdHis.u');
     }
 
     public function renderHeader(): string
@@ -37,8 +37,8 @@ abstract class Template implements TemplateInterface, ReportAwareInterface, Repo
 
     public function renderItems(): \Generator
     {
-        foreach ($this->report->getItems() as $item) {
-            yield $this->renderItem($item);
+        foreach ($this->stockMovementReport->getStockMovements() as $stockMovement) {
+            yield $this->renderItem($stockMovement);
         }
     }
 

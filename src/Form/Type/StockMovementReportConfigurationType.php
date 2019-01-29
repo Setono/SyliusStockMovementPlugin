@@ -6,13 +6,12 @@ namespace Setono\SyliusStockPlugin\Form\Type;
 
 use Setono\SyliusStockPlugin\Form\DataTransformer\EmailsToArrayTransformer;
 use Setono\SyliusStockPlugin\Form\DataTransformer\UrlToHostTransformer;
-use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-final class ReportConfigurationType extends AbstractResourceType
+final class StockMovementReportConfigurationType extends AbstractResourceType
 {
     /**
      * @var string[]
@@ -39,69 +38,63 @@ final class ReportConfigurationType extends AbstractResourceType
     {
         $builder
             ->add('name', null, [
-                'label' => 'setono_sylius_stock.form.report_configuration.name',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.name',
                 'attr' => [
-                    'placeholder' => 'setono_sylius_stock.form.report_configuration.name_placeholder',
-                ],
-            ])
-            ->add('type', ChoiceType::class, [
-                'label' => 'setono_sylius_stock.form.report_configuration.type',
-                'choices' => [
-                    'Stock movement' => ReportConfigurationInterface::TYPE_STOCK_MOVEMENT,
+                    'placeholder' => 'setono_sylius_stock.form.stock_movement_report_configuration.name_placeholder',
                 ],
             ])
             ->add('schedule', null, [
-                'label' => 'setono_sylius_stock.form.report_configuration.schedule',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.schedule',
             ])
             ->add('template', ChoiceType::class, [
-                'label' => 'setono_sylius_stock.form.report_configuration.template',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.template',
                 'choices' => array_flip($this->templateLabels),
             ])
             ->add('dataSource', ChoiceType::class, [
-                'label' => 'setono_sylius_stock.form.report_configuration.data_source',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.data_source',
                 'choices' => array_flip($this->dataSourceLabels),
             ])
             ->add('ftpHost', null, [
-                'label' => 'setono_sylius_stock.form.report_configuration.ftp_host',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.ftp_host',
                 'required' => false,
             ])
             ->add('ftpUsername', null, [
-                'label' => 'setono_sylius_stock.form.report_configuration.ftp_username',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.ftp_username',
                 'required' => false,
             ])
             ->add('ftpPassword', null, [
-                'label' => 'setono_sylius_stock.form.report_configuration.ftp_password',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.ftp_password',
                 'required' => false,
             ])
             ->add('ftpPort', IntegerType::class, [
-                'label' => 'setono_sylius_stock.form.report_configuration.ftp_port',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.ftp_port',
                 'attr' => [
-                    'placeholder' => 'setono_sylius_stock.form.report_configuration.ftp_port_placeholder',
+                    'placeholder' => 'setono_sylius_stock.form.stock_movement_report_configuration.ftp_port_placeholder',
                 ],
                 'required' => false,
             ])
             ->add('ftpPath', null, [
-                'label' => 'setono_sylius_stock.form.report_configuration.ftp_path',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.ftp_path',
                 'required' => false,
             ])
             ->add('emailTo', null, [
-                'label' => 'setono_sylius_stock.form.report_configuration.email_to',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.email_to',
                 'attr' => [
-                    'placeholder' => 'setono_sylius_stock.form.report_configuration.email_placeholder',
+                    'placeholder' => 'setono_sylius_stock.form.stock_movement_report_configuration.email_placeholder',
                 ],
                 'required' => false,
             ])
             ->add('emailSubject', null, [
-                'label' => 'setono_sylius_stock.form.report_configuration.email_subject',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.email_subject',
                 'attr' => [
-                    'placeholder' => 'setono_sylius_stock.form.report_configuration.email_subject_body_placeholder',
+                    'placeholder' => 'setono_sylius_stock.form.stock_movement_report_configuration.email_subject_body_placeholder',
                 ],
                 'required' => false,
             ])
             ->add('emailBody', null, [
-                'label' => 'setono_sylius_stock.form.report_configuration.email_body',
+                'label' => 'setono_sylius_stock.form.stock_movement_report_configuration.email_body',
                 'attr' => [
-                    'placeholder' => 'setono_sylius_stock.form.report_configuration.email_subject_body_placeholder',
+                    'placeholder' => 'setono_sylius_stock.form.stock_movement_report_configuration.email_subject_body_placeholder',
                 ],
                 'required' => false,
             ])

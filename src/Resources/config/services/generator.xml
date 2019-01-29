@@ -7,6 +7,7 @@
             <argument type="service" id="setono_sylius_stock.factory.stock_movement_report"/>
             <argument type="service" id="setono_sylius_stock.repository.stock_movement_report"/>
             <argument type="service" id="setono.sylius_stock.registry.data_source"/>
+            <argument type="service" id="setono.sylius_stock.provider.latest_id"/>
         </service>
 
     </services>

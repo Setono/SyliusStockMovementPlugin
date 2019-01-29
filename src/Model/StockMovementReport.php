@@ -6,6 +6,7 @@ namespace Setono\SyliusStockPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Sylius\Component\Resource\Model\TimestampableInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 
 class StockMovementReport implements StockMovementReportInterface
@@ -18,7 +19,7 @@ class StockMovementReport implements StockMovementReportInterface
     protected $id;
 
     /**
-     * @var ReportConfigurationInterface
+     * @var StockMovementReportConfigurationInterface
      */
     protected $reportConfiguration;
 
@@ -43,7 +44,7 @@ class StockMovementReport implements StockMovementReportInterface
     /**
      * {@inheritdoc}
      */
-    public function getReportConfiguration(): ?ReportConfigurationInterface
+    public function getReportConfiguration(): ?StockMovementReportConfigurationInterface
     {
         return $this->reportConfiguration;
     }
@@ -51,7 +52,7 @@ class StockMovementReport implements StockMovementReportInterface
     /**
      * {@inheritdoc}
      */
-    public function setReportConfiguration(ReportConfigurationInterface $reportConfiguration): void
+    public function setReportConfiguration(StockMovementReportConfigurationInterface $reportConfiguration): void
     {
         $this->reportConfiguration = $reportConfiguration;
     }
@@ -70,13 +71,5 @@ class StockMovementReport implements StockMovementReportInterface
     public function addStockMovement(StockMovementInterface $stockMovement): void
     {
         $this->stockMovements->add($stockMovement);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getItems(): Collection
-    {
-        return $this->getStockMovements();
     }
 }

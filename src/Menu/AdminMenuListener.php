@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\Menu;
 
+use Knp\Menu\ItemInterface;
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 
 final class AdminMenuListener
@@ -15,17 +16,14 @@ final class AdminMenuListener
     {
         $menu = $event->getMenu();
 
-        $stockHeader = $menu->addChild('stock')
-            ->setLabel('setono_sylius_stock.menu.admin.main.stock.header')
-            ->setLabelAttribute('icon', 'building')
-        ;
+        $stockHeader = $this->getHeader($menu);
 
         $stockHeader
-            ->addChild('report_configurations', [
-                'route' => 'setono_sylius_stock_admin_report_configuration_index',
+            ->addChild('stock_movement_report_configurations', [
+                'route' => 'setono_sylius_stock_admin_stock_movement_report_configuration_index',
             ])
-            ->setLabel('setono_sylius_stock.menu.admin.main.stock.report_configurations')
-            ->setLabelAttribute('icon', 'chart bar')
+            ->setLabel('setono_sylius_stock.menu.admin.main.stock.stock_movement_report_configurations')
+            ->setLabelAttribute('icon', 'cog')
         ;
 
         $stockHeader
@@ -35,5 +33,27 @@ final class AdminMenuListener
             ->setLabel('setono_sylius_stock.menu.admin.main.stock.stock_movement_reports')
             ->setLabelAttribute('icon', 'chart bar')
         ;
+    }
+
+    /**
+     * This ensures that use the existing stock header if it exists
+     * else we will create it
+     *
+     * @param ItemInterface $menu
+     *
+     * @return ItemInterface
+     */
+    private function getHeader(ItemInterface $menu): ItemInterface
+    {
+        $header = $menu->getChild('stock');
+
+        if (null === $header) {
+            $header = $menu->addChild('stock')
+                ->setLabel('setono_sylius_stock.menu.admin.main.stock.header')
+                ->setLabelAttribute('icon', 'building')
+            ;
+        }
+
+        return $header;
     }
 }

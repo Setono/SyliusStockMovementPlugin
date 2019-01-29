@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\Transport;
 
-use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\ReportInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
 
 final class CompositeReportTransport implements ReportTransportInterface
 {
@@ -19,7 +19,7 @@ final class CompositeReportTransport implements ReportTransportInterface
         $this->transports = $transports;
     }
 
-    public function send(\SplFileInfo $file, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void
+    public function send(\SplFileInfo $file, StockMovementReportInterface $report, StockMovementReportConfigurationInterface $reportConfiguration): void
     {
         foreach ($this->transports as $transport) {
             if (!$transport->supports($report, $reportConfiguration)) {
@@ -30,7 +30,7 @@ final class CompositeReportTransport implements ReportTransportInterface
         }
     }
 
-    public function supports(ReportInterface $report, ReportConfigurationInterface $reportConfiguration): bool
+    public function supports(StockMovementReportInterface $report, StockMovementReportConfigurationInterface $reportConfiguration): bool
     {
         return true;
     }

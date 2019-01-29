@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\Transport;
 
-use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\ReportInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
 
 interface ReportTransportInterface
 {
@@ -13,18 +13,18 @@ interface ReportTransportInterface
      * Will send a report to a given destination
      *
      * @param \SplFileInfo $file
-     * @param ReportInterface $report
-     * @param ReportConfigurationInterface $reportConfiguration
+     * @param StockMovementReportInterface $report
+     * @param StockMovementReportConfigurationInterface $reportConfiguration
      */
-    public function send(\SplFileInfo $file, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void;
+    public function send(\SplFileInfo $file, StockMovementReportInterface $report, StockMovementReportConfigurationInterface $reportConfiguration): void;
 
     /**
      * Will return true if this transport supports the given report and report configuration
      *
-     * @param ReportInterface $report
-     * @param ReportConfigurationInterface $reportConfiguration
+     * @param StockMovementReportInterface $report
+     * @param StockMovementReportConfigurationInterface $reportConfiguration
      *
      * @return bool
      */
-    public function supports(ReportInterface $report, ReportConfigurationInterface $reportConfiguration): bool;
+    public function supports(StockMovementReportInterface $report, StockMovementReportConfigurationInterface $reportConfiguration): bool;
 }

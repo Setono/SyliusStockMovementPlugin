@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Setono\SyliusStockPlugin\Transport;
 
 use Setono\SyliusStockPlugin\Mailer\Emails;
-use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\ReportInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
 use Sylius\Component\Mailer\Sender\SenderInterface;
 
 final class EmailReportTransport implements ReportTransportInterface
@@ -21,7 +21,7 @@ final class EmailReportTransport implements ReportTransportInterface
         $this->sender = $sender;
     }
 
-    public function send(\SplFileInfo $file, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void
+    public function send(\SplFileInfo $file, StockMovementReportInterface $report, StockMovementReportConfigurationInterface $reportConfiguration): void
     {
         $this->sender->send(Emails::REPORT, $reportConfiguration->getEmailTo(), [
             'subject' => $this->resolveSubject($reportConfiguration->getEmailSubject(), $report),
@@ -29,12 +29,12 @@ final class EmailReportTransport implements ReportTransportInterface
         ]);
     }
 
-    public function supports(ReportInterface $report, ReportConfigurationInterface $reportConfiguration): bool
+    public function supports(StockMovementReportInterface $report, StockMovementReportConfigurationInterface $reportConfiguration): bool
     {
         return null !== $reportConfiguration->getEmailTo() && count($reportConfiguration->getEmailTo()) > 0;
     }
 
-    private function resolveSubject(?string $subject, ReportInterface $report): string
+    private function resolveSubject(?string $subject, StockMovementReportInterface $report): string
     {
         if (null === $subject) {
             return 'Report';
@@ -43,7 +43,7 @@ final class EmailReportTransport implements ReportTransportInterface
         return $this->resolvePlaceholders($subject, $report);
     }
 
-    private function resolveBody(?string $body, ReportInterface $report): string
+    private function resolveBody(?string $body, StockMovementReportInterface $report): string
     {
         if (null === $body) {
             return "Hi\n\nThis is a stock / stock movement report";
@@ -52,7 +52,7 @@ final class EmailReportTransport implements ReportTransportInterface
         return $this->resolvePlaceholders($body, $report);
     }
 
-    private function resolvePlaceholders(string $str, ReportInterface $report): string
+    private function resolvePlaceholders(string $str, StockMovementReportInterface $report): string
     {
         return str_replace('%report_id%', $report->getId(), $str);
     }

@@ -5,18 +5,15 @@ declare(strict_types=1);
 namespace Setono\SyliusStockPlugin\DataSource;
 
 use Pagerfanta\Pagerfanta;
-use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
 
 interface DataSourceInterface
 {
     /**
-     * Returns true if this data filter supports the given report configuration
+     * Will exclude ids less or equal to this id
      *
-     * @param ReportConfigurationInterface $reportConfiguration
-     *
-     * @return bool
+     * @param int $latestId
      */
-    public function supports(ReportConfigurationInterface $reportConfiguration): bool;
+    public function guardAgainstLatestId(int $latestId): void;
 
     /**
      * Returns the filtered data

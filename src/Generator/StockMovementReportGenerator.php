@@ -4,18 +4,16 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\Generator;
 
+use Generator;
 use Setono\SyliusStockPlugin\DataSource\DataSourceInterface;
-use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\ReportInterface;
-use Setono\SyliusStockPlugin\Model\StockMovement;
+use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
 use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
+use Setono\SyliusStockPlugin\Provider\LatestIdProviderInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use Webmozart\Assert\Assert;
-use Generator;
 
-class StockMovementReportGenerator implements ReportGeneratorInterface
+class StockMovementReportGenerator implements StockMovementReportGeneratorInterface
 {
     /**
      * @var FactoryInterface
@@ -32,29 +30,46 @@ class StockMovementReportGenerator implements ReportGeneratorInterface
      */
     private $dataSourceRegistry;
 
-    public function __construct(FactoryInterface $stockMovementReportFactory, RepositoryInterface $stockMovementReportRepository, ServiceRegistryInterface $dataSourceRegistry)
-    {
+    /**
+     * @var LatestIdProviderInterface
+     */
+    private $latestIdProvider;
+
+    public function __construct(
+        FactoryInterface $stockMovementReportFactory,
+        RepositoryInterface $stockMovementReportRepository,
+        ServiceRegistryInterface $dataSourceRegistry,
+        LatestIdProviderInterface $latestIdProvider
+    ) {
         $this->stockMovementReportFactory = $stockMovementReportFactory;
         $this->stockMovementReportRepository = $stockMovementReportRepository;
         $this->dataSourceRegistry = $dataSourceRegistry;
+        $this->latestIdProvider = $latestIdProvider;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function generate(ReportConfigurationInterface $reportConfiguration): ReportInterface
+    public function generate(StockMovementReportConfigurationInterface $stockMovementReportConfiguration): ?StockMovementReportInterface
     {
-        Assert::eq($reportConfiguration->getType(), ReportConfigurationInterface::TYPE_STOCK_MOVEMENT);
-
         /** @var DataSourceInterface $dataSource */
-        $dataSource = $this->dataSourceRegistry->get($reportConfiguration->getDataSource());
+        $dataSource = $this->dataSourceRegistry->get($stockMovementReportConfiguration->getDataSource());
+        $dataSource->guardAgainstLatestId($this->latestIdProvider->getLatestId($stockMovementReportConfiguration));
 
         /** @var StockMovementReportInterface $report */
         $report = $this->stockMovementReportFactory->createNew();
-        $report->setReportConfiguration($reportConfiguration);
+        $report->setReportConfiguration($stockMovementReportConfiguration);
+
+        $hasStockMovements = false;
 
         foreach ($this->getStockMovements($dataSource) as $stockMovement) {
             $report->addStockMovement($stockMovement);
+
+            $hasStockMovements = true;
+        }
+
+        if (!$hasStockMovements) {
+            return null;
         }
 
         $this->stockMovementReportRepository->add($report);
@@ -64,12 +79,11 @@ class StockMovementReportGenerator implements ReportGeneratorInterface
 
     private function getStockMovements(DataSourceInterface $dataSource): Generator
     {
-
         $pager = $dataSource->getData();
         $pager->setMaxPerPage(100);
         $pages = $pager->getNbPages();
 
-        for($page = 1; $page <= $pages; $page++) {
+        for ($page = 1; $page <= $pages; ++$page) {
             $pager->setCurrentPage($page);
 
             yield from $pager->getCurrentPageResults();

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockPlugin\Command;
 
-use Setono\SyliusStockPlugin\Generator\ReportGeneratorInterface;
-use Setono\SyliusStockPlugin\Provider\ReportConfigurationProviderInterface;
+use Setono\SyliusStockPlugin\Generator\StockMovementReportGeneratorInterface;
+use Setono\SyliusStockPlugin\Provider\StockMovementReportConfigurationProviderInterface;
 use Setono\SyliusStockPlugin\Transport\ReportTransportInterface;
-use Setono\SyliusStockPlugin\Writer\ReportWriterInterface;
+use Setono\SyliusStockPlugin\Writer\StockMovementReportWriterInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -17,17 +17,17 @@ final class GenerateCommand extends Command
     protected static $defaultName = 'setono:sylius_stock:generate';
 
     /**
-     * @var ReportConfigurationProviderInterface
+     * @var StockMovementReportConfigurationProviderInterface
      */
-    private $reportConfigurationProvider;
+    private $stockMovementReportConfigurationProvider;
 
     /**
-     * @var ReportGeneratorInterface
+     * @var StockMovementReportGeneratorInterface
      */
-    private $reportGenerator;
+    private $stockMovementReportGenerator;
 
     /**
-     * @var ReportWriterInterface
+     * @var StockMovementReportWriterInterface
      */
     private $reportWriter;
 
@@ -37,15 +37,15 @@ final class GenerateCommand extends Command
     private $reportTransport;
 
     public function __construct(
-        ReportConfigurationProviderInterface $reportConfigurationProvider,
-        ReportGeneratorInterface $reportGenerator,
-        ReportWriterInterface $reportWriter,
+        StockMovementReportConfigurationProviderInterface $stockMovementReportConfigurationProvider,
+        StockMovementReportGeneratorInterface $stockMovementReportGenerator,
+        StockMovementReportWriterInterface $reportWriter,
         ReportTransportInterface $reportTransport
     ) {
         parent::__construct();
 
-        $this->reportConfigurationProvider = $reportConfigurationProvider;
-        $this->reportGenerator = $reportGenerator;
+        $this->stockMovementReportConfigurationProvider = $stockMovementReportConfigurationProvider;
+        $this->stockMovementReportGenerator = $stockMovementReportGenerator;
         $this->reportWriter = $reportWriter;
         $this->reportTransport = $reportTransport;
     }
@@ -57,10 +57,14 @@ final class GenerateCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output): void
     {
-        $reportConfigurations = $this->reportConfigurationProvider->getReportConfigurations();
+        $reportConfigurations = $this->stockMovementReportConfigurationProvider->getStockMovementReportConfigurations();
 
         foreach ($reportConfigurations as $reportConfiguration) {
-            $report = $this->reportGenerator->generate($reportConfiguration);
+            $report = $this->stockMovementReportGenerator->generate($reportConfiguration);
+            if (null === $report) {
+                continue;
+            }
+
             $file = $this->reportWriter->write($report, $reportConfiguration);
             var_dump($file->getPathname());
 

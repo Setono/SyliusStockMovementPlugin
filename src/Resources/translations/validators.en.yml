@@ -1,5 +1,5 @@
 setono_sylius_stock:
-    report_configuration:
+    stock_movement_report_configuration:
         name:
             not_blank: Please enter a name
         ftp_host:

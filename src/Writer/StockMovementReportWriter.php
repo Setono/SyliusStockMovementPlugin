@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Setono\SyliusStockPlugin\Writer;
 
 use Setono\SyliusStockPlugin\Factory\TemplateFactoryInterface;
-use Setono\SyliusStockPlugin\Model\ReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\ReportInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
+use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
-class ReportWriter implements ReportWriterInterface
+class StockMovementReportWriter implements StockMovementReportWriterInterface
 {
     /**
      * @var TemplateFactoryInterface
@@ -30,9 +30,11 @@ class ReportWriter implements ReportWriterInterface
     /**
      * {@inheritdoc}
      */
-    public function write(ReportInterface $report, ReportConfigurationInterface $reportConfiguration): \SplFileInfo
-    {
-        $template = $this->templateFactory->createWithReportAndReportConfiguration($reportConfiguration->getTemplate(), $report, $reportConfiguration);
+    public function write(
+        StockMovementReportInterface $stockMovementReport,
+        StockMovementReportConfigurationInterface $stockMovementReportConfiguration
+    ): \SplFileInfo {
+        $template = $this->templateFactory->createWithReportAndReportConfiguration($stockMovementReportConfiguration->getTemplate(), $stockMovementReport, $stockMovementReportConfiguration);
 
         $file = $this->getTempFile();
 

@@ -30,14 +30,14 @@ final class EmailsToArrayTransformer implements DataTransformerInterface
      *
      * @param  string|null $emails
      *
-     * @return array|null
+     * @return array
      *
      * @throws TransformationFailedException if object (issue) is not found.
      */
-    public function reverseTransform($emails): ?array
+    public function reverseTransform($emails): array
     {
-        if (!$emails) {
-            return null;
+        if (null === $emails) {
+            return [];
         }
 
         $arr = preg_split('/[ ,]+/', $emails, PREG_SPLIT_NO_EMPTY);

@@ -6,7 +6,7 @@ namespace Setono\SyliusStockPlugin\Model;
 
 use Cron\CronExpression;
 
-class ReportConfiguration implements ReportConfigurationInterface
+class StockMovementReportConfiguration implements StockMovementReportConfigurationInterface
 {
     /**
      * @var int
@@ -17,11 +17,6 @@ class ReportConfiguration implements ReportConfigurationInterface
      * @var string
      */
     protected $name;
-
-    /**
-     * @var string
-     */
-    protected $type;
 
     /**
      * @var CronExpression
@@ -100,22 +95,6 @@ class ReportConfiguration implements ReportConfigurationInterface
     public function setName(string $name): void
     {
         $this->name = $name;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setType(string $type): void
-    {
-        $this->type = $type;
     }
 
     /**

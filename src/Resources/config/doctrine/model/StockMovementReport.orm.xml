@@ -19,7 +19,7 @@
             <gedmo:timestampable on="update"/>
         </field>
 
-        <many-to-one field="reportConfiguration" target-entity="Setono\SyliusStockPlugin\Model\ReportConfigurationInterface">
+        <many-to-one field="reportConfiguration" target-entity="Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface">
             <join-column on-delete="SET NULL" />
         </many-to-one>
 
