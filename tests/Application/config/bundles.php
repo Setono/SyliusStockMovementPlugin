@@ -31,7 +31,7 @@ return [
     Sylius\Bundle\ResourceBundle\SyliusResourceBundle::class => ['all' => true],
     JK\MoneyBundle\JKMoneyBundle::class => ['all' => true],
     Setono\CronExpressionBundle\SetonoCronExpressionBundle::class => ['all' => true],
-    Setono\SyliusStockPlugin\SetonoSyliusStockPlugin::class => ['all' => true],
+    Setono\SyliusStockMovementPlugin\SetonoSyliusStockMovementPlugin::class => ['all' => true],
     Sylius\Bundle\GridBundle\SyliusGridBundle::class => ['all' => true],
     winzou\Bundle\StateMachineBundle\winzouStateMachineBundle::class => ['all' => true],
     Sonata\CoreBundle\SonataCoreBundle::class => ['all' => true],

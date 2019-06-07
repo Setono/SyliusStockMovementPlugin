@@ -2,14 +2,14 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono.sylius_stock.factory.template" class="Setono\SyliusStockPlugin\Factory\TemplateFactory">
-            <argument type="service" id="setono.sylius_stock.registry.template" />
+        <service id="setono_sylius_stock_movement.factory.template" class="Setono\SyliusStockMovementPlugin\Factory\TemplateFactory">
+            <argument type="service" id="setono_sylius_stock_movement.registry.template" />
         </service>
 
-        <service id="setono.sylius_stock.custom_factory.stock_movement" class="Setono\SyliusStockPlugin\Factory\StockMovementFactory" decorates="setono_sylius_stock.factory.stock_movement" public="false">
-            <argument type="service" id="setono.sylius_stock.custom_factory.stock_movement.inner" />
-            <argument>%setono.sylius_stock.base_currency%</argument>
-            <argument type="service" id="setono.sylius_stock.currency_converter.default" />
+        <service id="setono_sylius_stock_movement.custom_factory.stock_movement" class="Setono\SyliusStockMovementPlugin\Factory\StockMovementFactory" decorates="setono_sylius_stock_movement.factory.stock_movement" public="false">
+            <argument type="service" id="setono_sylius_stock_movement.custom_factory.stock_movement.inner" />
+            <argument>%setono_sylius_stock_movement.base_currency%</argument>
+            <argument type="service" id="setono_sylius_stock_movement.currency_converter.default" />
         </service>
     </services>
 </container>

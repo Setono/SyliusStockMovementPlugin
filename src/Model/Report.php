@@ -2,14 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Model;
+namespace Setono\SyliusStockMovementPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Sylius\Component\Resource\Model\TimestampableInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 
-class StockMovementReport implements StockMovementReportInterface
+class Report implements ReportInterface
 {
     use TimestampableTrait;
 
@@ -19,7 +18,7 @@ class StockMovementReport implements StockMovementReportInterface
     protected $id;
 
     /**
-     * @var StockMovementReportConfigurationInterface
+     * @var ReportConfigurationInterface
      */
     protected $reportConfiguration;
 
@@ -33,41 +32,26 @@ class StockMovementReport implements StockMovementReportInterface
         $this->stockMovements = new ArrayCollection();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getReportConfiguration(): ?StockMovementReportConfigurationInterface
+    public function getReportConfiguration(): ?ReportConfigurationInterface
     {
         return $this->reportConfiguration;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function setReportConfiguration(StockMovementReportConfigurationInterface $reportConfiguration): void
+    public function setReportConfiguration(ReportConfigurationInterface $reportConfiguration): void
     {
         $this->reportConfiguration = $reportConfiguration;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getStockMovements(): Collection
     {
         return $this->stockMovements;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function addStockMovement(StockMovementInterface $stockMovement): void
     {
         $this->stockMovements->add($stockMovement);

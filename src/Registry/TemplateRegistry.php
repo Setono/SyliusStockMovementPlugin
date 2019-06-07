@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Registry;
+namespace Setono\SyliusStockMovementPlugin\Registry;
 
-use Setono\SyliusStockPlugin\Template\TemplateInterface;
+use Setono\SyliusStockMovementPlugin\Template\TemplateInterface;
 
 class TemplateRegistry implements TemplateRegistryInterface
 {

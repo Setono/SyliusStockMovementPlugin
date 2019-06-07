@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\DependencyInjection\Compiler;
+namespace Setono\SyliusStockMovementPlugin\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -11,13 +11,13 @@ final class RegisterTemplatesPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
-        if (false === $container->has('setono.sylius_stock.registry.template')) {
+        if (false === $container->has('setono_sylius_stock_movement.registry.template')) {
             return;
         }
 
-        $templateRegistry = $container->getDefinition('setono.sylius_stock.registry.template');
+        $templateRegistry = $container->getDefinition('setono_sylius_stock_movement.registry.template');
 
-        $templates = $container->getParameter('setono.sylius_stock.templates');
+        $templates = $container->getParameter('setono_sylius_stock_movement.templates');
 
         $identifierToLabelMap = [];
 
@@ -39,6 +39,6 @@ final class RegisterTemplatesPass implements CompilerPassInterface
             $templateRegistry->addMethodCall('register', [$template['identifier'], $template['class']]);
         }
 
-        $container->setParameter('setono.sylius_stock.template_labels', $identifierToLabelMap);
+        $container->setParameter('setono_sylius_stock_movement.template_labels', $identifierToLabelMap);
     }
 }

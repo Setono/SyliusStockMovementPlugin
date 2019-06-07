@@ -1,10 +1,10 @@
 {% import '@SyliusAdmin/Macro/breadcrumb.html.twig' as breadcrumb %}
 
-{# @var \Setono\SyliusStockPlugin\Model\StockMovementReportInterface stock_movement_report #}
+{# @var \Setono\SyliusStockMovementPlugin\Model\ReportInterface stock_movement_report #}
 
 {% set breadcrumbs = [
     { label: 'sylius.ui.administration'|trans, url: path('sylius_admin_dashboard') },
-    { label: 'setono_sylius_stock.ui.stock_movement_reports'|trans, url: path('setono_sylius_stock_admin_stock_movement_report_index') },
+    { label: 'setono_sylius_stock_movement.ui.stock_movement_reports'|trans, url: path('setono_sylius_stock_movement_admin_stock_movement_report_index') },
     { label: '#'~stock_movement_report.id }
 ]
 %}

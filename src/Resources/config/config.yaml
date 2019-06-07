@@ -1,26 +1,26 @@
 sylius_grid:
     grids:
-        setono_sylius_stock_admin_stock_movement:
+        setono_sylius_stock_movement_admin_stock_movement:
             driver:
                 name: doctrine/orm
                 options:
-                    class: "%setono_sylius_stock.model.stock_movement.class%"
+                    class: "%setono_sylius_stock_movement.model.stock_movement.class%"
             fields:
                 quantity:
                     type: string
-                    label: setono_sylius_stock.ui.quantity
+                    label: setono_sylius_stock_movement.ui.quantity
                 variant:
                     type: string
-                    label: setono_sylius_stock.ui.variant
+                    label: setono_sylius_stock_movement.ui.variant
                 price:
                     type: string
-                    label: setono_sylius_stock.ui.price
+                    label: setono_sylius_stock_movement.ui.price
                 convertedPrice:
                     type: string
-                    label: setono_sylius_stock.ui.converted_price
+                    label: setono_sylius_stock_movement.ui.converted_price
                 reference:
                     type: string
-                    label: setono_sylius_stock.ui.reference
+                    label: setono_sylius_stock_movement.ui.reference
             actions:
                 main:
                     create:
@@ -30,15 +30,15 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
-        setono_sylius_stock_admin_stock_movement_report_configuration:
+        setono_sylius_stock_movement_admin_report_configuration:
             driver:
                 name: doctrine/orm
                 options:
-                    class: "%setono_sylius_stock.model.stock_movement_report_configuration.class%"
+                    class: "%setono_sylius_stock_movement.model.report_configuration.class%"
             fields:
                 name:
                     type: string
-                    label: setono_sylius_stock.ui.name
+                    label: setono_sylius_stock_movement.ui.name
             actions:
                 main:
                     create:
@@ -48,15 +48,15 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
-        setono_sylius_stock_admin_stock_movement_report:
+        setono_sylius_stock_movement_admin_report:
             driver:
                 name: doctrine/orm
                 options:
-                    class: "%setono_sylius_stock.model.stock_movement_report.class%"
+                    class: "%setono_sylius_stock_movement.model.report.class%"
             fields:
                 id:
                     type: string
-                    label: setono_sylius_stock.ui.id
+                    label: setono_sylius_stock_movement.ui.id
             actions:
                 main:
                     create:
@@ -68,4 +68,4 @@ sylius_grid:
 sylius_mailer:
     emails:
         report:
-            template: '@SetonoSyliusStockPlugin:Email:report.html.twig'
+            template: '@SetonoSyliusStockMovementPlugin:Email:report.html.twig'

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Writer;
+namespace Setono\SyliusStockMovementPlugin\Writer;
 
-use Setono\SyliusStockPlugin\Factory\TemplateFactoryInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
+use Setono\SyliusStockMovementPlugin\Factory\TemplateFactoryInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
 class StockMovementReportWriter implements StockMovementReportWriterInterface
@@ -31,8 +31,8 @@ class StockMovementReportWriter implements StockMovementReportWriterInterface
      * {@inheritdoc}
      */
     public function write(
-        StockMovementReportInterface $stockMovementReport,
-        StockMovementReportConfigurationInterface $stockMovementReportConfiguration
+        ReportInterface $stockMovementReport,
+        ReportConfigurationInterface $stockMovementReportConfiguration
     ): \SplFileInfo {
         $template = $this->templateFactory->createWithReportAndReportConfiguration($stockMovementReportConfiguration->getTemplate(), $stockMovementReport, $stockMovementReportConfiguration);
 

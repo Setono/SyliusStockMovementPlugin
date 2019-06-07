@@ -2,13 +2,13 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono.sylius_stock.provider.due_stock_movement_report_configuration" class="Setono\SyliusStockPlugin\Provider\DueStockMovementReportConfigurationProvider">
-            <argument type="service" id="setono_sylius_stock.repository.stock_movement_report_configuration"/>
+        <service id="setono_sylius_stock_movement.provider.due_stock_movement_report_configuration" class="Setono\SyliusStockMovementPlugin\Provider\DueStockMovementReportConfigurationProvider">
+            <argument type="service" id="setono_sylius_stock_movement.repository.report_configuration"/>
         </service>
 
-        <service id="setono.sylius_stock.provider.latest_id" class="Setono\SyliusStockPlugin\Provider\LatestIdProvider">
+        <service id="setono_sylius_stock_movement.provider.latest_id" class="Setono\SyliusStockMovementPlugin\Provider\LatestIdProvider">
             <argument type="service" id="doctrine.orm.entity_manager"/>
-            <argument>%setono_sylius_stock.model.stock_movement_report.class%</argument>
+            <argument>%setono_sylius_stock_movement.model.report.class%</argument>
         </service>
     </services>
 </container>

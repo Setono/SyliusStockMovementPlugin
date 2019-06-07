@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Factory;
+namespace Setono\SyliusStockMovementPlugin\Factory;
 
-use Setono\SyliusStockPlugin\Model\StockMovementReportAwareInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationAwareInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
-use Setono\SyliusStockPlugin\Registry\TemplateRegistryInterface;
-use Setono\SyliusStockPlugin\Template\TemplateInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportAwareInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationAwareInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
+use Setono\SyliusStockMovementPlugin\Registry\TemplateRegistryInterface;
+use Setono\SyliusStockMovementPlugin\Template\TemplateInterface;
 
 final class TemplateFactory implements TemplateFactoryInterface
 {
@@ -35,13 +35,13 @@ final class TemplateFactory implements TemplateFactoryInterface
 
     public function createWithReportAndReportConfiguration(
         string $identifier,
-        StockMovementReportInterface $report,
-        StockMovementReportConfigurationInterface $reportConfiguration
+        ReportInterface $report,
+        ReportConfigurationInterface $reportConfiguration
     ): TemplateInterface {
         $template = $this->create($identifier);
 
-        if (!$template instanceof StockMovementReportAwareInterface || !$template instanceof StockMovementReportConfigurationAwareInterface) {
-            throw new \RuntimeException(sprintf('The template %s does not implement one or both of the interfaces: %s, %s', \get_class($template), StockMovementReportAwareInterface::class, StockMovementReportConfigurationAwareInterface::class));
+        if (!$template instanceof ReportAwareInterface || !$template instanceof ReportConfigurationAwareInterface) {
+            throw new \RuntimeException(sprintf('The template %s does not implement one or both of the interfaces: %s, %s', \get_class($template), ReportAwareInterface::class, ReportConfigurationAwareInterface::class));
         }
 
         $template->setStockMovementReport($report);

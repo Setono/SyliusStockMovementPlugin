@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Form\Type;
+namespace Setono\SyliusStockMovementPlugin\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CurrencyType;
@@ -20,7 +20,7 @@ final class MoneyType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('currency', CurrencyType::class, [
-            'preferred_choices' => [ $this->baseCurrency ]
+            'preferred_choices' => [$this->baseCurrency],
         ])->add('amount');
     }
 

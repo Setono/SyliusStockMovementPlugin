@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Provider;
+namespace Setono\SyliusStockMovementPlugin\Provider;
 
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 class DueStockMovementReportConfigurationProvider implements StockMovementReportConfigurationProviderInterface
@@ -24,10 +24,10 @@ class DueStockMovementReportConfigurationProvider implements StockMovementReport
      */
     public function getStockMovementReportConfigurations(): array
     {
-        /** @var StockMovementReportConfigurationInterface[] $reportConfigurations */
+        /** @var ReportConfigurationInterface[] $reportConfigurations */
         $reportConfigurations = $this->reportConfigurationRepository->findAll();
 
-        return array_filter($reportConfigurations, function (StockMovementReportConfigurationInterface $reportConfiguration) {
+        return array_filter($reportConfigurations, function (ReportConfigurationInterface $reportConfiguration) {
             $schedule = $reportConfiguration->getSchedule();
 
             return $schedule !== null && $schedule->isDue();

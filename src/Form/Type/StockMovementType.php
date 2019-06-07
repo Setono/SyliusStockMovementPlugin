@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Form\Type;
+namespace Setono\SyliusStockMovementPlugin\Form\Type;
 
-use Setono\SyliusStockPlugin\Form\DataTransformer\MoneyToStringTransformer;
-use Setono\SyliusStockPlugin\Form\EventListener\ConvertPriceListener;
+use Setono\SyliusStockMovementPlugin\Form\DataTransformer\MoneyToStringTransformer;
+use Setono\SyliusStockMovementPlugin\Form\EventListener\ConvertPriceListener;
 use Sylius\Bundle\ResourceBundle\Form\DataTransformer\ResourceToIdentifierTransformer;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Sylius\Component\Product\Repository\ProductVariantRepositoryInterface;
@@ -44,18 +44,18 @@ final class StockMovementType extends AbstractResourceType
     {
         $builder
             ->add('quantity', IntegerType::class, [
-                'label' => 'setono_sylius_stock.form.stock_movement.quantity',
+                'label' => 'setono_sylius_stock_movement.form.stock_movement.quantity',
             ])
             ->add('reference', TextType::class, [
-                'label' => 'setono_sylius_stock.form.stock_movement.reference',
+                'label' => 'setono_sylius_stock_movement.form.stock_movement.reference',
             ])
             ->add('variant', TextType::class, [
-                'label' => 'setono_sylius_stock.form.stock_movement.variant',
-                'invalid_message' => 'setono_sylius_stock.stock_movement.variant_invalid',
+                'label' => 'setono_sylius_stock_movement.form.stock_movement.variant',
+                'invalid_message' => 'setono_sylius_stock_movement.stock_movement.variant_invalid',
             ])
             ->add('price', MoneyType::class, [
-                'label' => 'setono_sylius_stock.form.stock_movement.price',
-                'invalid_message' => 'setono_sylius_stock.stock_movement.price_invalid',
+                'label' => 'setono_sylius_stock_movement.form.stock_movement.price',
+                'invalid_message' => 'setono_sylius_stock_movement.stock_movement.price_invalid',
             ])
             ->addEventSubscriber($this->convertPriceListener)
         ;

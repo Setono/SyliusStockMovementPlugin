@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Factory;
+namespace Setono\SyliusStockMovementPlugin\Factory;
 
 use Money\Money;
-use Setono\SyliusStockPlugin\CurrencyConverter\CurrencyConverterInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementInterface;
+use Setono\SyliusStockMovementPlugin\CurrencyConverter\CurrencyConverterInterface;
+use Setono\SyliusStockMovementPlugin\Model\StockMovementInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
@@ -34,9 +34,6 @@ final class StockMovementFactory implements StockMovementFactoryInterface
         $this->currencyConverter = $currencyConverter;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function createNew(): StockMovementInterface
     {
         /** @var StockMovementInterface $obj */

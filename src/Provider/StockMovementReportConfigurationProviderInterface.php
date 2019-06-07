@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Provider;
+namespace Setono\SyliusStockMovementPlugin\Provider;
 
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 
 interface StockMovementReportConfigurationProviderInterface
 {
     /**
-     * @return StockMovementReportConfigurationInterface[]
+     * @return ReportConfigurationInterface[]
      */
     public function getStockMovementReportConfigurations(): array;
 }

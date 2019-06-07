@@ -1,13 +1,7 @@
-setono_sylius_stock_shop:
-    resource: "routing/shop.yaml"
-    prefix: /{_locale}
-    requirements:
-        _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
-
-setono_sylius_stock_admin:
+setono_sylius_stock_movement_admin:
     resource: "routing/admin.yaml"
     prefix: /admin
     
-setono_sylius_stock_admin_api:
+setono_sylius_stock_movement_admin_api:
     resource: "routing/admin_api.yaml"
     prefix: /api/v{version}

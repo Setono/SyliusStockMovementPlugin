@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\DependencyInjection\Compiler;
+namespace Setono\SyliusStockMovementPlugin\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -12,14 +12,14 @@ final class RegisterDataSourcesPass implements CompilerPassInterface
 {
     public function process(ContainerBuilder $container): void
     {
-        if (false === $container->has('setono.sylius_stock.registry.data_source')) {
+        if (false === $container->has('setono_sylius_stock_movement.registry.data_source')) {
             return;
         }
 
-        $dataSourceRegistry = $container->getDefinition('setono.sylius_stock.registry.data_source');
+        $dataSourceRegistry = $container->getDefinition('setono_sylius_stock_movement.registry.data_source');
 
         $dataSourceIdentifierToLabelMap = [];
-        foreach ($container->findTaggedServiceIds('setono.sylius_stock.data_source') as $id => $attributes) {
+        foreach ($container->findTaggedServiceIds('setono_sylius_stock_movement.data_source') as $id => $attributes) {
             if (!isset($attributes[0]['identifier'], $attributes[0]['label'])) {
                 throw new \InvalidArgumentException('Tagged data source `' . $id . '` needs to have `identifier` and `label` attributes.');
             }
@@ -28,6 +28,6 @@ final class RegisterDataSourcesPass implements CompilerPassInterface
             $dataSourceRegistry->addMethodCall('register', [$attributes[0]['identifier'], new Reference($id)]);
         }
 
-        $container->setParameter('setono.sylius_stock.data_source_labels', $dataSourceIdentifierToLabelMap);
+        $container->setParameter('setono_sylius_stock_movement.data_source_labels', $dataSourceIdentifierToLabelMap);
     }
 }

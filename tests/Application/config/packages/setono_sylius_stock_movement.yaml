@@ -1,0 +1,4 @@
+setono_sylius_stock_movement:
+    base_currency: USD
+    templates:
+        - { identifier: test, label: Test, class: Tests\Setono\SyliusStockMovementPlugin\Application\src\Template\TestTemplate }

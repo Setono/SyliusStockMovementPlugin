@@ -1,47 +1,55 @@
-setono_sylius_stock:
+setono_sylius_stock_movement:
     form:
-        stock_movement:
-            quantity: Quantity
-            reference: Reference
-            variant: Product variant
-            price: Price
-        stock_movement_report_configuration:
+        report_configuration:
             name: Name
             name_placeholder: The name is only used as a reference
             type: Type
             schedule: Schedule
             template: Template
             data_source: Data source
-            ftp_host: FTP host
-            ftp_username: FTP username
-            ftp_password: FTP password
-            ftp_port: FTP port
-            ftp_port_placeholder: Default port is 21
-            ftp_path: FTP path
-            email_placeholder: Separate multiple email adresses with a comma
-            email_to: Email recipient
-            email_subject: Email subject
-            email_body: Email body
-            email_subject_body_placeholder: You can use the variable %report_id% to insert the report id
-                
+            transports: Transports
+            add_transport: Add transport
+        report_configuration_transport:
+            type: Type
+            email_configuration:
+                to: Recipient
+                cc: CC
+                bcc: BCC
+                subject: Subject
+                body: Body
+                email_subject_body_placeholder: You can use the variable %report_id% to insert the report id
+            ftp_configuration:
+                host: Host
+                username: Username
+                password: Password
+                port: Port
+                port_placeholder: Default port is 21
+                path: Path
+        stock_movement:
+            quantity: Quantity
+            reference: Reference
+            variant: Product variant
+            price: Price
+    transport:
+        email: Email
+        ftp: FTP
     ui:
         id: Id
         stock_movements: Stock movements
         manage_stock_movements: Manage stock movements
         new_stock_movement: New stock movement
-        stock_movement_report: Stock movement report
-        stock_movement_reports: Stock movement reports
-        manage_stock_movement_reports: Manage stock movement reports
-        stock_movement_report_configurations: Report configurations
-        manage_stock_movement_report_configurations: Manage report configurations
-        new_stock_movement_report_configuration: New report configuration
-        edit_stock_movement_report_configuration: Edit report configuration
-
+        report: Stock movement report
+        reports: Stock movement reports
+        manage_reports: Manage stock movement reports
+        report_configurations: Report configurations
+        manage_report_configurations: Manage report configurations
+        new_report_configuration: New report configuration
+        edit_report_configuration: Edit report configuration
     menu:
         admin:
             main:
                 stock:
                     header: Stock
                     stock_movements: Stock movements
-                    stock_movement_report_configurations: Stock movement report configurations
-                    stock_movement_reports: Stock movement reports
+                    report_configurations: Report configurations
+                    reports: Reports

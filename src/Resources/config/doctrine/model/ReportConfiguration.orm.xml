@@ -5,7 +5,8 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <mapped-superclass name="Setono\SyliusStockPlugin\Model\StockMovementReportConfiguration" table="setono_sylius_stock__stock_movement_report_configuration">
+    <mapped-superclass name="Setono\SyliusStockMovementPlugin\Model\ReportConfiguration" table="setono_sylius_stock_movement__report_configuration">
+
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
         </id>
@@ -14,14 +15,12 @@
         <field name="schedule" type="cron_expression" />
         <field name="template" type="string" />
         <field name="dataSource" type="string" />
-        <field name="ftpHost" type="string" nullable="true" />
-        <field name="ftpUsername" type="string" nullable="true" />
-        <field name="ftpPassword" type="string" nullable="true" />
-        <field name="ftpPort" type="integer" nullable="true" />
-        <field name="ftpPath" type="string" nullable="true" />
-        <field name="emailTo" type="json_array" nullable="true" />
-        <field name="emailSubject" type="string" nullable="true" />
-        <field name="emailBody" type="text" nullable="true" />
+
+        <one-to-many field="transports" target-entity="Setono\SyliusStockMovementPlugin\Model\ReportConfigurationTransportInterface" mapped-by="reportConfiguration" orphan-removal="true">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
 
     </mapped-superclass>
 

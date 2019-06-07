@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin;
+namespace Setono\SyliusStockMovementPlugin;
 
-use Setono\SyliusStockPlugin\DependencyInjection\Compiler\RegisterDataSourcesPass;
-use Setono\SyliusStockPlugin\DependencyInjection\Compiler\RegisterTemplatesPass;
+use Setono\SyliusStockMovementPlugin\DependencyInjection\Compiler\RegisterDataSourcesPass;
+use Setono\SyliusStockMovementPlugin\DependencyInjection\Compiler\RegisterTemplatesPass;
+use Setono\SyliusStockMovementPlugin\DependencyInjection\Compiler\RegisterTransportsPass;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
-final class SetonoSyliusStockPlugin extends AbstractResourceBundle
+final class SetonoSyliusStockMovementPlugin extends AbstractResourceBundle
 {
     use SyliusPluginTrait;
 
@@ -21,23 +22,13 @@ final class SetonoSyliusStockPlugin extends AbstractResourceBundle
 
         $container->addCompilerPass(new RegisterTemplatesPass());
         $container->addCompilerPass(new RegisterDataSourcesPass());
+        $container->addCompilerPass(new RegisterTransportsPass());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getSupportedDrivers(): array
     {
         return [
             SyliusResourceBundle::DRIVER_DOCTRINE_ORM,
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getModelNamespace(): string
-    {
-        return 'Setono\SyliusStockPlugin\Model';
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use Tests\Setono\SyliusStockPlugin\Application\Kernel;
+use Tests\Setono\SyliusStockMovementPlugin\Application\Kernel;
 use Symfony\Component\Debug\Debug;
 use Symfony\Component\HttpFoundation\Request;
 

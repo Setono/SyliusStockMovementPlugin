@@ -2,20 +2,20 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Writer;
+namespace Setono\SyliusStockMovementPlugin\Writer;
 
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 
 interface StockMovementReportWriterInterface
 {
     /**
      * Will write a file based on the given report and report configuration
      *
-     * @param StockMovementReportInterface $stockMovementReport
-     * @param StockMovementReportConfigurationInterface $stockMovementReportConfiguration
+     * @param ReportInterface $stockMovementReport
+     * @param ReportConfigurationInterface $stockMovementReportConfiguration
      *
      * @return \SplFileInfo
      */
-    public function write(StockMovementReportInterface $stockMovementReport, StockMovementReportConfigurationInterface $stockMovementReportConfiguration): \SplFileInfo;
+    public function write(ReportInterface $stockMovementReport, ReportConfigurationInterface $stockMovementReportConfiguration): \SplFileInfo;
 }

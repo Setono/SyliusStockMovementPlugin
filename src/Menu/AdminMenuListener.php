@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Menu;
+namespace Setono\SyliusStockMovementPlugin\Menu;
 
 use Knp\Menu\ItemInterface;
 use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
@@ -20,25 +20,25 @@ final class AdminMenuListener
 
         $stockHeader
             ->addChild('stock_movements', [
-                'route' => 'setono_sylius_stock_admin_stock_movement_index',
+                'route' => 'setono_sylius_stock_movement_admin_stock_movement_index',
             ])
-            ->setLabel('setono_sylius_stock.menu.admin.main.stock.stock_movements')
+            ->setLabel('setono_sylius_stock_movement.menu.admin.main.stock.stock_movements')
             ->setLabelAttribute('icon', 'chart bar')
         ;
 
         $stockHeader
             ->addChild('stock_movement_report_configurations', [
-                'route' => 'setono_sylius_stock_admin_stock_movement_report_configuration_index',
+                'route' => 'setono_sylius_stock_movement_admin_report_configuration_index',
             ])
-            ->setLabel('setono_sylius_stock.menu.admin.main.stock.stock_movement_report_configurations')
+            ->setLabel('setono_sylius_stock_movement.menu.admin.main.stock.report_configurations')
             ->setLabelAttribute('icon', 'cog')
         ;
 
         $stockHeader
             ->addChild('stock_movement_reports', [
-                'route' => 'setono_sylius_stock_admin_stock_movement_report_index',
+                'route' => 'setono_sylius_stock_movement_admin_report_index',
             ])
-            ->setLabel('setono_sylius_stock.menu.admin.main.stock.stock_movement_reports')
+            ->setLabel('setono_sylius_stock_movement.menu.admin.main.stock.reports')
             ->setLabelAttribute('icon', 'chart bar')
         ;
     }
@@ -57,7 +57,7 @@ final class AdminMenuListener
 
         if (null === $header) {
             $header = $menu->addChild('stock')
-                ->setLabel('setono_sylius_stock.menu.admin.main.stock.header')
+                ->setLabel('setono_sylius_stock_movement.menu.admin.main.stock.header')
                 ->setLabelAttribute('icon', 'building')
             ;
         }

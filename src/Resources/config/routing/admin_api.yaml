@@ -1,7 +1,7 @@
-setono_sylius_stock_admin_api_stock_movement:
+setono_sylius_stock_movement_admin_api_stock_movement:
     resource: |
-        alias: setono_sylius_stock.stock_movement
+        alias: setono_sylius_stock_movement.stock_movement
         section: admin_api
-        form: Setono\SyliusStockPlugin\Form\Type\Api\StockMovementType
+        form: Setono\SyliusStockMovementPlugin\Form\Type\Api\StockMovementType
         serialization_version: $version
     type: sylius.resource_api

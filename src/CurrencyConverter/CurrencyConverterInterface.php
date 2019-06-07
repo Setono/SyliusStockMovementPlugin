@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\CurrencyConverter;
+namespace Setono\SyliusStockMovementPlugin\CurrencyConverter;
 
 use Money\Money;
 

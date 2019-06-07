@@ -1,4 +1,4 @@
 suites:
     main:
-        namespace: Setono\SyliusStockPlugin
-        psr4_prefix: Setono\SyliusStockPlugin
+        namespace: Setono\SyliusStockMovementPlugin
+        psr4_prefix: Setono\SyliusStockMovementPlugin

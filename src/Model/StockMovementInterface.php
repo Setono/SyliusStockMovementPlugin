@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Model;
+namespace Setono\SyliusStockMovementPlugin\Model;
 
 use Money\Money;
 use Sylius\Component\Core\Model\ProductVariantInterface;
@@ -20,24 +20,12 @@ interface StockMovementInterface extends ResourceInterface
      */
     public function getQuantity(): ?int;
 
-    /**
-     * @param int $quantity
-     */
     public function setQuantity(int $quantity): void;
 
-    /**
-     * @return ProductVariantInterface|null
-     */
     public function getVariant(): ?ProductVariantInterface;
 
-    /**
-     * @param ProductVariantInterface|null $productVariant
-     */
     public function setVariant(?ProductVariantInterface $productVariant): void;
 
-    /**
-     * @return string
-     */
     public function getVariantCode(): ?string;
 
     /**
@@ -47,9 +35,6 @@ interface StockMovementInterface extends ResourceInterface
      */
     public function getPrice(): ?Money;
 
-    /**
-     * @param Money $price
-     */
     public function setPrice(Money $price): void;
 
     /**
@@ -59,18 +44,9 @@ interface StockMovementInterface extends ResourceInterface
      */
     public function getConvertedPrice(): ?Money;
 
-    /**
-     * @param Money $convertedPrice
-     */
     public function setConvertedPrice(Money $convertedPrice): void;
 
-    /**
-     * @return string|null
-     */
     public function getReference(): ?string;
 
-    /**
-     * @param string|null $reference
-     */
     public function setReference(?string $reference): void;
 }

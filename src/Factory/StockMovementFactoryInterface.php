@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Factory;
+namespace Setono\SyliusStockMovementPlugin\Factory;
 
 use Money\Money;
-use Setono\SyliusStockPlugin\Model\StockMovementInterface;
+use Setono\SyliusStockMovementPlugin\Model\StockMovementInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 
@@ -21,10 +21,5 @@ interface StockMovementFactoryInterface extends FactoryInterface
      *
      * @return StockMovementInterface
      */
-    public function createValid(
-        int $quantity,
-        ProductVariantInterface $variant,
-        Money $price,
-        ?string $reference = null
-    ): StockMovementInterface;
+    public function createValid(int $quantity, ProductVariantInterface $variant, Money $price, ?string $reference = null): StockMovementInterface;
 }

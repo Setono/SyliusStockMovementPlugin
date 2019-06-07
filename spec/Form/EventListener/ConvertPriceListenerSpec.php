@@ -1,14 +1,16 @@
 <?php
 
-namespace spec\Setono\SyliusStockPlugin\Form\EventListener;
+declare(strict_types=1);
+
+namespace spec\Setono\SyliusStockMovementPlugin\Form\EventListener;
 
 use Money\Currency;
 use Money\Money;
-use Prophecy\Argument;
-use Setono\SyliusStockPlugin\CurrencyConverter\CurrencyConverterInterface;
-use Setono\SyliusStockPlugin\Form\EventListener\ConvertPriceListener;
 use PhpSpec\ObjectBehavior;
-use Setono\SyliusStockPlugin\Model\StockMovementInterface;
+use Prophecy\Argument;
+use Setono\SyliusStockMovementPlugin\CurrencyConverter\CurrencyConverterInterface;
+use Setono\SyliusStockMovementPlugin\Form\EventListener\ConvertPriceListener;
+use Setono\SyliusStockMovementPlugin\Model\StockMovementInterface;
 use Symfony\Component\Form\FormEvent;
 
 class ConvertPriceListenerSpec extends ObjectBehavior

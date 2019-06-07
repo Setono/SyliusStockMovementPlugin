@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Setono\SyliusStockPlugin\Application\src\Template;
+namespace Tests\Setono\SyliusStockMovementPlugin\Application\src\Template;
 
-use Setono\SyliusStockPlugin\Model\StockMovementInterface;
-use Setono\SyliusStockPlugin\Template\Template;
+use Setono\SyliusStockMovementPlugin\Model\StockMovementInterface;
+use Setono\SyliusStockMovementPlugin\Template\Template;
 
 class TestTemplate extends Template
 {

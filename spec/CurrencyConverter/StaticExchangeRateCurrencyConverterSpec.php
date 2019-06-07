@@ -1,12 +1,14 @@
 <?php
 
-namespace spec\Setono\SyliusStockPlugin\CurrencyConverter;
+declare(strict_types=1);
+
+namespace spec\Setono\SyliusStockMovementPlugin\CurrencyConverter;
 
 use Money\Currency;
 use Money\Money;
-use Setono\SyliusStockPlugin\CurrencyConverter\StaticExchangeRateCurrencyConverter;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Setono\SyliusStockMovementPlugin\CurrencyConverter\StaticExchangeRateCurrencyConverter;
 use Sylius\Component\Currency\Converter\CurrencyConverterInterface;
 
 class StaticExchangeRateCurrencyConverterSpec extends ObjectBehavior

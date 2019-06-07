@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                                      http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Setono\SyliusStockMovementPlugin\Model\ReportConfigurationTransport" table="setono_sylius_stock_movement__report_configuration_transport">
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+
+        <field name="type" type="string" />
+        <field name="configuration" type="array" />
+
+        <many-to-one field="reportConfiguration" target-entity="Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface" inversed-by="transports">
+            <join-column name="report_configuration_id" referenced-column-name="id" nullable="true" />
+        </many-to-one>
+
+    </mapped-superclass>
+
+</doctrine-mapping>

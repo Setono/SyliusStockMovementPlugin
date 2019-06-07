@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Provider;
+namespace Setono\SyliusStockMovementPlugin\Provider;
 
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 
 interface LatestIdProviderInterface
 {
     /**
      * Returns the latest id that was present in a report with the given report configuration
      *
-     * @param StockMovementReportConfigurationInterface $reportConfiguration
+     * @param ReportConfigurationInterface $reportConfiguration
      *
      * @return int
      */
-    public function getLatestId(StockMovementReportConfigurationInterface $reportConfiguration): int;
+    public function getLatestId(ReportConfigurationInterface $reportConfiguration): int;
 }

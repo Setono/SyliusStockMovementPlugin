@@ -1,12 +1,6 @@
-setono_sylius_stock:
-    stock_movement_report_configuration:
+setono_sylius_stock_movement:
+    report_configuration:
         name:
             not_blank: Please enter a name
-        ftp_host:
-            url: Please enter a valid FTP host, i.e. ftp://example.com or simply example.com
-        ftp_port:
-            greater_than: The port number must be greater than 0
-        email_to:
-            email: All emails must be valid emails
     stock_movement:
         variant_invalid: The variant does not exist

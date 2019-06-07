@@ -1,2 +1,2 @@
-setono_sylius_stock:
-    resource: "@SetonoSyliusStockPlugin/Resources/config/routing.yaml"
+setono_sylius_stock_movement:
+    resource: "@SetonoSyliusStockMovementPlugin/Resources/config/routing.yaml"

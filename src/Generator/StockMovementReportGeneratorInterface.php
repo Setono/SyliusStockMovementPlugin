@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Generator;
+namespace Setono\SyliusStockMovementPlugin\Generator;
 
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 
 interface StockMovementReportGeneratorInterface
 {
@@ -13,9 +13,9 @@ interface StockMovementReportGeneratorInterface
      * Will generate a stock movement report based on the report configuration
      * If no eligible stock movements are available it returns null
      *
-     * @param StockMovementReportConfigurationInterface $stockMovementReportConfiguration
+     * @param ReportConfigurationInterface $stockMovementReportConfiguration
      *
-     * @return StockMovementReportInterface|null
+     * @return ReportInterface|null
      */
-    public function generate(StockMovementReportConfigurationInterface $stockMovementReportConfiguration): ?StockMovementReportInterface;
+    public function generate(ReportConfigurationInterface $stockMovementReportConfiguration): ?ReportInterface;
 }

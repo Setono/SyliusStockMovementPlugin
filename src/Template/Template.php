@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Template;
+namespace Setono\SyliusStockMovementPlugin\Template;
 
-use Setono\SyliusStockPlugin\Model\StockMovementReportAwareInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportAwareTrait;
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationAwareInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationAwareTrait;
+use Setono\SyliusStockMovementPlugin\Model\ReportAwareInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportAwareTrait;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationAwareInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationAwareTrait;
 
-abstract class Template implements TemplateInterface, StockMovementReportAwareInterface, StockMovementReportConfigurationAwareInterface
+abstract class Template implements TemplateInterface, ReportAwareInterface, ReportConfigurationAwareInterface
 {
-    use StockMovementReportAwareTrait, StockMovementReportConfigurationAwareTrait;
+    use ReportAwareTrait, ReportConfigurationAwareTrait;
 
     /**
      * {@inheritdoc}

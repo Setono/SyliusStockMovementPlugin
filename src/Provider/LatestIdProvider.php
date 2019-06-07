@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Provider;
+namespace Setono\SyliusStockMovementPlugin\Provider;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 
 final class LatestIdProvider implements LatestIdProviderInterface
 {
@@ -19,6 +19,7 @@ final class LatestIdProvider implements LatestIdProviderInterface
      */
     private $stockMovementReportClass;
 
+    // todo inject manager registry instead
     public function __construct(EntityManagerInterface $entityManager, string $stockMovementReportClass)
     {
         $this->entityManager = $entityManager;
@@ -30,7 +31,7 @@ final class LatestIdProvider implements LatestIdProviderInterface
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function getLatestId(StockMovementReportConfigurationInterface $reportConfiguration): int
+    public function getLatestId(ReportConfigurationInterface $reportConfiguration): int
     {
         $qb = $this->entityManager->createQueryBuilder();
         $qb->select('MAX(s.id)')

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Form\DataTransformer;
+namespace Setono\SyliusStockMovementPlugin\Form\DataTransformer;
 
 use Money\Currency;
 use Money\Money;

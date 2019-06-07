@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Form\EventListener;
+namespace Setono\SyliusStockMovementPlugin\Form\EventListener;
 
-use Setono\SyliusStockPlugin\CurrencyConverter\CurrencyConverterInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementInterface;
+use Setono\SyliusStockMovementPlugin\CurrencyConverter\CurrencyConverterInterface;
+use Setono\SyliusStockMovementPlugin\Model\StockMovementInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;

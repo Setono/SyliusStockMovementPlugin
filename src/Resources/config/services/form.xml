@@ -2,46 +2,66 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <parameters>
-        <parameter key="setono.sylius_stock.form.type.stock_movement_report_configuration.validation_groups" type="collection">
-            <parameter>sylius</parameter>
+        <parameter key="setono_sylius_stock_movement.form.type.report_configuration.validation_groups" type="collection">
+            <parameter>setono_sylius_stock_movement</parameter>
         </parameter>
-        <parameter key="setono.sylius_stock.form.type.stock_movement.validation_groups" type="collection">
-            <parameter>sylius</parameter>
+        <parameter key="setono_sylius_stock_movement.form.type.stock_movement.validation_groups" type="collection">
+            <parameter>setono_sylius_stock_movement</parameter>
+        </parameter>
+        <parameter key="setono_sylius_stock_movement.form.type.report_configuration_transport.validation_groups" type="collection">
+            <parameter>setono_sylius_stock_movement</parameter>
         </parameter>
     </parameters>
     <services>
-        <service id="setono.sylius_stock.form.type.money" class="Setono\SyliusStockPlugin\Form\Type\MoneyType">
-            <argument>%setono.sylius_stock.base_currency%</argument>
+        <service id="setono_sylius_stock_movement.form.type.money" class="Setono\SyliusStockMovementPlugin\Form\Type\MoneyType">
+            <argument>%setono_sylius_stock_movement.base_currency%</argument>
             <tag name="form.type" />
         </service>
 
-        <service id="setono.sylius_stock.form.type.stock_movement_report_configuration" class="Setono\SyliusStockPlugin\Form\Type\StockMovementReportConfigurationType">
-            <argument>%setono_sylius_stock.model.stock_movement_report_configuration.class%</argument>
-            <argument>%setono.sylius_stock.template_labels%</argument>
-            <argument>%setono.sylius_stock.data_source_labels%</argument>
-            <argument>%setono.sylius_stock.form.type.stock_movement_report_configuration.validation_groups%</argument>
+        <service id="setono_sylius_stock_movement.form.type.report_configuration" class="Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationType">
+            <argument>%setono_sylius_stock_movement.model.report_configuration.class%</argument>
+            <argument>%setono_sylius_stock_movement.template_labels%</argument>
+            <argument>%setono_sylius_stock_movement.data_source_labels%</argument>
+            <argument>%setono_sylius_stock_movement.form.type.report_configuration.validation_groups%</argument>
             <tag name="form.type" />
         </service>
 
-        <service id="setono.sylius_stock.form.type.stock_movement" class="Setono\SyliusStockPlugin\Form\Type\StockMovementType">
-            <argument>%setono_sylius_stock.model.stock_movement.class%</argument>
+        <service id="setono_sylius_stock_movement.form.type.stock_movement" class="Setono\SyliusStockMovementPlugin\Form\Type\StockMovementType">
+            <argument>%setono_sylius_stock_movement.model.stock_movement.class%</argument>
             <argument type="service" id="sylius.repository.product_variant"/>
-            <argument type="service" id="setono.sylius_stock.form.event_listener.convert_price"/>
-            <argument>%setono.sylius_stock.form.type.stock_movement.validation_groups%</argument>
+            <argument type="service" id="setono_sylius_stock_movement.form.event_listener.convert_price"/>
+            <argument>%setono_sylius_stock_movement.form.type.stock_movement.validation_groups%</argument>
             <tag name="form.type" />
         </service>
 
-        <service id="setono.sylius_stock.form.type.api.stock_movement" class="Setono\SyliusStockPlugin\Form\Type\Api\StockMovementType">
-            <argument>%setono_sylius_stock.model.stock_movement.class%</argument>
+        <service id="setono_sylius_stock_movement.form.type.api.stock_movement" class="Setono\SyliusStockMovementPlugin\Form\Type\Api\StockMovementType">
+            <argument>%setono_sylius_stock_movement.model.stock_movement.class%</argument>
             <argument type="service" id="sylius.repository.product_variant"/>
-            <argument type="service" id="setono.sylius_stock.form.event_listener.convert_price"/>
-            <argument>%setono.sylius_stock.form.type.stock_movement.validation_groups%</argument>
+            <argument type="service" id="setono_sylius_stock_movement.form.event_listener.convert_price"/>
+            <argument>%setono_sylius_stock_movement.form.type.stock_movement.validation_groups%</argument>
             <tag name="form.type" />
         </service>
 
-        <service id="setono.sylius_stock.form.event_listener.convert_price" class="Setono\SyliusStockPlugin\Form\EventListener\ConvertPriceListener">
-            <argument type="service" id="setono.sylius_stock.currency_converter.default"/>
-            <argument>%setono.sylius_stock.base_currency%</argument>
+        <service id="setono_sylius_stock_movement.form.event_listener.convert_price" class="Setono\SyliusStockMovementPlugin\Form\EventListener\ConvertPriceListener">
+            <argument type="service" id="setono_sylius_stock_movement.currency_converter.default"/>
+            <argument>%setono_sylius_stock_movement.base_currency%</argument>
+        </service>
+
+        <service id="setono_sylius_stock_movement.form.type.report_configuration_transport.collection" class="Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationTransportCollectionType">
+            <argument type="service" id="setono_sylius_stock_movement.registry.transport" />
+            <tag name="form.type" />
+        </service>
+
+        <service id="setono_sylius_stock_movement.form.type.report_configuration_transport" class="Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationTransportType">
+            <argument>%setono_sylius_stock_movement.model.report_configuration_transport.class%</argument>
+            <argument type="service" id="setono_sylius_stock_movement.form_registry.transport" />
+            <argument>%setono_sylius_stock_movement.form.type.report_configuration_transport.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="setono_sylius_stock_movement.form.type.report_configuration_transport_choice" class="Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationTransportChoiceType">
+            <argument>%setono_sylius_stock_movement.transports%</argument>
+            <tag name="form.type" />
         </service>
     </services>
 </container>

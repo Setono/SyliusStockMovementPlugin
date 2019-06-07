@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Generator;
+namespace Setono\SyliusStockMovementPlugin\Generator;
 
 use Generator;
-use Setono\SyliusStockPlugin\DataSource\DataSourceInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
-use Setono\SyliusStockPlugin\Provider\LatestIdProviderInterface;
+use Setono\SyliusStockMovementPlugin\DataSource\DataSourceInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
+use Setono\SyliusStockMovementPlugin\Provider\LatestIdProviderInterface;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -50,13 +50,13 @@ class StockMovementReportGenerator implements StockMovementReportGeneratorInterf
     /**
      * {@inheritdoc}
      */
-    public function generate(StockMovementReportConfigurationInterface $stockMovementReportConfiguration): ?StockMovementReportInterface
+    public function generate(ReportConfigurationInterface $stockMovementReportConfiguration): ?ReportInterface
     {
         /** @var DataSourceInterface $dataSource */
         $dataSource = $this->dataSourceRegistry->get($stockMovementReportConfiguration->getDataSource());
         $dataSource->guardAgainstLatestId($this->latestIdProvider->getLatestId($stockMovementReportConfiguration));
 
-        /** @var StockMovementReportInterface $report */
+        /** @var ReportInterface $report */
         $report = $this->stockMovementReportFactory->createNew();
         $report->setReportConfiguration($stockMovementReportConfiguration);
 

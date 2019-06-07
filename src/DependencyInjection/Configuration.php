@@ -2,16 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\DependencyInjection;
+namespace Setono\SyliusStockMovementPlugin\DependencyInjection;
 
-use Setono\SyliusStockPlugin\Form\Type\StockMovementReportConfigurationType;
-use Setono\SyliusStockPlugin\Form\Type\StockMovementType;
-use Setono\SyliusStockPlugin\Model\StockMovement;
-use Setono\SyliusStockPlugin\Model\StockMovementInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReport;
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfiguration;
-use Setono\SyliusStockPlugin\Model\StockMovementReportConfigurationInterface;
-use Setono\SyliusStockPlugin\Model\StockMovementReportInterface;
+use Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationTransportType;
+use Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationType;
+use Setono\SyliusStockMovementPlugin\Form\Type\StockMovementType;
+use Setono\SyliusStockMovementPlugin\Model\Report;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfiguration;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationTransport;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationTransportInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
+use Setono\SyliusStockMovementPlugin\Model\StockMovement;
+use Setono\SyliusStockMovementPlugin\Model\StockMovementInterface;
 use Sylius\Bundle\ResourceBundle\Controller\ResourceController;
 use Sylius\Bundle\ResourceBundle\Form\Type\DefaultResourceType;
 use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
@@ -22,13 +25,16 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 final class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('setono_sylius_stock');
+        if (method_exists(TreeBuilder::class, 'getRootNode')) {
+            $treeBuilder = new TreeBuilder('setono_sylius_stock_movement');
+            $rootNode = $treeBuilder->getRootNode();
+        } else {
+            // BC layer for symfony/config 4.1 and older
+            $treeBuilder = new TreeBuilder();
+            $rootNode = $treeBuilder->root('setono_sylius_stock_movement');
+        }
 
         $rootNode
             ->addDefaultsIfNotSet()
@@ -67,19 +73,53 @@ final class Configuration implements ConfigurationInterface
                 ->arrayNode('resources')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->arrayNode('stock_movement_report_configuration')
+                        ->arrayNode('report')
                             ->addDefaultsIfNotSet()
                             ->children()
                                 ->variableNode('options')->end()
                                 ->arrayNode('classes')
                                     ->addDefaultsIfNotSet()
                                     ->children()
-                                        ->scalarNode('model')->defaultValue(StockMovementReportConfiguration::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('interface')->defaultValue(StockMovementReportConfigurationInterface::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('model')->defaultValue(Report::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('interface')->defaultValue(ReportInterface::class)->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
                                         ->scalarNode('repository')->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
-                                        ->scalarNode('form')->defaultValue(StockMovementReportConfigurationType::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('form')->defaultValue(DefaultResourceType::class)->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('report_configuration')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode('options')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(ReportConfiguration::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('interface')->defaultValue(ReportConfigurationInterface::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->scalarNode('form')->defaultValue(ReportConfigurationType::class)->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('report_configuration_transport')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode('options')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(ReportConfigurationTransport::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('interface')->defaultValue(ReportConfigurationTransportInterface::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->scalarNode('form')->defaultValue(ReportConfigurationTransportType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()
@@ -97,23 +137,6 @@ final class Configuration implements ConfigurationInterface
                                         ->scalarNode('repository')->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
                                         ->scalarNode('form')->defaultValue(StockMovementType::class)->cannotBeEmpty()->end()
-                                    ->end()
-                                ->end()
-                            ->end()
-                        ->end()
-                        ->arrayNode('stock_movement_report')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->variableNode('options')->end()
-                                ->arrayNode('classes')
-                                    ->addDefaultsIfNotSet()
-                                    ->children()
-                                        ->scalarNode('model')->defaultValue(StockMovementReport::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('interface')->defaultValue(StockMovementReportInterface::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('repository')->cannotBeEmpty()->end()
-                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
-                                        ->scalarNode('form')->defaultValue(DefaultResourceType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

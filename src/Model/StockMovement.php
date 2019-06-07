@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Model;
+namespace Setono\SyliusStockMovementPlugin\Model;
 
 use Money\Money;
 use Sylius\Component\Core\Model\ProductVariantInterface;
@@ -52,33 +52,21 @@ class StockMovement implements StockMovementInterface
         return $this->id;
     }
 
-    /**
-     * @return int
-     */
     public function getQuantity(): ?int
     {
         return $this->quantity;
     }
 
-    /**
-     * @param int $quantity
-     */
     public function setQuantity(int $quantity): void
     {
         $this->quantity = $quantity;
     }
 
-    /**
-     * @return ProductVariantInterface|null
-     */
     public function getVariant(): ?ProductVariantInterface
     {
         return $this->variant;
     }
 
-    /**
-     * @param ProductVariantInterface|null $variant
-     */
     public function setVariant(?ProductVariantInterface $variant): void
     {
         $this->variant = $variant;
@@ -88,65 +76,41 @@ class StockMovement implements StockMovementInterface
         }
     }
 
-    /**
-     * @return string
-     */
     public function getVariantCode(): ?string
     {
         return $this->variantCode;
     }
 
-    /**
-     * @param string $variantCode
-     */
     public function setVariantCode(string $variantCode): void
     {
         $this->variantCode = $variantCode;
     }
 
-    /**
-     * @return Money
-     */
     public function getPrice(): ?Money
     {
         return $this->price;
     }
 
-    /**
-     * @param Money $price
-     */
     public function setPrice(Money $price): void
     {
         $this->price = $price;
     }
 
-    /**
-     * @return Money
-     */
     public function getConvertedPrice(): ?Money
     {
         return $this->convertedPrice;
     }
 
-    /**
-     * @param Money $convertedPrice
-     */
     public function setConvertedPrice(Money $convertedPrice): void
     {
         $this->convertedPrice = $convertedPrice;
     }
 
-    /**
-     * @return string|null
-     */
     public function getReference(): ?string
     {
         return $this->reference;
     }
 
-    /**
-     * @param string|null $reference
-     */
     public function setReference(?string $reference): void
     {
         $this->reference = $reference;
