@@ -6,7 +6,6 @@ namespace Setono\SyliusStockMovementPlugin\Command;
 
 use Setono\SyliusStockMovementPlugin\Generator\StockMovementReportGeneratorInterface;
 use Setono\SyliusStockMovementPlugin\Provider\StockMovementReportConfigurationProviderInterface;
-use Setono\SyliusStockMovementPlugin\Transport\TransportInterface;
 use Setono\SyliusStockMovementPlugin\Writer\StockMovementReportWriterInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
