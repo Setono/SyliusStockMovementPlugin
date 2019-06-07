@@ -19,6 +19,14 @@ final class AdminMenuListener
         $stockHeader = $this->getHeader($menu);
 
         $stockHeader
+            ->addChild('stock_movements', [
+                'route' => 'setono_sylius_stock_admin_stock_movement_index',
+            ])
+            ->setLabel('setono_sylius_stock.menu.admin.main.stock.stock_movements')
+            ->setLabelAttribute('icon', 'chart bar')
+        ;
+
+        $stockHeader
             ->addChild('stock_movement_report_configurations', [
                 'route' => 'setono_sylius_stock_admin_stock_movement_report_configuration_index',
             ])

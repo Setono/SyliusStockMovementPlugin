@@ -1,5 +1,10 @@
 setono_sylius_stock:
     form:
+        stock_movement:
+            quantity: Quantity
+            reference: Reference
+            variant: Product variant
+            price: Price
         stock_movement_report_configuration:
             name: Name
             name_placeholder: The name is only used as a reference
@@ -21,6 +26,9 @@ setono_sylius_stock:
                 
     ui:
         id: Id
+        stock_movements: Stock movements
+        manage_stock_movements: Manage stock movements
+        new_stock_movement: New stock movement
         stock_movement_report: Stock movement report
         stock_movement_reports: Stock movement reports
         manage_stock_movement_reports: Manage stock movement reports
@@ -34,5 +42,6 @@ setono_sylius_stock:
             main:
                 stock:
                     header: Stock
+                    stock_movements: Stock movements
                     stock_movement_report_configurations: Stock movement report configurations
                     stock_movement_reports: Stock movement reports

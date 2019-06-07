@@ -1,5 +1,35 @@
 sylius_grid:
     grids:
+        setono_sylius_stock_admin_stock_movement:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%setono_sylius_stock.model.stock_movement.class%"
+            fields:
+                quantity:
+                    type: string
+                    label: setono_sylius_stock.ui.quantity
+                variant:
+                    type: string
+                    label: setono_sylius_stock.ui.variant
+                price:
+                    type: string
+                    label: setono_sylius_stock.ui.price
+                convertedPrice:
+                    type: string
+                    label: setono_sylius_stock.ui.converted_price
+                reference:
+                    type: string
+                    label: setono_sylius_stock.ui.reference
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
         setono_sylius_stock_admin_stock_movement_report_configuration:
             driver:
                 name: doctrine/orm

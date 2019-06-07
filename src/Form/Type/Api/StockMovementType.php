@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockPlugin\Form\Type;
+namespace Setono\SyliusStockPlugin\Form\Type\Api;
 
 use Setono\SyliusStockPlugin\Form\DataTransformer\MoneyToStringTransformer;
 use Setono\SyliusStockPlugin\Form\EventListener\ConvertPriceListener;
@@ -53,7 +53,7 @@ final class StockMovementType extends AbstractResourceType
                 'label' => 'setono_sylius_stock.form.stock_movement.variant',
                 'invalid_message' => 'setono_sylius_stock.stock_movement.variant_invalid',
             ])
-            ->add('price', MoneyType::class, [
+            ->add('price', TextType::class, [
                 'label' => 'setono_sylius_stock.form.stock_movement.price',
                 'invalid_message' => 'setono_sylius_stock.stock_movement.price_invalid',
             ])
