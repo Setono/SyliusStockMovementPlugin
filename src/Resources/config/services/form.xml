@@ -20,8 +20,7 @@
 
         <service id="setono_sylius_stock_movement.form.type.report_configuration" class="Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationType">
             <argument>%setono_sylius_stock_movement.model.report_configuration.class%</argument>
-            <argument>%setono_sylius_stock_movement.template_labels%</argument>
-            <argument>%setono_sylius_stock_movement.data_source_labels%</argument>
+            <argument>%setono_sylius_stock_movement.templates%</argument>
             <argument>%setono_sylius_stock_movement.form.type.report_configuration.validation_groups%</argument>
             <tag name="form.type" />
         </service>

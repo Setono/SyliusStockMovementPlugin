@@ -6,10 +6,10 @@ namespace Setono\SyliusStockMovementPlugin\Provider;
 
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 
-interface StockMovementReportConfigurationProviderInterface
+interface ReportConfigurationProviderInterface
 {
     /**
      * @return ReportConfigurationInterface[]
      */
-    public function getStockMovementReportConfigurations(): array;
+    public function getReportConfigurations(): array;
 }

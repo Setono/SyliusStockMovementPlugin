@@ -2,10 +2,6 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="setono_sylius_stock_movement.factory.template" class="Setono\SyliusStockMovementPlugin\Factory\TemplateFactory">
-            <argument type="service" id="setono_sylius_stock_movement.registry.template" />
-        </service>
-
         <service id="setono_sylius_stock_movement.custom_factory.stock_movement" class="Setono\SyliusStockMovementPlugin\Factory\StockMovementFactory" decorates="setono_sylius_stock_movement.factory.stock_movement" public="false">
             <argument type="service" id="setono_sylius_stock_movement.custom_factory.stock_movement.inner" />
             <argument>%setono_sylius_stock_movement.base_currency%</argument>

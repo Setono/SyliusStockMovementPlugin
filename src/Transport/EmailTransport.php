@@ -7,6 +7,7 @@ namespace Setono\SyliusStockMovementPlugin\Transport;
 use Setono\SyliusStockMovementPlugin\Mailer\Emails;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
+use SplFileInfo;
 use Sylius\Component\Mailer\Sender\SenderInterface;
 
 final class EmailTransport implements TransportInterface
@@ -21,17 +22,12 @@ final class EmailTransport implements TransportInterface
         $this->sender = $sender;
     }
 
-    public function send(\SplFileInfo $file, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void
+    public function send(SplFileInfo $file, array $configuration, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void
     {
-        $this->sender->send(Emails::REPORT, $reportConfiguration->getEmailTo(), [
-            'subject' => $this->resolveSubject($reportConfiguration->getEmailSubject(), $report),
-            'body' => $this->resolveBody($reportConfiguration->getEmailSubject(), $report),
+        $this->sender->send(Emails::REPORT, $configuration['to'], [
+            'subject' => $this->resolveSubject($configuration['subject'] ?? null, $report),
+            'body' => $this->resolveBody($configuration['body'] ?? null, $report),
         ]);
-    }
-
-    public function supports(ReportInterface $report, ReportConfigurationInterface $reportConfiguration): bool
-    {
-        return null !== $reportConfiguration->getEmailTo() && count($reportConfiguration->getEmailTo()) > 0;
     }
 
     private function resolveSubject(?string $subject, ReportInterface $report): string
@@ -46,7 +42,7 @@ final class EmailTransport implements TransportInterface
     private function resolveBody(?string $body, ReportInterface $report): string
     {
         if (null === $body) {
-            return "Hi\n\nThis is a stock / stock movement report";
+            return "Hi\n\nThis is a stock movement report";
         }
 
         return $this->resolvePlaceholders($body, $report);

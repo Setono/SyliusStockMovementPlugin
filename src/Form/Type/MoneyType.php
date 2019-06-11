@@ -24,9 +24,6 @@ final class MoneyType extends AbstractType
         ])->add('amount');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
         return 'setono_sylius_stock_money';

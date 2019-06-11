@@ -13,19 +13,13 @@ final class ReportConfigurationType extends AbstractResourceType
     /**
      * @var string[]
      */
-    private $templateLabels;
+    private $templates;
 
-    /**
-     * @var string[]
-     */
-    private $dataSourceLabels;
-
-    public function __construct(string $dataClass, array $templateLabels, array $dataSourceLabels, $validationGroups = [])
+    public function __construct(string $dataClass, array $templates, $validationGroups = [])
     {
         parent::__construct($dataClass, $validationGroups);
 
-        $this->templateLabels = $templateLabels;
-        $this->dataSourceLabels = $dataSourceLabels;
+        $this->templates = $templates;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -42,11 +36,7 @@ final class ReportConfigurationType extends AbstractResourceType
             ])
             ->add('template', ChoiceType::class, [
                 'label' => 'setono_sylius_stock_movement.form.report_configuration.template',
-                'choices' => array_flip($this->templateLabels),
-            ])
-            ->add('dataSource', ChoiceType::class, [
-                'label' => 'setono_sylius_stock_movement.form.report_configuration.data_source',
-                'choices' => array_flip($this->dataSourceLabels),
+                'choices' => array_flip($this->templates),
             ])
             ->add('transports', ReportConfigurationTransportCollectionType::class, [
                 'label' => 'setono_sylius_stock_movement.form.report_configuration.transports',

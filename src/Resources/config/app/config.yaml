@@ -1,0 +1,10 @@
+imports:
+    - "@SetonoSyliusStockMovementPlugin/Resources/config/grids/setono_sylius_stock_movement_admin_report.yaml"
+    - "@SetonoSyliusStockMovementPlugin/Resources/config/grids/setono_sylius_stock_movement_admin_report_configuration.yaml"
+    - "@SetonoSyliusStockMovementPlugin/Resources/config/grids/setono_sylius_stock_movement_admin_stock_movement.yaml"
+
+sylius_mailer:
+    emails:
+        setono_sylius_stock_movement_report:
+            subject: Stock movement report
+            template: '@SetonoSyliusStockMovementPlugin/Email/report.html.twig'

@@ -1,0 +1,8 @@
+{%- block extension -%}csv{%- endblock -%}
+{%- block body -%}
+Id;Date;Quantity;Variant code;Price
+{# @var \Setono\SyliusStockMovementPlugin\Model\StockMovementInterface[] stockMovements #}
+{%- for stock_movement in stockMovements -%}
+    {{- stock_movement.id }};{{ stock_movement.createdAt|date }};{{ stock_movement.quantity }};{{ stock_movement.variantCode }};{{ stock_movement.convertedPrice|money -}}
+{%- endfor -%}
+{%- endblock -%}

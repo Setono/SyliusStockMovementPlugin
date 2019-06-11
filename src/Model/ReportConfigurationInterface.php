@@ -29,10 +29,6 @@ interface ReportConfigurationInterface extends ResourceInterface
 
     public function setTemplate(string $template): void;
 
-    public function getDataSource(): ?string;
-
-    public function setDataSource(string $dataSource): void;
-
     /**
      * @return Collection|ReportConfigurationTransportInterface[]
      */

@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin;
 
-use Setono\SyliusStockMovementPlugin\DependencyInjection\Compiler\RegisterDataSourcesPass;
-use Setono\SyliusStockMovementPlugin\DependencyInjection\Compiler\RegisterTemplatesPass;
 use Setono\SyliusStockMovementPlugin\DependencyInjection\Compiler\RegisterTransportsPass;
 use Sylius\Bundle\CoreBundle\Application\SyliusPluginTrait;
 use Sylius\Bundle\ResourceBundle\AbstractResourceBundle;
@@ -20,8 +18,6 @@ final class SetonoSyliusStockMovementPlugin extends AbstractResourceBundle
     {
         parent::build($container);
 
-        $container->addCompilerPass(new RegisterTemplatesPass());
-        $container->addCompilerPass(new RegisterDataSourcesPass());
         $container->addCompilerPass(new RegisterTransportsPass());
     }
 

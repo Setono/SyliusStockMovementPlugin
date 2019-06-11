@@ -14,7 +14,6 @@
         <field name="name" type="string" />
         <field name="schedule" type="cron_expression" />
         <field name="template" type="string" />
-        <field name="dataSource" type="string" />
 
         <one-to-many field="transports" target-entity="Setono\SyliusStockMovementPlugin\Model\ReportConfigurationTransportInterface" mapped-by="reportConfiguration" orphan-removal="true">
             <cascade>

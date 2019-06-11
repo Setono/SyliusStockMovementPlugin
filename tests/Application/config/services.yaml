@@ -2,16 +2,3 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en_US
-
-services:
-    Tests\Setono\SyliusStockMovementPlugin\Application\src\DataSource\AllStockMovementsDataSource:
-        arguments:
-            - "@setono_sylius_stock_movement.repository.stock_movement"
-        tags:
-            - { name: setono_sylius_stock_movement.data_source, identifier: all_stock_movements, label: All stock movements }
-
-    Tests\Setono\SyliusStockMovementPlugin\Application\src\DataSource\StockMovementsGreaterThanUSD100DataSource:
-        arguments:
-            - "@setono_sylius_stock_movement.repository.stock_movement"
-        tags:
-            - { name: setono_sylius_stock_movement.data_source, identifier: stock_movements_greater_than_usd_100, label: Stock movements greater than USD 100 }

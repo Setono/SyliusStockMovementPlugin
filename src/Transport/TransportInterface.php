@@ -10,15 +10,5 @@ use SplFileInfo;
 
 interface TransportInterface
 {
-    public function send(SplFileInfo $file, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void;
-
-    /**
-     * Will return true if this transport supports the given report and report configuration
-     *
-     * @param ReportInterface $report
-     * @param ReportConfigurationInterface $reportConfiguration
-     *
-     * @return bool
-     */
-    public function supports(ReportInterface $report, ReportConfigurationInterface $reportConfiguration): bool;
+    public function send(SplFileInfo $file, array $configuration, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void;
 }

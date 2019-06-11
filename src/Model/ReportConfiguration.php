@@ -31,11 +31,6 @@ class ReportConfiguration implements ReportConfigurationInterface
     protected $template;
 
     /**
-     * @var string
-     */
-    protected $dataSource;
-
-    /**
      * @var ReportConfigurationTransportInterface[]|Collection
      */
     protected $transports;
@@ -78,16 +73,6 @@ class ReportConfiguration implements ReportConfigurationInterface
     public function setTemplate(string $template): void
     {
         $this->template = $template;
-    }
-
-    public function getDataSource(): ?string
-    {
-        return $this->dataSource;
-    }
-
-    public function setDataSource(string $dataSource): void
-    {
-        $this->dataSource = $dataSource;
     }
 
     public function getTransports(): Collection

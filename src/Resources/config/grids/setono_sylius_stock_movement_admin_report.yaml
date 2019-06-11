@@ -1,0 +1,18 @@
+sylius_grid:
+    grids:
+        setono_sylius_stock_movement_admin_report:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%setono_sylius_stock_movement.model.report.class%"
+            fields:
+                id:
+                    type: string
+                    label: setono_sylius_stock_movement.ui.id
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    show:
+                        type: show

@@ -1,4 +1,6 @@
 setono_sylius_stock_movement:
+    data_source:
+        all_stock_movements: All stock movements
     form:
         report_configuration:
             name: Name
@@ -35,16 +37,17 @@ setono_sylius_stock_movement:
         ftp: FTP
     ui:
         id: Id
-        stock_movements: Stock movements
+        edit_report_configuration: Edit report configuration
+        manage_reports: Manage stock movement reports
+        manage_report_configurations: Manage report configurations
         manage_stock_movements: Manage stock movements
+        name: Name
+        new_report_configuration: New report configuration
         new_stock_movement: New stock movement
         report: Stock movement report
         reports: Stock movement reports
-        manage_reports: Manage stock movement reports
         report_configurations: Report configurations
-        manage_report_configurations: Manage report configurations
-        new_report_configuration: New report configuration
-        edit_report_configuration: Edit report configuration
+        stock_movements: Stock movements
     menu:
         admin:
             main:

@@ -4,21 +4,17 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\DataSource;
 
-use Pagerfanta\Pagerfanta;
+use Generator;
+use Setono\SyliusStockMovementPlugin\DataSource\Filter\FilterInterface;
 
 interface DataSourceInterface
 {
-    /**
-     * Will exclude ids less or equal to this id
-     *
-     * @param int $latestId
-     */
-    public function guardAgainstLatestId(int $latestId): void;
+    public function addFilter(FilterInterface $filter): void;
 
     /**
      * Returns the filtered data
      *
-     * @return Pagerfanta
+     * @return Generator
      */
-    public function getData(): Pagerfanta;
+    public function getData(): Generator;
 }

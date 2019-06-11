@@ -4,30 +4,27 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Transport;
 
+use Exception;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
+use SplFileInfo;
 
 final class FtpTransport implements TransportInterface
 {
     /**
      * {@inheritdoc}
      *
-     * @throws \Exception
+     * @throws Exception
      */
-    public function send(\SplFileInfo $file, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void
+    public function send(SplFileInfo $file, array $configuration, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void
     {
         $ftp = new \Ftp();
-        $ftp->connect($reportConfiguration->getFtpHost(), $reportConfiguration->getFtpPort() ?? 21);
+        $ftp->connect($configuration['host'], $configuration['port'] ?? 21);
 
-        if (null !== $reportConfiguration->getFtpUsername()) {
-            $ftp->login($reportConfiguration->getFtpUsername(), $reportConfiguration->getFtpPassword());
+        if (null !== $configuration['username'] && null !== $configuration['password']) {
+            $ftp->login($configuration['username'], $configuration['password']);
         }
 
-        $ftp->put($reportConfiguration->getFtpPath() ?? '/', $file->getPathname(), FTP_BINARY);
-    }
-
-    public function supports(ReportInterface $report, ReportConfigurationInterface $reportConfiguration): bool
-    {
-        return null !== $reportConfiguration->getFtpHost();
+        $ftp->put($configuration['path'] ?? '/', $file->getPathname(), FTP_BINARY);
     }
 }

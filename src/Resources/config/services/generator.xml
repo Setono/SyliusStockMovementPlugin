@@ -3,11 +3,10 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
 
-        <service id="setono_sylius_stock_movement.generator.stock_movement_report" class="Setono\SyliusStockMovementPlugin\Generator\StockMovementReportGenerator">
+        <service id="setono_sylius_stock_movement.generator.report" class="Setono\SyliusStockMovementPlugin\Generator\ReportGenerator">
             <argument type="service" id="setono_sylius_stock_movement.factory.report"/>
             <argument type="service" id="setono_sylius_stock_movement.repository.report"/>
-            <argument type="service" id="setono_sylius_stock_movement.registry.data_source"/>
-            <argument type="service" id="setono_sylius_stock_movement.provider.latest_id"/>
+            <argument type="service" id="setono_sylius_stock_movement.data_source.default"/>
         </service>
 
     </services>

@@ -7,8 +7,9 @@ namespace Setono\SyliusStockMovementPlugin\Model;
 use Money\Money;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
+use Sylius\Component\Resource\Model\TimestampableInterface;
 
-interface StockMovementInterface extends ResourceInterface
+interface StockMovementInterface extends ResourceInterface, TimestampableInterface
 {
     /**
      * The number of items.
