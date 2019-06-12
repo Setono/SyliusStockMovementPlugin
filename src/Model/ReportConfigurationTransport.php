@@ -33,7 +33,7 @@ class ReportConfigurationTransport implements ReportConfigurationTransportInterf
         $this->type = $type;
     }
 
-    public function getConfiguration(): ?array
+    public function getConfiguration(): array
     {
         return $this->configuration;
     }

@@ -1,6 +1,4 @@
 setono_sylius_stock_movement:
-    data_source:
-        all_stock_movements: All stock movements
     form:
         report_configuration:
             name: Name
@@ -48,6 +46,7 @@ setono_sylius_stock_movement:
         reports: Stock movement reports
         report_configurations: Report configurations
         stock_movements: Stock movements
+        transports_and_filters: Transports and filters
     menu:
         admin:
             main:

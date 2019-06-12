@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Form\Type;
 
+use Setono\CronExpressionBundle\Form\Type\CronExpressionType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 final class ReportConfigurationType extends AbstractResourceType
@@ -23,13 +25,13 @@ final class ReportConfigurationType extends AbstractResourceType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', null, [
+            ->add('name', TextType::class, [
                 'label' => 'setono_sylius_stock_movement.form.report_configuration.name',
                 'attr' => [
                     'placeholder' => 'setono_sylius_stock_movement.form.report_configuration.name_placeholder',
                 ],
             ])
-            ->add('schedule', null, [
+            ->add('schedule', CronExpressionType::class, [
                 'label' => 'setono_sylius_stock_movement.form.report_configuration.schedule',
             ])
             ->add('template', ChoiceType::class, [

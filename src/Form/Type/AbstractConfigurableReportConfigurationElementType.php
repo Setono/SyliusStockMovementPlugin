@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Form\Type;
 
+use Setono\SyliusStockMovementPlugin\Model\ConfigurableReportConfigurationElementInterface;
 use Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistryInterface;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
-use Sylius\Component\Promotion\Model\ConfigurablePromotionElementInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -77,7 +77,7 @@ abstract class AbstractConfigurableReportConfigurationElementType extends Abstra
 
     protected function getRegistryIdentifier(FormInterface $form, $data = null): ?string
     {
-        if ($data instanceof ConfigurablePromotionElementInterface && null !== $data->getType()) {
+        if ($data instanceof ConfigurableReportConfigurationElementInterface && null !== $data->getType()) {
             return $data->getType();
         }
 

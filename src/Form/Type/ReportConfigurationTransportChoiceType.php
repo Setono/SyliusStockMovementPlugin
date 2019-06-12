@@ -11,17 +11,17 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 final class ReportConfigurationTransportChoiceType extends AbstractType
 {
     /** @var array */
-    private $rules;
+    private $transports;
 
-    public function __construct(array $rules)
+    public function __construct(array $transports)
     {
-        $this->rules = $rules;
+        $this->transports = $transports;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'choices' => array_flip($this->rules),
+            'choices' => array_flip($this->transports),
         ]);
     }
 

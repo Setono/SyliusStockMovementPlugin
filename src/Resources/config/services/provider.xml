@@ -12,7 +12,8 @@
         </service>
 
         <service id="setono_sylius_stock_movement.provider.stock_movement" class="Setono\SyliusStockMovementPlugin\Provider\StockMovementProvider">
-            <argument type="service" id="setono_sylius_stock_movement.repository.stock_movement"/>
+            <argument type="service" id="doctrine"/>
+            <argument>%setono_sylius_stock_movement.model.stock_movement.class%</argument>
         </service>
     </services>
 </container>

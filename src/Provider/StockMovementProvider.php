@@ -55,8 +55,6 @@ class StockMovementProvider implements StockMovementProviderInterface
         $iterableResult = $qb->getQuery()->iterate();
         foreach ($iterableResult as $row) {
             yield $row[0];
-
-            $em->detach($row[0]);
         }
     }
 }

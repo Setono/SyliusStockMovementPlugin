@@ -6,6 +6,7 @@ namespace Setono\SyliusStockMovementPlugin\Provider;
 
 use Generator;
 use Setono\SyliusStockMovementPlugin\Filter\FilterInterface;
+use Setono\SyliusStockMovementPlugin\Model\StockMovementInterface;
 
 interface StockMovementProviderInterface
 {
@@ -13,6 +14,8 @@ interface StockMovementProviderInterface
 
     /**
      * Returns the filtered data
+     *
+     * @return StockMovementInterface[]|Generator
      */
     public function getStockMovements(): Generator;
 }

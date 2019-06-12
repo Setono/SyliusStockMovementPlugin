@@ -22,6 +22,8 @@ setono_sylius_stock_movement_admin_report_configuration:
         vars:
             all:
                 subheader: setono_sylius_stock_movement.ui.manage_report_configurations
+                templates:
+                    form: "@SetonoSyliusStockMovementPlugin/ReportConfiguration/_form.html.twig"
             index:
                 icon: 'chart bar'
     type: sylius.resource
