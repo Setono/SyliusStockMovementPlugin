@@ -6,9 +6,7 @@ namespace Setono\SyliusStockMovementPlugin\Model;
 
 trait ReportAwareTrait
 {
-    /**
-     * @var ReportInterface
-     */
+    /** @var ReportInterface */
     protected $stockMovementReport;
 
     public function setStockMovementReport(ReportInterface $stockMovementReport): void

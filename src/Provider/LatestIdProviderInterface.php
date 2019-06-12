@@ -10,10 +10,6 @@ interface LatestIdProviderInterface
 {
     /**
      * Returns the latest id that was present in a report with the given report configuration
-     *
-     * @param ReportConfigurationInterface $reportConfiguration
-     *
-     * @return int
      */
     public function getLatestId(ReportConfigurationInterface $reportConfiguration): int;
 }

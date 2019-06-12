@@ -6,24 +6,16 @@ namespace Setono\SyliusStockMovementPlugin\Model;
 
 class ReportConfigurationTransport implements ReportConfigurationTransportInterface
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $id;
 
-    /**
-     * @var string
-     */
+    /** @var string|null */
     protected $type;
 
-    /**
-     * @var array
-     */
+    /** @var array */
     protected $configuration = [];
 
-    /**
-     * @var ReportConfigurationInterface
-     */
+    /** @var ReportConfigurationInterface|null */
     protected $reportConfiguration;
 
     public function getId(): ?int

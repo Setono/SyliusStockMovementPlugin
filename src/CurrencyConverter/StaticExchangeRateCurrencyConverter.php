@@ -20,8 +20,8 @@ final class StaticExchangeRateCurrencyConverter extends CurrencyConverter
     public function convert(int $money, string $sourceCurrency, string $targetCurrency): Money
     {
         // notice that Sylius' currency converter will return the same amount if the source > target currency pair does not exist
-        // i.e. if you give an input like EUR 100 and your target is USD, but no exchange rate exists between EUR and USD
-        // Sylius' currency converter will return 100
+        // i.e. if you input EUR 100 and your target is DKK, but no exchange rate exists between EUR and DKK
+        // Sylius' currency converter will return 100 although the expected result is something like 745
         $converted = $this->currencyConverter->convert($money, $sourceCurrency, $targetCurrency);
 
         return new Money($converted, new Currency($targetCurrency));

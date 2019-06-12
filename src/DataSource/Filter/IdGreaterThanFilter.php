@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Setono\SyliusStockMovementPlugin\DataSource\Filter;
 
 use Doctrine\ORM\QueryBuilder;
+use Safe\Exceptions\StringsException;
+use function Safe\sprintf;
 
 final class IdGreaterThanFilter extends Filter
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     private $id;
 
     public function __construct(int $id)
@@ -18,6 +18,9 @@ final class IdGreaterThanFilter extends Filter
         $this->id = $id;
     }
 
+    /**
+     * @throws StringsException
+     */
     public function filter(QueryBuilder $queryBuilder): void
     {
         $alias = $this->getRootAlias($queryBuilder);

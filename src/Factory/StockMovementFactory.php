@@ -12,19 +12,13 @@ use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class StockMovementFactory implements StockMovementFactoryInterface
 {
-    /**
-     * @var FactoryInterface
-     */
+    /** @var FactoryInterface */
     private $decoratedFactory;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $baseCurrency;
 
-    /**
-     * @var CurrencyConverterInterface
-     */
+    /** @var CurrencyConverterInterface */
     private $currencyConverter;
 
     public function __construct(FactoryInterface $decoratedFactory, string $baseCurrency, CurrencyConverterInterface $currencyConverter)
@@ -42,7 +36,7 @@ final class StockMovementFactory implements StockMovementFactoryInterface
         return $obj;
     }
 
-    public function createValid(int $quantity, ProductVariantInterface $variant, Money $price, ?string $reference = null): StockMovementInterface
+    public function createValid(int $quantity, ProductVariantInterface $variant, Money $price, string $reference = null): StockMovementInterface
     {
         $obj = $this->createNew();
 
@@ -50,9 +44,9 @@ final class StockMovementFactory implements StockMovementFactoryInterface
 
         $obj->setVariant($variant);
         $obj->setPrice($price);
+        $obj->setConvertedPrice($convertedPrice);
         $obj->setQuantity($quantity);
         $obj->setReference($reference);
-        $obj->setConvertedPrice($convertedPrice);
 
         return $obj;
     }

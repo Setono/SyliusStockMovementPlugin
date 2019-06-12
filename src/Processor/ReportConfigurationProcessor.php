@@ -10,14 +10,10 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 final class ReportConfigurationProcessor implements ReportConfigurationProcessorInterface
 {
-    /**
-     * @var ReportConfigurationProviderInterface
-     */
+    /** @var ReportConfigurationProviderInterface */
     private $reportConfigurationProvider;
 
-    /**
-     * @var MessageBusInterface
-     */
+    /** @var MessageBusInterface */
     private $commandBus;
 
     public function __construct(ReportConfigurationProviderInterface $reportConfigurationProvider, MessageBusInterface $commandBus)

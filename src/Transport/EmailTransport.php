@@ -12,9 +12,7 @@ use Sylius\Component\Mailer\Sender\SenderInterface;
 
 final class EmailTransport implements TransportInterface
 {
-    /**
-     * @var SenderInterface
-     */
+    /** @var SenderInterface */
     private $sender;
 
     public function __construct(SenderInterface $sender)

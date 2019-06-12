@@ -2,20 +2,20 @@
 
 {# @var \Setono\SyliusStockMovementPlugin\Model\ReportInterface stock_movement_report #}
 
-{% block title %}{{ 'setono_sylius_stock_movement.ui.stock_movement_report'|trans ~' #'~ stock_movement_report.id }} {{ parent() }}{% endblock %}
+{% block title %}{{ 'setono_sylius_stock_movement.ui.report'|trans ~' #'~ stock_movement_report.id }} {{ parent() }}{% endblock %}
 
 {% block content %}
     {{ sonata_block_render_event('sylius.admin.stock_movement_report.show.before_header', {'resource': resource}) }}
 
     <div class="ui stackable two column grid">
         <div class="ten wide column">
-            {% include '@SetonoSyliusStockMovementPlugin/StockMovementReport/Show/_header.html.twig' %}
+            {% include '@SetonoSyliusStockMovementPlugin/Report/Show/_header.html.twig' %}
         </div>
     </div>
 
     {{ sonata_block_render_event('sylius.admin.stock_movement_report.show.after_header', {'resource': resource}) }}
 
-    {% include '@SetonoSyliusStockMovementPlugin/StockMovementReport/Show/_breadcrumb.html.twig' %}
+    {% include '@SetonoSyliusStockMovementPlugin/Report/Show/_breadcrumb.html.twig' %}
 
     {{ sonata_block_render_event('sylius.admin.order.show.after_breadcrumb', {'resource': resource}) }}
 

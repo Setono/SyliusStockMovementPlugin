@@ -12,19 +12,13 @@ class Report implements ReportInterface
 {
     use TimestampableTrait;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $id;
 
-    /**
-     * @var ReportConfigurationInterface
-     */
+    /** @var ReportConfigurationInterface */
     protected $reportConfiguration;
 
-    /**
-     * @var StockMovementInterface[]|Collection
-     */
+    /** @var StockMovementInterface[]|Collection */
     protected $stockMovements;
 
     public function __construct()

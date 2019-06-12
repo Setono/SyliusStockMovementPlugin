@@ -1,14 +1,15 @@
 # Sylius Stock Plugin
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Latest Version][ico-version]][link-packagist]
+[![Latest Unstable Version][ico-unstable-version]][link-packagist]
 [![Software License][ico-license]](LICENSE)
 [![Build Status][ico-travis]][link-travis]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
-Adds stock related capabilities to your Sylius shop.
+Log all stock movements in your shop. You can use this to create very accurate reports of your
+inventory movements.
 
 ## Installation
-
 
 ### Step 1: Download the plugin
 
@@ -52,7 +53,7 @@ Import the config file somewhere in your application. Could be the `config/packa
 imports:
     # ...
     
-    - { resource: "@SetonoSyliusStockMovementPlugin/Resources/config/config.yaml" }
+    - { resource: "@SetonoSyliusStockMovementPlugin/Resources/config/app/config.yaml" }
     
     # ...
 ```
@@ -60,11 +61,12 @@ imports:
 ## Important
 If you use the `StaticExchangeRateCurrencyConverter` (which is default) you **must** have an existing exchange rate between all your accepted currencies and your base currency.
 
-[ico-version]: https://img.shields.io/packagist/v/setono/sylius-stock-plugin.svg?style=flat-square
-[ico-license]: https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/Setono/SyliusStockPlugin/master.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusStockPlugin.svg?style=flat-square
+[ico-version]: https://poser.pugx.org/setono/sylius-stock-movement-plugin/v/stable
+[ico-unstable-version]: https://poser.pugx.org/setono/sylius-stock-movement-plugin/v/unstable
+[ico-license]: https://poser.pugx.org/setono/sylius-stock-movement-plugin/license
+[ico-travis]: https://travis-ci.org/Setono/SyliusStockMovementPlugin.svg?branch=master
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/Setono/SyliusStockMovementPlugin.svg?style=flat-square
 
-[link-packagist]: https://packagist.org/packages/setono/sylius-stock-plugin
-[link-travis]: https://travis-ci.org/Setono/SyliusStockPlugin
-[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusStockPlugin
+[link-packagist]: https://packagist.org/packages/setono/sylius-stock-movement-plugin
+[link-travis]: https://travis-ci.org/Setono/SyliusStockMovementPlugin
+[link-code-quality]: https://scrutinizer-ci.com/g/Setono/SyliusStockMovementPlugin

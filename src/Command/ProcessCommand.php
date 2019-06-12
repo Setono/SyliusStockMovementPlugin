@@ -13,9 +13,7 @@ final class ProcessCommand extends Command
 {
     protected static $defaultName = 'setono:sylius-stock-movement:process';
 
-    /**
-     * @var ReportConfigurationProcessorInterface
-     */
+    /** @var ReportConfigurationProcessorInterface */
     private $processor;
 
     public function __construct(ReportConfigurationProcessorInterface $processor)
@@ -30,8 +28,10 @@ final class ProcessCommand extends Command
         $this->setDescription('Processes report configurations');
     }
 
-    public function execute(InputInterface $input, OutputInterface $output): void
+    public function execute(InputInterface $input, OutputInterface $output): int
     {
         $this->processor->process();
+
+        return 0;
     }
 }

@@ -12,9 +12,7 @@ use Sylius\Component\Registry\ServiceRegistryInterface;
 
 final class ReportSender implements ReportSenderInterface
 {
-    /**
-     * @var ServiceRegistryInterface
-     */
+    /** @var ServiceRegistryInterface */
     private $transportRegistry;
 
     public function __construct(ServiceRegistryInterface $transportRegistry)

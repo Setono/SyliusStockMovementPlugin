@@ -10,9 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class ReportConfigurationType extends AbstractResourceType
 {
-    /**
-     * @var string[]
-     */
+    /** @var string[] */
     private $templates;
 
     public function __construct(string $dataClass, array $templates, $validationGroups = [])

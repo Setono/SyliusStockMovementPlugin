@@ -12,39 +12,25 @@ class StockMovement implements StockMovementInterface
 {
     use TimestampableTrait;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $id;
 
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $quantity;
 
-    /**
-     * @var ProductVariantInterface|null
-     */
+    /** @var ProductVariantInterface|null */
     protected $variant;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $variantCode;
 
-    /**
-     * @var Money
-     */
+    /** @var Money */
     protected $price;
 
-    /**
-     * @var Money
-     */
+    /** @var Money */
     protected $convertedPrice;
 
-    /**
-     * @var string|null
-     */
+    /** @var string|null */
     protected $reference;
 
     public function getId(): ?int

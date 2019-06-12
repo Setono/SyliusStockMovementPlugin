@@ -12,19 +12,13 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 class ReportGenerator implements ReportGeneratorInterface
 {
-    /**
-     * @var FactoryInterface
-     */
+    /** @var FactoryInterface */
     private $reportFactory;
 
-    /**
-     * @var RepositoryInterface
-     */
+    /** @var RepositoryInterface */
     private $reportRepository;
 
-    /**
-     * @var DataSourceInterface
-     */
+    /** @var DataSourceInterface */
     private $dataSource;
 
     public function __construct(

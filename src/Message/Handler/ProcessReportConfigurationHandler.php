@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Setono\SyliusStockMovementPlugin\Message\Handler;
 
 use InvalidArgumentException;
+use Safe\Exceptions\StringsException;
+use function Safe\sprintf;
 use Setono\SyliusStockMovementPlugin\Generator\ReportGeneratorInterface;
 use Setono\SyliusStockMovementPlugin\Message\Command\ProcessReportConfiguration;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
@@ -15,24 +17,16 @@ use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class ProcessReportConfigurationHandler implements MessageHandlerInterface
 {
-    /**
-     * @var RepositoryInterface
-     */
+    /** @var RepositoryInterface */
     private $reportConfigurationRepository;
 
-    /**
-     * @var ReportGeneratorInterface
-     */
+    /** @var ReportGeneratorInterface */
     private $reportGenerator;
 
-    /**
-     * @var ReportWriterInterface
-     */
+    /** @var ReportWriterInterface */
     private $reportWriter;
 
-    /**
-     * @var ReportSenderInterface
-     */
+    /** @var ReportSenderInterface */
     private $reportSender;
 
     public function __construct(
@@ -47,6 +41,9 @@ class ProcessReportConfigurationHandler implements MessageHandlerInterface
         $this->reportSender = $reportSender;
     }
 
+    /**
+     * @throws StringsException
+     */
     public function __invoke(ProcessReportConfiguration $message): void
     {
         /** @var ReportConfigurationInterface|null $reportConfiguration */

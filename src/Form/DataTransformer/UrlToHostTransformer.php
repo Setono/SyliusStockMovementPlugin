@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Form\DataTransformer;
 
+use const PHP_URL_HOST;
+use Safe\Exceptions\StringsException;
+use Safe\Exceptions\UrlException;
+use function Safe\parse_url;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
@@ -11,8 +15,6 @@ final class UrlToHostTransformer implements DataTransformerInterface
 {
     /**
      * @param  string|null $host
-     *
-     * @return string|null
      */
     public function transform($host): ?string
     {
@@ -24,9 +26,7 @@ final class UrlToHostTransformer implements DataTransformerInterface
      *
      * @param  string|null $url
      *
-     * @return string|null
-     *
-     * @throws TransformationFailedException if object (issue) is not found.
+     * @throws StringsException
      */
     public function reverseTransform($url): ?string
     {
@@ -34,11 +34,10 @@ final class UrlToHostTransformer implements DataTransformerInterface
             return $url;
         }
 
-        $host = parse_url($url, PHP_URL_HOST);
-        if (null === $host || false === $host) {
-            throw new TransformationFailedException(sprintf('It was not possible to extract the host from the url: "%s"', $url));
+        try {
+            return parse_url($url, PHP_URL_HOST);
+        } catch (UrlException $e) {
+            throw new TransformationFailedException(\Safe\sprintf('It was not possible to extract the host from the url: "%s"', $url), 0, $e);
         }
-
-        return $host;
     }
 }

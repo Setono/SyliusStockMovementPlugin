@@ -13,14 +13,10 @@ use Webmozart\Assert\Assert;
 
 final class ConvertPriceListener implements EventSubscriberInterface
 {
-    /**
-     * @var CurrencyConverterInterface
-     */
+    /** @var CurrencyConverterInterface */
     private $currencyConverter;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $baseCurrency;
 
     public function __construct(CurrencyConverterInterface $currencyConverter, string $baseCurrency)

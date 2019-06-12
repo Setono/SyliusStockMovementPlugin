@@ -9,9 +9,6 @@ use Sylius\Bundle\UiBundle\Menu\Event\MenuBuilderEvent;
 
 final class AdminMenuListener
 {
-    /**
-     * @param MenuBuilderEvent $event
-     */
     public function addAdminMenuItems(MenuBuilderEvent $event): void
     {
         $menu = $event->getMenu();
@@ -46,10 +43,6 @@ final class AdminMenuListener
     /**
      * This ensures that use the existing stock header if it exists
      * else we will create it
-     *
-     * @param ItemInterface $menu
-     *
-     * @return ItemInterface
      */
     private function getHeader(ItemInterface $menu): ItemInterface
     {

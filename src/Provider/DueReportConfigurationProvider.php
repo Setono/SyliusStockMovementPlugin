@@ -9,9 +9,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 class DueReportConfigurationProvider implements ReportConfigurationProviderInterface
 {
-    /**
-     * @var RepositoryInterface
-     */
+    /** @var RepositoryInterface */
     private $reportConfigurationRepository;
 
     public function __construct(RepositoryInterface $reportConfigurationRepository)

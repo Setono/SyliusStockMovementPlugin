@@ -13,8 +13,6 @@ interface DataSourceInterface
 
     /**
      * Returns the filtered data
-     *
-     * @return Generator
      */
     public function getData(): Generator;
 }

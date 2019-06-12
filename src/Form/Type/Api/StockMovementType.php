@@ -15,14 +15,10 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class StockMovementType extends AbstractResourceType
 {
-    /**
-     * @var ProductVariantRepositoryInterface
-     */
+    /** @var ProductVariantRepositoryInterface */
     private $variantRepository;
 
-    /**
-     * @var ConvertPriceListener
-     */
+    /** @var ConvertPriceListener */
     private $convertPriceListener;
 
     public function __construct(

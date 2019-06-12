@@ -6,12 +6,12 @@ namespace Setono\SyliusStockMovementPlugin\DataSource\Filter;
 
 use DateTimeInterface;
 use Doctrine\ORM\QueryBuilder;
+use Safe\Exceptions\StringsException;
+use function Safe\sprintf;
 
 final class CreatedAfterFilter extends Filter
 {
-    /**
-     * @var DateTimeInterface
-     */
+    /** @var DateTimeInterface */
     private $dateTime;
 
     public function __construct(DateTimeInterface $dateTime)
@@ -19,6 +19,9 @@ final class CreatedAfterFilter extends Filter
         $this->dateTime = $dateTime;
     }
 
+    /**
+     * @throws StringsException
+     */
     public function filter(QueryBuilder $queryBuilder): void
     {
         $alias = $this->getRootAlias($queryBuilder);

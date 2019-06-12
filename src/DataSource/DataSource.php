@@ -12,14 +12,10 @@ use Setono\SyliusStockMovementPlugin\DataSource\Filter\FilterInterface;
 
 class DataSource implements DataSourceInterface
 {
-    /**
-     * @var FilterInterface[]
-     */
+    /** @var FilterInterface[] */
     protected $filters = [];
 
-    /**
-     * @var EntityRepository
-     */
+    /** @var EntityRepository */
     private $repository;
 
     public function __construct(EntityRepository $repository)

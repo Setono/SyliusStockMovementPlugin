@@ -10,29 +10,19 @@ use Doctrine\Common\Collections\Collection;
 
 class ReportConfiguration implements ReportConfigurationInterface
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $name;
 
-    /**
-     * @var CronExpression
-     */
+    /** @var CronExpression */
     protected $schedule;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     protected $template;
 
-    /**
-     * @var ReportConfigurationTransportInterface[]|Collection
-     */
+    /** @var ReportConfigurationTransportInterface[]|Collection */
     protected $transports;
 
     public function __construct()
