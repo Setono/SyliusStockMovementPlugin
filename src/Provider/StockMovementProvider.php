@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Provider;
 
-use Doctrine\ORM\EntityRepository;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\ORM\EntityManagerInterface;
 use Generator;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\Pagerfanta;
+use InvalidArgumentException;
+use Safe\Exceptions\StringsException;
+use function Safe\sprintf;
 use Setono\SyliusStockMovementPlugin\Filter\FilterInterface;
 
 class StockMovementProvider implements StockMovementProviderInterface
@@ -15,12 +17,16 @@ class StockMovementProvider implements StockMovementProviderInterface
     /** @var FilterInterface[] */
     protected $filters = [];
 
-    /** @var EntityRepository */
-    private $repository;
+    /** @var ManagerRegistry */
+    private $managerRegistry;
 
-    public function __construct(EntityRepository $repository)
+    /** @var string */
+    private $stockMovementClass;
+
+    public function __construct(ManagerRegistry $managerRegistry, string $stockMovementClass)
     {
-        $this->repository = $repository;
+        $this->managerRegistry = $managerRegistry;
+        $this->stockMovementClass = $stockMovementClass;
     }
 
     public function addFilter(FilterInterface $filter): void
@@ -28,25 +34,29 @@ class StockMovementProvider implements StockMovementProviderInterface
         $this->filters[] = $filter;
     }
 
+    /**
+     * @throws StringsException
+     */
     public function getStockMovements(): Generator
     {
-        $qb = $this->repository->createQueryBuilder('o');
+        $em = $this->managerRegistry->getManagerForClass($this->stockMovementClass);
+        if (!$em instanceof EntityManagerInterface) {
+            throw new InvalidArgumentException(sprintf('No manager for class %s', $this->stockMovementClass));
+        }
+
+        $qb = $em->createQueryBuilder();
+        $qb->select('o')
+            ->from($this->stockMovementClass, 'o');
 
         foreach ($this->filters as $filter) {
             $filter->filter($qb);
         }
 
-        // Use output walkers option in DoctrineORMAdapter should be false as it affects performance greatly. (see https://github.com/Sylius/Sylius/issues/3775)
-        $paginator = new Pagerfanta(new DoctrineORMAdapter($qb, false, false));
-        $paginator->setNormalizeOutOfRangePages(true);
+        $iterableResult = $qb->getQuery()->iterate();
+        foreach ($iterableResult as $row) {
+            yield $row[0];
 
-        $paginator->setMaxPerPage(100);
-        $pages = $paginator->getNbPages();
-
-        for ($page = 1; $page <= $pages; ++$page) {
-            $paginator->setCurrentPage($page);
-
-            yield from $paginator->getCurrentPageResults();
+            $em->detach($row[0]);
         }
     }
 }
