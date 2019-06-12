@@ -10,5 +10,9 @@
             <argument type="service" id="doctrine"/>
             <argument>%setono_sylius_stock_movement.model.report.class%</argument>
         </service>
+
+        <service id="setono_sylius_stock_movement.provider.stock_movement" class="Setono\SyliusStockMovementPlugin\Provider\StockMovementProvider">
+            <argument type="service" id="setono_sylius_stock_movement.repository.stock_movement"/>
+        </service>
     </services>
 </container>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockMovementPlugin\DataSource\Filter;
+namespace Setono\SyliusStockMovementPlugin\Filter;
 
 use DateTimeInterface;
 use Doctrine\ORM\QueryBuilder;

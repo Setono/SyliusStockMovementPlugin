@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Generator;
 
-use Setono\SyliusStockMovementPlugin\DataSource\DataSourceInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
+use Setono\SyliusStockMovementPlugin\Provider\StockMovementProviderInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
@@ -18,17 +18,17 @@ class ReportGenerator implements ReportGeneratorInterface
     /** @var RepositoryInterface */
     private $reportRepository;
 
-    /** @var DataSourceInterface */
-    private $dataSource;
+    /** @var StockMovementProviderInterface */
+    private $stockMovementProvider;
 
     public function __construct(
         FactoryInterface $reportFactory,
         RepositoryInterface $reportRepository,
-        DataSourceInterface $dataSource
+        StockMovementProviderInterface $stockMovementProvider
     ) {
         $this->reportFactory = $reportFactory;
         $this->reportRepository = $reportRepository;
-        $this->dataSource = $dataSource;
+        $this->stockMovementProvider = $stockMovementProvider;
     }
 
     public function generate(ReportConfigurationInterface $reportConfiguration): ?ReportInterface
@@ -41,7 +41,7 @@ class ReportGenerator implements ReportGeneratorInterface
 
         $hasStockMovements = false;
 
-        foreach ($this->dataSource->getData() as $stockMovement) {
+        foreach ($this->stockMovementProvider->getStockMovements() as $stockMovement) {
             $report->addStockMovement($stockMovement);
 
             $hasStockMovements = true;

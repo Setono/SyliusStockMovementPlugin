@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Setono\SyliusStockMovementPlugin\DataSource;
+namespace Setono\SyliusStockMovementPlugin\Provider;
 
 use Doctrine\ORM\EntityRepository;
 use Generator;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
 use Pagerfanta\Pagerfanta;
-use Setono\SyliusStockMovementPlugin\DataSource\Filter\FilterInterface;
+use Setono\SyliusStockMovementPlugin\Filter\FilterInterface;
 
-class DataSource implements DataSourceInterface
+class StockMovementProvider implements StockMovementProviderInterface
 {
     /** @var FilterInterface[] */
     protected $filters = [];
@@ -28,7 +28,7 @@ class DataSource implements DataSourceInterface
         $this->filters[] = $filter;
     }
 
-    public function getData(): Generator
+    public function getStockMovements(): Generator
     {
         $qb = $this->repository->createQueryBuilder('o');
 

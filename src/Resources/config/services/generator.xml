@@ -6,7 +6,7 @@
         <service id="setono_sylius_stock_movement.generator.report" class="Setono\SyliusStockMovementPlugin\Generator\ReportGenerator">
             <argument type="service" id="setono_sylius_stock_movement.factory.report"/>
             <argument type="service" id="setono_sylius_stock_movement.repository.report"/>
-            <argument type="service" id="setono_sylius_stock_movement.data_source.default"/>
+            <argument type="service" id="setono_sylius_stock_movement.provider.stock_movement"/>
         </service>
 
     </services>
