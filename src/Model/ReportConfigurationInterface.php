@@ -41,4 +41,17 @@ interface ReportConfigurationInterface extends ResourceInterface
     public function addTransport(ReportConfigurationTransportInterface $transport): void;
 
     public function removeTransport(ReportConfigurationTransportInterface $rule): void;
+
+    /**
+     * @return Collection|ReportConfigurationFilterInterface[]
+     */
+    public function getFilters(): Collection;
+
+    public function hasFilters(): bool;
+
+    public function hasFilter(ReportConfigurationFilterInterface $transport): bool;
+
+    public function addFilter(ReportConfigurationFilterInterface $transport): void;
+
+    public function removeFilter(ReportConfigurationFilterInterface $rule): void;
 }

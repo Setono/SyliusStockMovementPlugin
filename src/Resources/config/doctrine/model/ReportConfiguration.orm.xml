@@ -15,6 +15,12 @@
         <field name="schedule" type="cron_expression" />
         <field name="template" type="string" />
 
+        <one-to-many field="filters" target-entity="Setono\SyliusStockMovementPlugin\Model\ReportConfigurationFilterInterface" mapped-by="reportConfiguration" orphan-removal="true">
+            <cascade>
+                <cascade-all />
+            </cascade>
+        </one-to-many>
+
         <one-to-many field="transports" target-entity="Setono\SyliusStockMovementPlugin\Model\ReportConfigurationTransportInterface" mapped-by="reportConfiguration" orphan-removal="true">
             <cascade>
                 <cascade-all />

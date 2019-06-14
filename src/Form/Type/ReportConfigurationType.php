@@ -42,6 +42,10 @@ final class ReportConfigurationType extends AbstractResourceType
                 'label' => 'setono_sylius_stock_movement.form.report_configuration.transports',
                 'button_add_label' => 'setono_sylius_stock_movement.form.report_configuration.add_transport',
             ])
+            ->add('filters', ReportConfigurationFilterCollectionType::class, [
+                'label' => 'setono_sylius_stock_movement.form.report_configuration.filters',
+                'button_add_label' => 'setono_sylius_stock_movement.form.report_configuration.add_filter',
+            ])
         ;
     }
 

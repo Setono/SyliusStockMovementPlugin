@@ -22,11 +22,15 @@ class ReportConfiguration implements ReportConfigurationInterface
     /** @var string */
     protected $template;
 
+    /** @var ReportConfigurationFilterInterface[]|Collection */
+    protected $filters;
+
     /** @var ReportConfigurationTransportInterface[]|Collection */
     protected $transports;
 
     public function __construct()
     {
+        $this->filters = new ArrayCollection();
         $this->transports = new ArrayCollection();
     }
 
@@ -63,6 +67,35 @@ class ReportConfiguration implements ReportConfigurationInterface
     public function setTemplate(string $template): void
     {
         $this->template = $template;
+    }
+
+    public function getFilters(): Collection
+    {
+        return $this->filters;
+    }
+
+    public function hasFilters(): bool
+    {
+        return !$this->filters->isEmpty();
+    }
+
+    public function hasFilter(ReportConfigurationFilterInterface $transport): bool
+    {
+        return $this->filters->contains($transport);
+    }
+
+    public function addFilter(ReportConfigurationFilterInterface $transport): void
+    {
+        if (!$this->hasFilter($transport)) {
+            $transport->setReportConfiguration($this);
+            $this->filters->add($transport);
+        }
+    }
+
+    public function removeFilter(ReportConfigurationFilterInterface $transport): void
+    {
+        $transport->setReportConfiguration(null);
+        $this->filters->removeElement($transport);
     }
 
     public function getTransports(): Collection

@@ -1,14 +1,25 @@
 setono_sylius_stock_movement:
+    filter:
+        created_after: Created after
+        id_greater_than: Id greater than
     form:
         report_configuration:
+            add_filter: Add filter
+            add_transport: Add transport
+            filters: Filters
             name: Name
             name_placeholder: The name is only used as a reference
             type: Type
             schedule: Schedule
             template: Template
-            data_source: Data source
             transports: Transports
-            add_transport: Add transport
+        report_configuration_filter:
+            type: Type
+            created_after_configuration:
+                date: Date
+            id_greater_than_configuration:
+                id: Id
+                id_placeholder: If you don't input anything here it will use the latest id when the report is created
         report_configuration_transport:
             type: Type
             email_configuration:

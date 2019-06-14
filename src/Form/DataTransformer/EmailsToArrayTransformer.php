@@ -16,12 +16,10 @@ final class EmailsToArrayTransformer implements DataTransformerInterface
 {
     /**
      * Transforms an array of emails into a string like 'email1@example.com,email2@example.com'
-     *
-     * @param  array|null $arr
      */
     public function transform($arr): string
     {
-        if (null === $arr) {
+        if (!is_array($arr)) {
             return '';
         }
 
@@ -31,14 +29,13 @@ final class EmailsToArrayTransformer implements DataTransformerInterface
     /**
      * Transforms a string of emails into an array of emails
      *
-     * @param string|null $emails
      *
      * @throws StringsException
      * @throws TransformationFailedException
      */
     public function reverseTransform($emails): array
     {
-        if (null === $emails) {
+        if (null === $emails || '' === $emails || !is_string($emails)) {
             return [];
         }
 

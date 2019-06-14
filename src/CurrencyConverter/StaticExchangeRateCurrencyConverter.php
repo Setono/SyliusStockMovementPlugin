@@ -10,6 +10,7 @@ use Sylius\Component\Currency\Converter\CurrencyConverterInterface;
 
 final class StaticExchangeRateCurrencyConverter extends CurrencyConverter
 {
+    /** @var CurrencyConverterInterface */
     private $currencyConverter;
 
     public function __construct(CurrencyConverterInterface $currencyConverter)

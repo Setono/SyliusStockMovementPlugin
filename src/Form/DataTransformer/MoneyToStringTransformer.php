@@ -13,12 +13,9 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 final class MoneyToStringTransformer implements DataTransformerInterface
 {
-    /**
-     * @param  Money|null $money
-     */
     public function transform($money): ?string
     {
-        if (null === $money) {
+        if (!$money instanceof Money) {
             return null;
         }
 
@@ -28,13 +25,11 @@ final class MoneyToStringTransformer implements DataTransformerInterface
     /**
      * Transforms a string to a Money object
      *
-     * @param  string|null $str
-     *
      * @throws TransformationFailedException if format is incorrect
      */
     public function reverseTransform($str): ?Money
     {
-        if (null === $str || '' === $str) {
+        if (null === $str || '' === $str || !is_string($str)) {
             return null;
         }
 

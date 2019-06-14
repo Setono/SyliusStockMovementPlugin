@@ -11,6 +11,7 @@ use InvalidArgumentException;
 use Safe\Exceptions\StringsException;
 use function Safe\sprintf;
 use Setono\SyliusStockMovementPlugin\Filter\FilterInterface;
+use Setono\SyliusStockMovementPlugin\Model\StockMovementInterface;
 
 class StockMovementProvider implements StockMovementProviderInterface
 {
@@ -35,6 +36,8 @@ class StockMovementProvider implements StockMovementProviderInterface
     }
 
     /**
+     * @return StockMovementInterface[]|Generator
+     *
      * @throws StringsException
      */
     public function getStockMovements(): Generator

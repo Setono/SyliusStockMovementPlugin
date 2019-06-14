@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\DependencyInjection;
 
+use Setono\SyliusStockMovementPlugin\Doctrine\ORM\ReportRepository;
+use Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationFilterType;
 use Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationTransportType;
 use Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationType;
 use Setono\SyliusStockMovementPlugin\Form\Type\StockMovementType;
 use Setono\SyliusStockMovementPlugin\Model\Report;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfiguration;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationFilter;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationFilterInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationTransport;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationTransportInterface;
@@ -82,7 +86,7 @@ final class Configuration implements ConfigurationInterface
                                         ->scalarNode('model')->defaultValue(Report::class)->cannotBeEmpty()->end()
                                         ->scalarNode('interface')->defaultValue(ReportInterface::class)->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
-                                        ->scalarNode('repository')->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->defaultValue(ReportRepository::class)->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
                                         ->scalarNode('form')->defaultValue(DefaultResourceType::class)->cannotBeEmpty()->end()
                                     ->end()
@@ -102,6 +106,23 @@ final class Configuration implements ConfigurationInterface
                                         ->scalarNode('repository')->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
                                         ->scalarNode('form')->defaultValue(ReportConfigurationType::class)->cannotBeEmpty()->end()
+                                    ->end()
+                                ->end()
+                            ->end()
+                        ->end()
+                        ->arrayNode('report_configuration_filter')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->variableNode('options')->end()
+                                ->arrayNode('classes')
+                                    ->addDefaultsIfNotSet()
+                                    ->children()
+                                        ->scalarNode('model')->defaultValue(ReportConfigurationFilter::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('interface')->defaultValue(ReportConfigurationFilterInterface::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('repository')->cannotBeEmpty()->end()
+                                        ->scalarNode('factory')->defaultValue(Factory::class)->end()
+                                        ->scalarNode('form')->defaultValue(ReportConfigurationFilterType::class)->cannotBeEmpty()->end()
                                     ->end()
                                 ->end()
                             ->end()

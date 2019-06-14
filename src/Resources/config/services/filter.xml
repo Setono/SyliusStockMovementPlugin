@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono_sylius_stock_movement.filter.created_after" class="Setono\SyliusStockMovementPlugin\Filter\CreatedAfterFilter">
+            <tag name="setono_sylius_stock_movement.filter" label="setono_sylius_stock_movement.filter.created_after" type="created_after" form-type="Setono\SyliusStockMovementPlugin\Form\Type\Filter\CreatedAfterConfigurationType"/>
+        </service>
+
+        <service id="setono_sylius_stock_movement.filter.id_greater_than" class="Setono\SyliusStockMovementPlugin\Filter\IdGreaterThanFilter">
+            <argument type="service" id="setono_sylius_stock_movement.repository.report"/>
+            <tag name="setono_sylius_stock_movement.filter" label="setono_sylius_stock_movement.filter.id_greater_than" type="id_greater_than" form-type="Setono\SyliusStockMovementPlugin\Form\Type\Filter\IdGreaterThanConfigurationType"/>
+        </service>
+    </services>
+</container>

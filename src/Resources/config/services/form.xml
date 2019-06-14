@@ -8,6 +8,9 @@
         <parameter key="setono_sylius_stock_movement.form.type.stock_movement.validation_groups" type="collection">
             <parameter>setono_sylius_stock_movement</parameter>
         </parameter>
+        <parameter key="setono_sylius_stock_movement.form.type.report_configuration_filter.validation_groups" type="collection">
+            <parameter>setono_sylius_stock_movement</parameter>
+        </parameter>
         <parameter key="setono_sylius_stock_movement.form.type.report_configuration_transport.validation_groups" type="collection">
             <parameter>setono_sylius_stock_movement</parameter>
         </parameter>
@@ -46,6 +49,25 @@
             <argument>%setono_sylius_stock_movement.base_currency%</argument>
         </service>
 
+        <!-- Filter forms -->
+        <service id="setono_sylius_stock_movement.form.type.report_configuration_filter.collection" class="Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationFilterCollectionType">
+            <argument type="service" id="setono_sylius_stock_movement.registry.filter" />
+            <tag name="form.type" />
+        </service>
+
+        <service id="setono_sylius_stock_movement.form.type.report_configuration_filter" class="Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationFilterType">
+            <argument>%setono_sylius_stock_movement.model.report_configuration_filter.class%</argument>
+            <argument type="service" id="setono_sylius_stock_movement.form_registry.filter" />
+            <argument>%setono_sylius_stock_movement.form.type.report_configuration_filter.validation_groups%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <service id="setono_sylius_stock_movement.form.type.report_configuration_filter_choice" class="Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationFilterChoiceType">
+            <argument>%setono_sylius_stock_movement.filters%</argument>
+            <tag name="form.type" />
+        </service>
+
+        <!-- Transport forms -->
         <service id="setono_sylius_stock_movement.form.type.report_configuration_transport.collection" class="Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationTransportCollectionType">
             <argument type="service" id="setono_sylius_stock_movement.registry.transport" />
             <tag name="form.type" />

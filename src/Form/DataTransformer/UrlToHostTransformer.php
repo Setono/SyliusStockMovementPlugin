@@ -13,9 +13,6 @@ use Symfony\Component\Form\Exception\TransformationFailedException;
 
 final class UrlToHostTransformer implements DataTransformerInterface
 {
-    /**
-     * @param  string|null $host
-     */
     public function transform($host): ?string
     {
         return $host;
@@ -24,14 +21,13 @@ final class UrlToHostTransformer implements DataTransformerInterface
     /**
      * Transforms an url to it's host
      *
-     * @param  string|null $url
      *
      * @throws StringsException
      */
     public function reverseTransform($url): ?string
     {
-        if (!$url) {
-            return $url;
+        if (null === $url || '' === $url || !is_string($url)) {
+            return null;
         }
 
         try {

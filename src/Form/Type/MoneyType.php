@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 final class MoneyType extends AbstractType
 {
+    /** @var string */
     private $baseCurrency;
 
     public function __construct(string $baseCurrency)

@@ -34,7 +34,7 @@ final class ConvertPriceListener implements EventSubscriberInterface
 
     public function onPostSubmit(FormEvent $event): void
     {
-        /** @var StockMovementInterface $stockMovement */
+        /** @var StockMovementInterface|mixed $stockMovement */
         $stockMovement = $event->getData();
 
         Assert::isInstanceOf($stockMovement, StockMovementInterface::class);

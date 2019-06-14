@@ -6,6 +6,7 @@ namespace Setono\SyliusStockMovementPlugin\Message\Command;
 
 class ProcessReportConfiguration
 {
+    /** @var mixed */
     private $reportConfigurationId;
 
     public function __construct($reportConfigurationId)

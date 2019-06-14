@@ -5,6 +5,7 @@
         <import resource="services/command.xml"/>
         <import resource="services/currency_converter.xml"/>
         <import resource="services/factory.xml"/>
+        <import resource="services/filter.xml"/>
         <import resource="services/form.xml"/>
         <import resource="services/generator.xml"/>
         <import resource="services/menu.xml"/>
