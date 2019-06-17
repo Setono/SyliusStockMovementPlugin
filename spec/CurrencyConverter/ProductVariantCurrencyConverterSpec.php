@@ -11,7 +11,7 @@ use Sylius\Component\Core\Model\ChannelPricingInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Currency\Model\CurrencyInterface;
 
-class ProductVariantCurrencyConverterSpec extends CurrencyConverterSpec
+class ProductVariantCurrencyConverterSpec extends AbstractCurrencyConverterSpec
 {
     public function let(ChannelRepositoryInterface $channelRepository): void
     {

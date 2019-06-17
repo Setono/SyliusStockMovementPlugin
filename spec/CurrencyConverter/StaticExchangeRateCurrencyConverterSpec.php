@@ -8,7 +8,7 @@ use Money\Currency;
 use Money\Money;
 use Sylius\Component\Currency\Converter\CurrencyConverterInterface;
 
-class StaticExchangeRateCurrencyConverterSpec extends CurrencyConverterSpec
+class StaticExchangeRateCurrencyConverterSpec extends AbstractCurrencyConverterSpec
 {
     public function let(CurrencyConverterInterface $currencyConverter): void
     {

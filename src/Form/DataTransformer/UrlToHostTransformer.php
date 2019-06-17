@@ -21,7 +21,6 @@ final class UrlToHostTransformer implements DataTransformerInterface
     /**
      * Transforms an url to it's host
      *
-     *
      * @throws StringsException
      */
     public function reverseTransform($url): ?string
@@ -31,7 +30,12 @@ final class UrlToHostTransformer implements DataTransformerInterface
         }
 
         try {
-            return parse_url($url, PHP_URL_HOST);
+            $res = parse_url($url, PHP_URL_HOST);
+            if(null === $res) {
+                return $url;
+            }
+
+            return $res;
         } catch (UrlException $e) {
             throw new TransformationFailedException(\Safe\sprintf('It was not possible to extract the host from the url: "%s"', $url), 0, $e);
         }

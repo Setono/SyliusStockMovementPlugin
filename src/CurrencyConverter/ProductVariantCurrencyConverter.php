@@ -27,7 +27,7 @@ final class ProductVariantCurrencyConverter extends CurrencyConverter
      */
     public function convert(int $amount, string $sourceCurrency, string $targetCurrency, array $conversionContext = []): Money
     {
-        if(!$this->supports($amount, $sourceCurrency, $targetCurrency, $conversionContext)) {
+        if (!$this->supports($amount, $sourceCurrency, $targetCurrency, $conversionContext)) {
             throw new CurrencyConversionException($amount, $sourceCurrency, $targetCurrency, $conversionContext);
         }
 

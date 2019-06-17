@@ -7,7 +7,7 @@ namespace spec\Setono\SyliusStockMovementPlugin\CurrencyConverter;
 use PhpSpec\ObjectBehavior;
 use Setono\SyliusStockMovementPlugin\CurrencyConverter\CurrencyConverterInterface;
 
-abstract class CurrencyConverterSpec extends ObjectBehavior
+abstract class AbstractCurrencyConverterSpec extends ObjectBehavior
 {
     public function it_is_initializable(): void
     {

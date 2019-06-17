@@ -29,20 +29,19 @@ final class EmailsToArrayTransformer implements DataTransformerInterface
     /**
      * Transforms a string of emails into an array of emails
      *
-     *
      * @throws StringsException
      * @throws TransformationFailedException
      */
-    public function reverseTransform($emails): array
+    public function reverseTransform($str): array
     {
-        if (null === $emails || '' === $emails || !is_string($emails)) {
+        if (null === $str || '' === $str || !is_string($str)) {
             return [];
         }
 
         try {
-            return preg_split('/[ ,]+/', $emails, PREG_SPLIT_NO_EMPTY);
+            return preg_split('/[ ,]+/', $str, -1, PREG_SPLIT_NO_EMPTY);
         } catch (PcreException $e) {
-            throw new TransformationFailedException(sprintf('It was not possible to convert the string "%s" to an array of emails', $emails), 0, $e);
+            throw new TransformationFailedException(sprintf('It was not possible to convert the string "%s" to an array of emails', $str), 0, $e);
         }
     }
 }
