@@ -5,7 +5,7 @@
         <service id="setono_sylius_stock_movement.custom_factory.stock_movement" class="Setono\SyliusStockMovementPlugin\Factory\StockMovementFactory" decorates="setono_sylius_stock_movement.factory.stock_movement" public="false">
             <argument type="service" id="setono_sylius_stock_movement.custom_factory.stock_movement.inner" />
             <argument>%setono_sylius_stock_movement.base_currency%</argument>
-            <argument type="service" id="setono_sylius_stock_movement.currency_converter.default" />
+            <argument type="service" id="setono_sylius_stock_movement.currency_converter.composite" />
         </service>
     </services>
 </container>

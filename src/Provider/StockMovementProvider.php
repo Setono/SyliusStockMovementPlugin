@@ -11,12 +11,14 @@ use InvalidArgumentException;
 use Safe\Exceptions\StringsException;
 use function Safe\sprintf;
 use Setono\SyliusStockMovementPlugin\Filter\FilterInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\StockMovementInterface;
+use Sylius\Component\Registry\ServiceRegistryInterface;
 
 class StockMovementProvider implements StockMovementProviderInterface
 {
-    /** @var FilterInterface[] */
-    protected $filters = [];
+    /** @var ServiceRegistryInterface */
+    private $filterRegistry;
 
     /** @var ManagerRegistry */
     private $managerRegistry;
@@ -24,15 +26,11 @@ class StockMovementProvider implements StockMovementProviderInterface
     /** @var string */
     private $stockMovementClass;
 
-    public function __construct(ManagerRegistry $managerRegistry, string $stockMovementClass)
+    public function __construct(ServiceRegistryInterface $filterRegistry, ManagerRegistry $managerRegistry, string $stockMovementClass)
     {
+        $this->filterRegistry = $filterRegistry;
         $this->managerRegistry = $managerRegistry;
         $this->stockMovementClass = $stockMovementClass;
-    }
-
-    public function addFilter(FilterInterface $filter): void
-    {
-        $this->filters[] = $filter;
     }
 
     /**
@@ -40,7 +38,7 @@ class StockMovementProvider implements StockMovementProviderInterface
      *
      * @throws StringsException
      */
-    public function getStockMovements(): Generator
+    public function getStockMovements(ReportConfigurationInterface $reportConfiguration): Generator
     {
         $em = $this->managerRegistry->getManagerForClass($this->stockMovementClass);
         if (!$em instanceof EntityManagerInterface) {
@@ -49,10 +47,14 @@ class StockMovementProvider implements StockMovementProviderInterface
 
         $qb = $em->createQueryBuilder();
         $qb->select('o')
-            ->from($this->stockMovementClass, 'o');
+            ->from($this->stockMovementClass, 'o')
+        ;
 
-        foreach ($this->filters as $filter) {
-            $filter->filter($qb);
+        foreach ($reportConfiguration->getFilters() as $reportConfigurationFilter) {
+            /** @var FilterInterface $filter */
+            $filter = $this->filterRegistry->get($reportConfigurationFilter->getType());
+
+            $filter->filter($qb, $reportConfiguration, $reportConfigurationFilter->getConfiguration());
         }
 
         $iterableResult = $qb->getQuery()->iterate();

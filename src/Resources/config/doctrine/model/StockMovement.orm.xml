@@ -6,7 +6,6 @@
                   xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
                                       http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
-    <!-- todo this was an entity because embedded doesn't work with how Sylius convert mapped superclass to entity -->
     <mapped-superclass name="Setono\SyliusStockMovementPlugin\Model\StockMovement" table="setono_sylius_stock_movement__stock_movement">
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
@@ -26,6 +25,7 @@
 
         <field name="quantity" type="integer" />
         <field name="variantCode" type="string" />
+        <field name="reference" type="text" nullable="true"/>
 
         <embedded name="price" class="Money\Money" />
         <embedded name="convertedPrice" class="Money\Money" />

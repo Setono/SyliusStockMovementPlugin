@@ -5,8 +5,6 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
-        "ext-ftp": "*",
-        "dg/ftp-php": "^1.2",
         "kucharovic/money-bundle": "^1.1",
         "moneyphp/money": "^3.2",
         "setono/cron-expression-bundle": "^1.0.0",
@@ -23,6 +21,7 @@
         "symfony/symfony": "4.1.8"
     },
     "require-dev": {
+        "league/flysystem": "^1.0",
         "localheinz/composer-normalize": "^1.2",
         "phpspec/phpspec": "^5.0",
         "phpstan/phpstan-doctrine": "^0.11",

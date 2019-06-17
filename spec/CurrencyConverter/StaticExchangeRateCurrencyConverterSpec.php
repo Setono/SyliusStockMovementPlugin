@@ -6,22 +6,19 @@ namespace spec\Setono\SyliusStockMovementPlugin\CurrencyConverter;
 
 use Money\Currency;
 use Money\Money;
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
-use Setono\SyliusStockMovementPlugin\CurrencyConverter\StaticExchangeRateCurrencyConverter;
 use Sylius\Component\Currency\Converter\CurrencyConverterInterface;
 
-class StaticExchangeRateCurrencyConverterSpec extends ObjectBehavior
+class StaticExchangeRateCurrencyConverterSpec extends CurrencyConverterSpec
 {
     public function let(CurrencyConverterInterface $currencyConverter): void
     {
-        $currencyConverter->convert(Argument::cetera())->willReturn(1000);
+        $currencyConverter->convert(100, 'EUR', 'USD')->willReturn(1000);
         $this->beConstructedWith($currencyConverter);
     }
 
-    public function it_is_initializable(): void
+    public function it_supports_everything(): void
     {
-        $this->shouldHaveType(StaticExchangeRateCurrencyConverter::class);
+        $this->supports(10, 'EUR', 'USD')->shouldReturn(true);
     }
 
     public function it_converts(): void

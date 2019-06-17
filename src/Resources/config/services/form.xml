@@ -45,7 +45,7 @@
         </service>
 
         <service id="setono_sylius_stock_movement.form.event_listener.convert_price" class="Setono\SyliusStockMovementPlugin\Form\EventListener\ConvertPriceListener">
-            <argument type="service" id="setono_sylius_stock_movement.currency_converter.default"/>
+            <argument type="service" id="setono_sylius_stock_movement.currency_converter.composite"/>
             <argument>%setono_sylius_stock_movement.base_currency%</argument>
         </service>
 

@@ -34,7 +34,8 @@ final class IdGreaterThanFilter extends Filter
         }
 
         $alias = $this->getRootAlias($queryBuilder);
+        $parameter = $this->generateParameterName('id');
 
-        $queryBuilder->andWhere(sprintf('%s.id > :id', $alias))->setParameter('id', $latestId);
+        $queryBuilder->andWhere(sprintf('%s.id > :%s', $alias, $parameter))->setParameter($parameter, $latestId);
     }
 }

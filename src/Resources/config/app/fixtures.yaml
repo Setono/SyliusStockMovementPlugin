@@ -1,0 +1,7 @@
+sylius_fixtures:
+    suites:
+        default:
+            fixtures:
+                setono_stock_movement:
+                    options:
+                        amount: 1000

@@ -40,7 +40,9 @@ final class StockMovementFactory implements StockMovementFactoryInterface
     {
         $obj = $this->createNew();
 
-        $convertedPrice = $this->currencyConverter->convertFromMoney($price, $this->baseCurrency);
+        $convertedPrice = $this->currencyConverter->convertFromMoney($price, $this->baseCurrency, [
+            'productVariant' => $variant,
+        ]);
 
         $obj->setVariant($variant);
         $obj->setPrice($price);

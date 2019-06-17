@@ -58,6 +58,12 @@ imports:
     # ...
 ```
 
+### Step 4: Install assets
+
+```bash
+$ php bin/console assets:install
+```
+
 ## Important
 If you use the `StaticExchangeRateCurrencyConverter` (which is default) you **must** have an existing exchange rate between all your accepted currencies and your base currency.
 

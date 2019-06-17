@@ -6,12 +6,8 @@
             <argument type="service" id="setono_sylius_stock_movement.repository.report_configuration"/>
         </service>
 
-        <service id="setono_sylius_stock_movement.provider.latest_id" class="Setono\SyliusStockMovementPlugin\Provider\LatestIdProvider">
-            <argument type="service" id="doctrine"/>
-            <argument>%setono_sylius_stock_movement.model.report.class%</argument>
-        </service>
-
         <service id="setono_sylius_stock_movement.provider.stock_movement" class="Setono\SyliusStockMovementPlugin\Provider\StockMovementProvider">
+            <argument type="service" id="setono_sylius_stock_movement.registry.filter"/>
             <argument type="service" id="doctrine"/>
             <argument>%setono_sylius_stock_movement.model.stock_movement.class%</argument>
         </service>

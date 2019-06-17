@@ -33,15 +33,13 @@ class ReportGenerator implements ReportGeneratorInterface
 
     public function generate(ReportConfigurationInterface $reportConfiguration): ?ReportInterface
     {
-        // todo somewhere we should add the Setono\SyliusStockMovementPlugin\DataSource\Filter\GreaterThanLatestIdFilter
-
         /** @var ReportInterface $report */
         $report = $this->reportFactory->createNew();
         $report->setReportConfiguration($reportConfiguration);
 
         $hasStockMovements = false;
 
-        foreach ($this->stockMovementProvider->getStockMovements() as $stockMovement) {
+        foreach ($this->stockMovementProvider->getStockMovements($reportConfiguration) as $stockMovement) {
             $report->addStockMovement($stockMovement);
 
             $hasStockMovements = true;

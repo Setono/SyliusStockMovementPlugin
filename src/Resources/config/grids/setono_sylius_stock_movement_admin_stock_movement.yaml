@@ -13,11 +13,15 @@ sylius_grid:
                     type: string
                     label: setono_sylius_stock_movement.ui.variant
                 price:
-                    type: string
+                    type: twig
                     label: setono_sylius_stock_movement.ui.price
+                    options:
+                        template: "@SetonoSyliusStockMovementPlugin/Admin/Grid/Field/money.html.twig"
                 convertedPrice:
-                    type: string
+                    type: twig
                     label: setono_sylius_stock_movement.ui.converted_price
+                    options:
+                        template: "@SetonoSyliusStockMovementPlugin/Admin/Grid/Field/money.html.twig"
                 reference:
                     type: string
                     label: setono_sylius_stock_movement.ui.reference

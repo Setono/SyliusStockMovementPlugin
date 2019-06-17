@@ -45,19 +45,24 @@ setono_sylius_stock_movement:
         email: Email
         ftp: FTP
     ui:
-        id: Id
+        converted_price: Converted price
         edit_report_configuration: Edit report configuration
+        id: Id
         manage_reports: Manage stock movement reports
         manage_report_configurations: Manage report configurations
         manage_stock_movements: Manage stock movements
         name: Name
         new_report_configuration: New report configuration
         new_stock_movement: New stock movement
+        price: Price
+        reference: Reference
         report: Stock movement report
         reports: Stock movement reports
         report_configurations: Report configurations
         stock_movements: Stock movements
         transports_and_filters: Transports and filters
+        variant: Product variant
+        quantity: Quantity
     menu:
         admin:
             main:

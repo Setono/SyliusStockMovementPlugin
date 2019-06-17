@@ -22,7 +22,8 @@ final class CreatedAfterFilter extends Filter
         }
 
         $alias = $this->getRootAlias($queryBuilder);
+        $parameter = $this->generateParameterName('date');
 
-        $queryBuilder->andWhere(sprintf('%s.createdAt > :date', $alias))->setParameter('date', $date);
+        $queryBuilder->andWhere(sprintf('%s.createdAt > :%s', $alias, $parameter))->setParameter($parameter, $date);
     }
 }

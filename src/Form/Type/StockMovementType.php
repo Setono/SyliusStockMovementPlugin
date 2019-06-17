@@ -33,9 +33,6 @@ final class StockMovementType extends AbstractResourceType
         $this->convertPriceListener = $convertPriceListener;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -63,11 +60,8 @@ final class StockMovementType extends AbstractResourceType
         $builder->get('price')->addModelTransformer(new MoneyToStringTransformer());
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
-        return 'setono_sylius_stock_stock_movement';
+        return 'setono_sylius_stock_movement_stock_movement';
     }
 }
