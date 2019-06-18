@@ -1,4 +1,4 @@
 setono_sylius_stock_movement:
     base_currency: USD
     templates:
-        - { label: Test, template: "@SetonoSyliusStockMovementPlugin/Template/default.txt.twig" }
+        - { label: Default, template: "@SetonoSyliusStockMovementPlugin/Template/default.txt.twig" }

@@ -7,20 +7,24 @@ namespace Setono\SyliusStockMovementPlugin\Transport;
 use Setono\SyliusStockMovementPlugin\Mailer\Emails;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
-use SplFileInfo;
 use Sylius\Component\Mailer\Sender\SenderInterface;
+use Symfony\Component\Routing\RouterInterface;
 
 final class EmailTransport implements TransportInterface
 {
     /** @var SenderInterface */
     private $sender;
 
-    public function __construct(SenderInterface $sender)
+    /** @var RouterInterface */
+    private $router;
+
+    public function __construct(SenderInterface $sender, RouterInterface $router)
     {
         $this->sender = $sender;
+        $this->router = $router;
     }
 
-    public function send(SplFileInfo $file, array $configuration, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void
+    public function send(string $file, array $configuration, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void
     {
         $this->sender->send(Emails::REPORT, $configuration['to'], [
             'subject' => $this->resolveSubject($configuration['subject'] ?? null, $report),
@@ -39,9 +43,13 @@ final class EmailTransport implements TransportInterface
 
     private function resolveBody(?string $body, ReportInterface $report): string
     {
+        $reportUrl = $this->router->generate('setono_sylius_stock_movement_admin_report_download', ['id' => $report->getId()], RouterInterface::ABSOLUTE_URL);
+
         if (null === $body) {
-            return "Hi\n\nThis is a stock movement report";
+            return "Hi\n\nDownload the stock movement report here:\n\n$reportUrl";
         }
+
+        $body = str_replace('%report_url%', $reportUrl, $body);
 
         return $this->resolvePlaceholders($body, $report);
     }

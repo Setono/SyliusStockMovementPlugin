@@ -9,10 +9,15 @@ sylius_grid:
                 id:
                     type: string
                     label: setono_sylius_stock_movement.ui.id
+                reportConfiguration:
+                    type: string
+                    label: setono_sylius_stock_movement.ui.report_configuration
+                createdAt:
+                    type: datetime
+                    label: setono_sylius_stock_movement.ui.created_at
+                    options:
+                        format: d-m-Y H:i:s
             actions:
-                main:
-                    create:
-                        type: create
                 item:
                     show:
                         type: show

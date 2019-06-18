@@ -31,7 +31,7 @@ final class UrlToHostTransformer implements DataTransformerInterface
 
         try {
             $res = parse_url($url, PHP_URL_HOST);
-            if(null === $res) {
+            if (null === $res) {
                 return $url;
             }
 

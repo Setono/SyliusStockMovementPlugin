@@ -34,6 +34,11 @@ class ReportConfiguration implements ReportConfigurationInterface
         $this->transports = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return (string) $this->getName();
+    }
+
     public function getId(): ?int
     {
         return $this->id;

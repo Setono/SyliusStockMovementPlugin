@@ -1,0 +1,37 @@
+{# @var \Setono\SyliusStockMovementPlugin\Model\ReportInterface report #}
+<table class="ui celled compact small table">
+    <thead>
+    <tr>
+        <th class="center aligned">{{ 'setono_sylius_stock_movement.ui.id'|trans }}</th>
+        <th class="center aligned">{{ 'setono_sylius_stock_movement.ui.quantity'|trans }}</th>
+        <th class="center aligned">{{ 'setono_sylius_stock_movement.ui.variant'|trans }}</th>
+        <th class="center aligned">{{ 'setono_sylius_stock_movement.ui.price'|trans }}</th>
+        <th class="center aligned">{{ 'setono_sylius_stock_movement.ui.converted_price'|trans }}</th>
+        <th class="center aligned">{{ 'setono_sylius_stock_movement.ui.reference'|trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in report.stockMovements %}
+        <tr>
+            <td class="left aligned">
+                {{ item.id }}
+            </td>
+            <td class="left aligned">
+                {{ item.quantity }}
+            </td>
+            <td class="single line">
+                {{ item.variant }}
+            </td>
+            <td class="right aligned">
+                {{ item.price|money }}
+            </td>
+            <td class="right aligned">
+                {{ item.convertedPrice|money }}
+            </td>
+            <td class="left aligned">
+                {{ item.reference }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

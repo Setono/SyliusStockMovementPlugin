@@ -7,7 +7,6 @@ namespace Setono\SyliusStockMovementPlugin\Sender;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Setono\SyliusStockMovementPlugin\Transport\TransportInterface;
-use SplFileInfo;
 use Sylius\Component\Registry\ServiceRegistryInterface;
 
 final class ReportSender implements ReportSenderInterface
@@ -20,7 +19,7 @@ final class ReportSender implements ReportSenderInterface
         $this->transportRegistry = $transportRegistry;
     }
 
-    public function send(SplFileInfo $file, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void
+    public function send(string $file, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void
     {
         foreach ($reportConfiguration->getTransports() as $reportConfigurationTransport) {
             /** @var TransportInterface $transport */

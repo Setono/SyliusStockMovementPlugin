@@ -51,3 +51,31 @@ setono_sylius_stock_movement_admin_report_show:
             section: admin
             permission: true
             template: "@SetonoSyliusStockMovementPlugin/Report/show.html.twig"
+            
+
+setono_sylius_stock_movement_admin_report_configuration_process:
+    path: /report-configurations/process/{id}
+    methods: [GET]
+    defaults:
+        _controller: setono_sylius_stock_movement.controller.action.process_report_configuration
+        _sylius:
+            section: admin
+            permission: true
+            
+setono_sylius_stock_movement_admin_report_download:
+    path: /reports/download/{id}
+    methods: [GET]
+    defaults:
+        _controller: setono_sylius_stock_movement.controller.action.download_report
+        _sylius:
+            section: admin
+            permission: true
+            
+setono_sylius_stock_movement_admin_report_send:
+    path: /reports/send/{id}
+    methods: [GET]
+    defaults:
+        _controller: setono_sylius_stock_movement.controller.action.send_report
+        _sylius:
+            section: admin
+            permission: true

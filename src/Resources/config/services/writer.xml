@@ -4,7 +4,8 @@
     <services>
         <service id="setono_sylius_stock_movement.writer.report" class="Setono\SyliusStockMovementPlugin\Writer\ReportWriter">
             <argument type="service" id="twig" />
-            <argument type="service" id="filesystem" />
+            <argument type="service" id="setono_sylius_stock_movement.storage.report" />
+            <argument type="service" id="setono_sylius_stock_movement.resolver.report_path" />
         </service>
     </services>
 </container>

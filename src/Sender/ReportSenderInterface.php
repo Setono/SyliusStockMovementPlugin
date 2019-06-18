@@ -6,9 +6,8 @@ namespace Setono\SyliusStockMovementPlugin\Sender;
 
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
-use SplFileInfo;
 
 interface ReportSenderInterface
 {
-    public function send(SplFileInfo $file, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void;
+    public function send(string $file, ReportInterface $report, ReportConfigurationInterface $reportConfiguration): void;
 }

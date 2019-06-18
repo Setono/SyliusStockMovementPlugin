@@ -1,15 +1,15 @@
 {% import '@SyliusUi/Macro/flags.html.twig' as flags %}
 
-{# @var \Setono\SyliusStockMovementPlugin\Model\ReportInterface stock_movement_report #}
+{# @var \Setono\SyliusStockMovementPlugin\Model\ReportInterface report #}
 
 <h1 class="ui header">
     <i class="chart bar icon"></i>
     <div class="content">
-        {{ 'setono_sylius_stock_movement.ui.report'|trans }} #{{ stock_movement_report.id }}
+        {{ 'setono_sylius_stock_movement.ui.report'|trans }} #{{ report.id }}
         <div class="sub header">
             <div class="ui horizontal divided list">
                 <div class="item">
-                    {{ stock_movement_report.createdAt|format_datetime }}
+                    {{ report.createdAt|format_datetime }}
                 </div>
             </div>
         </div>

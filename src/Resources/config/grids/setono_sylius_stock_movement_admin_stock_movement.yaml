@@ -6,6 +6,11 @@ sylius_grid:
                 options:
                     class: "%setono_sylius_stock_movement.model.stock_movement.class%"
             fields:
+                createdAt:
+                    type: datetime
+                    label: setono_sylius_stock_movement.ui.created_at
+                    options:
+                        format: d-m-Y H:i:s
                 quantity:
                     type: string
                     label: setono_sylius_stock_movement.ui.quantity

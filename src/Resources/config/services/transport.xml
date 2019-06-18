@@ -3,10 +3,12 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="setono_sylius_stock_movement.transport.ftp" class="Setono\SyliusStockMovementPlugin\Transport\FtpTransport">
+            <argument type="service" id="setono_sylius_stock_movement.storage.report"/>
             <tag name="setono_sylius_stock_movement.transport" label="setono_sylius_stock_movement.transport.ftp" type="ftp" form-type="Setono\SyliusStockMovementPlugin\Form\Type\Transport\FtpConfigurationType"/>
         </service>
         <service id="setono_sylius_stock_movement.transport.email" class="Setono\SyliusStockMovementPlugin\Transport\EmailTransport">
             <argument type="service" id="sylius.email_sender"/>
+            <argument type="service" id="router"/>
             <tag name="setono_sylius_stock_movement.transport" label="setono_sylius_stock_movement.transport.email" type="email" form-type="Setono\SyliusStockMovementPlugin\Form\Type\Transport\EmailConfigurationType"/>
         </service>
     </services>

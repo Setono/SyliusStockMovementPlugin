@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="setono_sylius_stock_movement.controller.action.download_report" class="Setono\SyliusStockMovementPlugin\Controller\Action\DownloadReportAction">
+            <argument type="service" id="setono_sylius_stock_movement.repository.report"/>
+            <argument type="service" id="setono_sylius_stock_movement.writer.report"/>
+            <argument type="service" id="setono_sylius_stock_movement.resolver.report_path"/>
+            <argument type="service" id="setono_sylius_stock_movement.storage.report"/>
+            <tag name="controller.service_arguments"/>
+        </service>
+
+        <service id="setono_sylius_stock_movement.controller.action.process_report_configuration" class="Setono\SyliusStockMovementPlugin\Controller\Action\ProcessReportConfigurationAction">
+            <argument type="service" id="setono_sylius_stock_movement.command_bus"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="session.flash_bag"/>
+            <tag name="controller.service_arguments"/>
+        </service>
+
+        <service id="setono_sylius_stock_movement.controller.action.send_report" class="Setono\SyliusStockMovementPlugin\Controller\Action\SendReportAction">
+            <argument type="service" id="setono_sylius_stock_movement.command_bus"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="session.flash_bag"/>
+            <tag name="controller.service_arguments"/>
+        </service>
+    </services>
+</container>

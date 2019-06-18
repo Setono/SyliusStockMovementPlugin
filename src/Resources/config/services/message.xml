@@ -3,8 +3,16 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="setono_sylius_stock_movement.handler.process_report_configuration" class="Setono\SyliusStockMovementPlugin\Message\Handler\ProcessReportConfigurationHandler">
+            <argument type="service" id="setono_sylius_stock_movement.command_bus"/>
             <argument type="service" id="setono_sylius_stock_movement.repository.report_configuration"/>
             <argument type="service" id="setono_sylius_stock_movement.generator.report"/>
+            <argument type="service" id="setono_sylius_stock_movement.writer.report"/>
+            <argument type="service" id="setono_sylius_stock_movement.sender.report"/>
+            <tag name="messenger.message_handler"/>
+        </service>
+
+        <service id="setono_sylius_stock_movement.handler.send_report" class="Setono\SyliusStockMovementPlugin\Message\Handler\SendReportHandler">
+            <argument type="service" id="setono_sylius_stock_movement.repository.report"/>
             <argument type="service" id="setono_sylius_stock_movement.writer.report"/>
             <argument type="service" id="setono_sylius_stock_movement.sender.report"/>
             <tag name="messenger.message_handler"/>

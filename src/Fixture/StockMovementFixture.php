@@ -59,11 +59,11 @@ final class StockMovementFixture extends AbstractFixture
         $currencies = $this->currencyRepository->findAll();
 
         for ($i = 0; $i < $options['amount']; ++$i) {
-            $quantity = (int) $this->faker->biasedNumberBetween(0, 10, [Biased::class, 'linearLow']);
+            $quantity = (int) $this->faker->biasedNumberBetween(1, 10, [Biased::class, 'linearLow']);
             $productVariant = $this->faker->randomElement($productVariants);
             $currency = $this->faker->randomElement($currencies);
             $price = $this->generatePrice($currency);
-            $reference = $this->faker->text();
+            $reference = $this->faker->text(40);
 
             $stockMovement = $this->stockMovementFactory->createValid($quantity, $productVariant, $price, $reference);
 

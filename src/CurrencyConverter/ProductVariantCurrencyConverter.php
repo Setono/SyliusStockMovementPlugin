@@ -27,10 +27,6 @@ final class ProductVariantCurrencyConverter extends CurrencyConverter
      */
     public function convert(int $amount, string $sourceCurrency, string $targetCurrency, array $conversionContext = []): Money
     {
-        if (!$this->supports($amount, $sourceCurrency, $targetCurrency, $conversionContext)) {
-            throw new CurrencyConversionException($amount, $sourceCurrency, $targetCurrency, $conversionContext);
-        }
-
         /** @var ProductVariantInterface $productVariant */
         $productVariant = $conversionContext['productVariant'];
 
@@ -73,7 +69,20 @@ final class ProductVariantCurrencyConverter extends CurrencyConverter
 
     public function supports(int $amount, string $sourceCurrency, string $targetCurrency, array $conversionContext = []): bool
     {
-        return isset($conversionContext['productVariant'])
-            && $conversionContext['productVariant'] instanceof ProductVariantInterface;
+        if (!isset($conversionContext['productVariant'])) {
+            return false;
+        }
+
+        $productVariant = $conversionContext['productVariant'];
+        if (!$productVariant instanceof ProductVariantInterface) {
+            return false;
+        }
+
+        // we can never compute an exchange rate if the variant doesn't have two or more channel prices
+        if ($productVariant->getChannelPricings()->count() <= 1) {
+            return false;
+        }
+
+        return true;
     }
 }

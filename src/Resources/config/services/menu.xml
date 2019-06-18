@@ -2,8 +2,14 @@
 
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service id="Setono\SyliusStockMovementPlugin\Menu\AdminMenuListener" public="false">
+        <service id="Setono\SyliusStockMovementPlugin\Menu\AdminMenuListener">
             <tag name="kernel.event_listener" event="sylius.menu.admin.main" method="addAdminMenuItems" />
+        </service>
+
+        <service id="setono_sylius_stock_movement.admin.menu_builder.report.show" class="Setono\SyliusStockMovementPlugin\Menu\ReportShowMenuBuilder">
+            <argument type="service" id="knp_menu.factory" />
+            <argument type="service" id="event_dispatcher" />
+            <tag name="knp_menu.menu_builder" method="createMenu" alias="setono_sylius_stock_movement.admin.report.show" />
         </service>
     </services>
 </container>

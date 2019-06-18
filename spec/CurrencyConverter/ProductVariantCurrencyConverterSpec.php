@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace spec\Setono\SyliusStockMovementPlugin\CurrencyConverter;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Channel\Repository\ChannelRepositoryInterface;
 use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Core\Model\ChannelPricingInterface;
@@ -18,8 +19,10 @@ class ProductVariantCurrencyConverterSpec extends AbstractCurrencyConverterSpec
         $this->beConstructedWith($channelRepository);
     }
 
-    public function it_supports_product_variant_conversion_context(ProductVariantInterface $productVariant): void
+    public function it_supports_product_variant_conversion_context(ProductVariantInterface $productVariant, Collection $collection): void
     {
+        $collection->count()->willReturn(2);
+        $productVariant->getChannelPricings()->willReturn($collection);
         $this->supports(10, 'USD', 'EUR', [
             'productVariant' => $productVariant,
         ])->shouldReturn(true);

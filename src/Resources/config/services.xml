@@ -3,6 +3,7 @@
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <imports>
         <import resource="services/command.xml"/>
+        <import resource="services/controller.xml"/>
         <import resource="services/currency_converter.xml"/>
         <import resource="services/event_listener.xml"/>
         <import resource="services/factory.xml"/>
@@ -15,6 +16,7 @@
         <import resource="services/processor.xml"/>
         <import resource="services/provider.xml"/>
         <import resource="services/registry.xml"/>
+        <import resource="services/resolver.xml"/>
         <import resource="services/sender.xml"/>
         <import resource="services/transport.xml"/>
         <import resource="services/writer.xml"/>

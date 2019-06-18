@@ -18,3 +18,11 @@ sylius_grid:
                         type: update
                     delete:
                         type: delete
+                    process:
+                        type: process
+                        label: setono_sylius_stock_movement.ui.process
+                        options:
+                            link:
+                                route: setono_sylius_stock_movement_admin_report_configuration_process
+                                parameters:
+                                    id: resource.id

@@ -10,6 +10,8 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 
 interface ReportConfigurationInterface extends ResourceInterface
 {
+    public function __toString(): string;
+
     public function getId(): ?int;
 
     public function getName(): ?string;

@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Writer;
 
-use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
-use SplFileInfo;
 
 interface ReportWriterInterface
 {
     /**
-     * Will write a file based on the given report and report configuration
+     * Will write a file based on the given report
+     *
+     * @return string The key of the file to be used in the filesystem
      */
-    public function write(ReportInterface $report, ReportConfigurationInterface $reportConfiguration): SplFileInfo;
+    public function write(ReportInterface $report): string;
 }

@@ -46,6 +46,8 @@ setono_sylius_stock_movement:
         ftp: FTP
     ui:
         converted_price: Converted price
+        created_at: Created
+        download_report: Download report
         edit_report_configuration: Edit report configuration
         id: Id
         manage_reports: Manage stock movement reports
@@ -55,10 +57,13 @@ setono_sylius_stock_movement:
         new_report_configuration: New report configuration
         new_stock_movement: New stock movement
         price: Price
+        process: Process
         reference: Reference
         report: Stock movement report
         reports: Stock movement reports
+        report_configuration: Report configuration
         report_configurations: Report configurations
+        send_report: Send report
         stock_movements: Stock movements
         transports_and_filters: Transports and filters
         variant: Product variant

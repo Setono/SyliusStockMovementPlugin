@@ -4,14 +4,19 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Message\Command;
 
-class ProcessReportConfiguration
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
+
+final class ProcessReportConfiguration
 {
     /** @var mixed */
     private $reportConfigurationId;
 
-    public function __construct($reportConfigurationId)
+    /**
+     * @param ReportConfigurationInterface|mixed $reportConfiguration
+     */
+    public function __construct($reportConfiguration)
     {
-        $this->reportConfigurationId = $reportConfigurationId;
+        $this->reportConfigurationId = $reportConfiguration instanceof ReportConfigurationInterface ? $reportConfiguration->getId() : $reportConfiguration;
     }
 
     public function getReportConfigurationId()

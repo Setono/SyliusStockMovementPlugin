@@ -1,23 +1,34 @@
 {% extends '@SyliusAdmin/layout.html.twig' %}
 
-{# @var \Setono\SyliusStockMovementPlugin\Model\ReportInterface stock_movement_report #}
+{# @var \Setono\SyliusStockMovementPlugin\Model\ReportInterface report #}
 
-{% block title %}{{ 'setono_sylius_stock_movement.ui.report'|trans ~' #'~ stock_movement_report.id }} {{ parent() }}{% endblock %}
+{% block title %}{{ 'setono_sylius_stock_movement.ui.report'|trans ~' #'~ report.id }} {{ parent() }}{% endblock %}
 
 {% block content %}
-    {{ sonata_block_render_event('sylius.admin.stock_movement_report.show.before_header', {'resource': resource}) }}
+    {{ sonata_block_render_event('setono_sylius_stock_movement.admin.report.show.before_header', {'resource': resource}) }}
 
     <div class="ui stackable two column grid">
         <div class="ten wide column">
             {% include '@SetonoSyliusStockMovementPlugin/Report/Show/_header.html.twig' %}
         </div>
+
+        {% set menu = knp_menu_get('setono_sylius_stock_movement.admin.report.show', [], {'report': report}) %}
+        {{ knp_menu_render(menu, {'template': '@SyliusUi/Menu/top.html.twig'}) }}
     </div>
 
-    {{ sonata_block_render_event('sylius.admin.stock_movement_report.show.after_header', {'resource': resource}) }}
+    {{ sonata_block_render_event('setono_sylius_stock_movement.admin.report.show.after_header', {'resource': resource}) }}
 
     {% include '@SetonoSyliusStockMovementPlugin/Report/Show/_breadcrumb.html.twig' %}
 
-    {{ sonata_block_render_event('sylius.admin.order.show.after_breadcrumb', {'resource': resource}) }}
+    {{ sonata_block_render_event('setono_sylius_stock_movement.admin.report.show.after_breadcrumb', {'resource': resource}) }}
 
-    {{ sonata_block_render_event('sylius.admin.stock_movement_report.show.after_content', {'resource': resource}) }}
+            {{ sonata_block_render_event('setono_sylius_stock_movement.admin.report.show.before_stock_movements', {'resource': resource}) }}
+
+            <div class="ui segment">
+                {% include '@SetonoSyliusStockMovementPlugin/Report/Show/_stock_movements.html.twig' %}
+            </div>
+
+            {{ sonata_block_render_event('setono_sylius_stock_movement.admin.report.show.after_stock_movements', {'resource': resource}) }}
+
+    {{ sonata_block_render_event('setono_sylius_stock_movement.admin.report.show.after_content', {'resource': resource}) }}
 {% endblock %}
