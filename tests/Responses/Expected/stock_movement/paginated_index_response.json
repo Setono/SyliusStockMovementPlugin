@@ -1,5 +1,5 @@
 {
-    "page": 1,
+    "page": 2,
     "limit": 10,
     "pages": 3,
     "total": 22,
@@ -15,6 +15,9 @@
         },
         "next": {
             "href": "\/api\/v1\/stock-movements\/?page=3&limit=10"
+        },
+        "previous": {
+            "href": "\/api\/v1\/stock-movements\/?page=1&limit=10"
         }
     },
     "_embedded": {
