@@ -64,6 +64,22 @@ imports:
 $ php bin/console assets:install
 ```
 
+## API
+Create a stock movement on the variant `variant-code` with a quantity of 1 and a price of €100:
+
+```bash
+curl -X POST \
+  http://127.0.0.1:8000/api/v1/stock-movements/ \
+  -H 'Accept: application/json' \
+  -H 'Authorization: Bearer SampleToken' \
+  -H 'Content-Type: application/json' \
+  -d '{
+	"quantity": 1,
+	"variant": "variant-code",
+	"price": "EUR 100"
+}'
+```
+
 ## Important
 If you use the `StaticExchangeRateCurrencyConverter` (which is default) you **must** have an existing exchange rate between all your accepted currencies and your base currency.
 
