@@ -16,23 +16,10 @@
         </parameter>
     </parameters>
     <services>
-        <service id="setono_sylius_stock_movement.form.type.money" class="Setono\SyliusStockMovementPlugin\Form\Type\MoneyType">
-            <argument>%setono_sylius_stock_movement.base_currency%</argument>
-            <tag name="form.type" />
-        </service>
-
         <service id="setono_sylius_stock_movement.form.type.report_configuration" class="Setono\SyliusStockMovementPlugin\Form\Type\ReportConfigurationType">
             <argument>%setono_sylius_stock_movement.model.report_configuration.class%</argument>
             <argument>%setono_sylius_stock_movement.templates%</argument>
             <argument>%setono_sylius_stock_movement.form.type.report_configuration.validation_groups%</argument>
-            <tag name="form.type" />
-        </service>
-
-        <service id="setono_sylius_stock_movement.form.type.stock_movement" class="Setono\SyliusStockMovementPlugin\Form\Type\StockMovementType">
-            <argument>%setono_sylius_stock_movement.model.stock_movement.class%</argument>
-            <argument type="service" id="sylius.repository.product_variant"/>
-            <argument type="service" id="setono_sylius_stock_movement.form.event_listener.convert_price"/>
-            <argument>%setono_sylius_stock_movement.form.type.stock_movement.validation_groups%</argument>
             <tag name="form.type" />
         </service>
 

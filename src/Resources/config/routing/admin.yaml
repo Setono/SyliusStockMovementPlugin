@@ -1,6 +1,7 @@
 setono_sylius_stock_movement_admin_stock_movement:
     resource: |
         alias: setono_sylius_stock_movement.stock_movement
+        only: ['show', 'index']
         section: admin
         templates: SyliusAdminBundle:Crud
         redirect: update
