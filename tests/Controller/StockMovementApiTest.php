@@ -1,21 +1,19 @@
 <?php
 
-/*
- * This file is part of the Sylius package.
- *
- * (c) Paweł Jędrzejewski
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 declare(strict_types=1);
 
 namespace Tests\Setono\SyliusStockMovementPlugin\Controller;
 
 use ApiTestCase\JsonApiTestCase;
+use Setono\SyliusStockMovementPlugin\Model\StockMovementInterface;
+use Sylius\Component\Product\Model\ProductVariantInterface;
+use Sylius\Tests\Controller\ProductApiTest;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * TODO a test for PUT is missing @see ProductApiTest::it_allows_updating_product() for example
+ * TODO a test for showing a product is missing @see ProductApiTest::it_allows_showing_product() for example
+ */
 final class StockMovementApiTest extends JsonApiTestCase
 {
     /** @var array */
@@ -33,7 +31,7 @@ final class StockMovementApiTest extends JsonApiTestCase
     /**
      * @test
      */
-    public function it_does_not_allow_to_show_stock_movement_list_when_access_is_denied()
+    public function it_does_not_allow_to_show_stock_movement_list_when_access_is_denied(): void
     {
         $this->loadFixturesFromFile('resources/stock_movements.yaml');
         $this->client->request('GET', '/api/v1/stock-movements/');
@@ -45,7 +43,7 @@ final class StockMovementApiTest extends JsonApiTestCase
     /**
      * @test
      */
-    public function it_does_not_allow_to_show_stock_movement_when_it_does_not_exist()
+    public function it_does_not_allow_to_show_stock_movement_when_it_does_not_exist(): void
     {
         $this->loadFixturesFromFile('authentication/api_administrator.yaml');
 
@@ -55,503 +53,133 @@ final class StockMovementApiTest extends JsonApiTestCase
         $this->assertResponse($response, 'error/not_found_response', Response::HTTP_NOT_FOUND);
     }
 
-//    /**
-//     * @test
-//     */
-//    public function it_allows_indexing_stock_movements()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/products.yml');
-//        $this->loadFixturesFromFile('resources/many_products.yml');
-//
-//        $this->client->request('GET', '/api/v1/stock-movements/', [], [], static::$authorizedHeaderWithAccept);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'stock_movement/index_response', Response::HTTP_OK);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_showing_product()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $products = $this->loadFixturesFromFile('resources/products.yml');
-//        $product = $products['product1'];
-//
-//        $this->client->request('GET', $this->getProductUrl($product), [], [], static::$authorizedHeaderWithAccept);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/show_response', Response::HTTP_OK);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_does_not_allow_delete_product_if_it_does_not_exist()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//
-//        $this->client->request('DELETE', '/api/v1/products/-1', [], [], static::$authorizedHeaderWithAccept);
-//
-//        $response = $this->client->getResponse();
-//
-//        $this->assertResponse($response, 'error/not_found_response', Response::HTTP_NOT_FOUND);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_delete_product()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $products = $this->loadFixturesFromFile('resources/products.yml');
-//        $product = $products['product1'];
-//
-//        $this->client->request('DELETE', $this->getProductUrl($product), [], [], static::$authorizedHeaderWithContentType);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponseCode($response, Response::HTTP_NO_CONTENT);
-//        $product = $products['product1'];
-//
-//        $this->client->request('GET', $this->getProductUrl($product), [], [], static::$authorizedHeaderWithAccept);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'error/not_found_response', Response::HTTP_NOT_FOUND);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_create_product_with_multiple_translations()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/locales.yml');
-//
-//        $data =
-//<<<EOT
-//        {
-//            "code": "MUG_TH",
-//            "translations": {
-//                "nl_NL": {
-//                    "name": "Mok van het thema",
-//                    "slug": "mok-van-het-thema"
-//                },
-//                "en_US": {
-//                    "name": "Theme Mug",
-//                    "slug": "theme-mug"
-//                }
-//            }
-//        }
-//EOT;
-//
-//        $this->client->request('POST', '/api/v1/products/', [], [], static::$authorizedHeaderWithContentType, $data);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/create_response', Response::HTTP_CREATED);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_does_not_allow_to_create_product_with_too_long_translations()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/locales.yml');
-//
-//        $longString = str_repeat('s', 256);
-//
-//        $data =
-//<<<EOT
-//        {
-//            "code": "MUG_TH",
-//            "translations": {
-//                "en_US": {
-//                    "name": "{$longString}",
-//                    "slug": "{$longString}"
-//                }
-//            }
-//        }
-//EOT;
-//
-//        $this->client->request('POST', '/api/v1/products/', [], [], static::$authorizedHeaderWithContentType, $data);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/create_with_long_translations_validation_fail_response', Response::HTTP_BAD_REQUEST);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_does_not_allow_to_create_product_without_required_fields()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//
-//        $this->client->request('POST', '/api/v1/products/', [], [], static::$authorizedHeaderWithContentType);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/create_validation_fail_response', Response::HTTP_BAD_REQUEST);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_updating_product()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $products = $this->loadFixturesFromFile('resources/products.yml');
-//        $this->loadFixturesFromFile('resources/locales.yml');
-//        $product = $products['product3'];
-//
-//        $data =
-//<<<EOT
-//        {
-//            "translations": {
-//                "en_US": {
-//                  "name": "Star Wars",
-//                  "slug": "star-wars"
-//                }
-//            }
-//        }
-//EOT;
-//        $this->client->request('PUT', $this->getProductUrl($product), [], [], static::$authorizedHeaderWithContentType, $data);
-//        $response = $this->client->getResponse();
-//
-//        $this->assertResponseCode($response, Response::HTTP_NO_CONTENT);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_updating_partial_information_about_product()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $products = $this->loadFixturesFromFile('resources/products.yml');
-//        $this->loadFixturesFromFile('resources/locales.yml');
-//        $product = $products['product1'];
-//
-//        $data =
-//<<<EOT
-//        {
-//            "translations": {
-//                "en_US": {
-//                    "name": "Mug Star Wars Episode V"
-//                }
-//            }
-//        }
-//EOT;
-//        $this->client->request('PATCH', $this->getProductUrl($product), [], [], static::$authorizedHeaderWithContentType, $data);
-//        $response = $this->client->getResponse();
-//        $this->assertResponseCode($response, Response::HTTP_NO_CONTENT);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_paginating_the_index_of_products()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/products.yml');
-//        $this->loadFixturesFromFile('resources/many_products.yml');
-//
-//        $this->client->request('GET', '/api/v1/products/', ['page' => 2], [], static::$authorizedHeaderWithAccept);
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/paginated_index_response');
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_sorting_the_index_of_products()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/products.yml');
-//        $this->loadFixturesFromFile('resources/many_products.yml');
-//
-//        $this->client->request('GET', '/api/v1/products/', ['sorting' => ['code' => 'asc']], [], static::$authorizedHeaderWithAccept);
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/sorted_index_response');
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_creating_product_with_options()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/product_options.yml');
-//        $this->loadFixturesFromFile('resources/locales.yml');
-//
-//        $data =
-//<<<EOT
-//        {
-//            "code": "MUG_TH",
-//            "options": [
-//                 "MUG_SIZE",
-//                 "MUG_COLOR"
-//            ],
-//            "translations": {
-//                "en_US": {
-//                    "name": "Theme Mug",
-//                    "slug": "theme-mug"
-//                }
-//            }
-//        }
-//EOT;
-//
-//        $this->client->request('POST', '/api/v1/products/', [], [], static::$authorizedHeaderWithContentType, $data);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/create_with_options_response', Response::HTTP_CREATED);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_creating_product_with_main_taxon()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/taxons.yml');
-//        $this->loadFixturesFromFile('resources/locales.yml');
-//
-//        $data =
-//<<<EOT
-//        {
-//            "code": "MUG_TH",
-//            "mainTaxon": "MUGS",
-//            "translations": {
-//                "en_US": {
-//                    "name": "Theme Mug",
-//                    "slug": "theme-mug"
-//                }
-//            }
-//        }
-//EOT;
-//
-//        $this->client->request('POST', '/api/v1/products/', [], [], static::$authorizedHeaderWithContentType, $data);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/create_with_main_taxon_response', Response::HTTP_CREATED);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_creating_product_with_product_taxons()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/locales.yml');
-//        $this->loadFixturesFromFile('resources/taxons.yml');
-//
-//        $data =
-//<<<EOT
-//        {
-//            "code": "MUG_TH",
-//            "translations": {
-//                "en_US": {
-//                    "name": "Theme Mug",
-//                    "slug": "theme-mug"
-//                }
-//            },
-//            "productTaxons": "category,mugs"
-//        }
-//EOT;
-//
-//        $this->client->request('POST', '/api/v1/products/', [], [], static::$authorizedHeaderWithContentType, $data);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/create_with_product_taxons_response', Response::HTTP_CREATED);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_creating_product_with_channels()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/channels.yml');
-//
-//        $data =
-//<<<EOT
-//        {
-//            "code": "MUG_TH",
-//            "channels": ["MOB", "WEB"],
-//            "translations": {
-//                "en_US": {
-//                    "name": "Theme Mug",
-//                    "slug": "theme-mug"
-//                }
-//            }
-//        }
-//EOT;
-//
-//        $this->client->request('POST', '/api/v1/products/', [], [], static::$authorizedHeaderWithContentType, $data);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/create_with_channels_response', Response::HTTP_CREATED);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_creating_product_with_attributes()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/locales.yml');
-//        $this->loadFixturesFromFile('resources/product_attributes.yml');
-//
-//        $data =
-//<<<EOT
-//        {
-//            "code": "MUG_TH",
-//            "attributes": [
-//                {
-//                    "attribute": "mug_material",
-//                    "localeCode": "en_US",
-//                    "value": "concrete"
-//                },
-//                {
-//                    "attribute": "mug_collection",
-//                    "localeCode": "en_US",
-//                    "value": "make life harder"
-//                }
-//            ],
-//            "translations": {
-//                "en_US": {
-//                    "name": "Theme Mug",
-//                    "slug": "theme-mug"
-//                }
-//            }
-//        }
-//EOT;
-//
-//        $this->client->request('POST', '/api/v1/products/', [], [], static::$authorizedHeaderWithContentType, $data);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/create_with_attributes_response', Response::HTTP_CREATED);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_creating_product_with_select_attribute()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/locales.yml');
-//        $this->loadFixturesFromFile('resources/product_attributes.yml');
-//
-//        $data =
-//<<<EOT
-//        {
-//            "code": "MUG_TH",
-//            "attributes": [
-//                {
-//                    "attribute": "mug_color",
-//                    "localeCode": "en_US",
-//                    "value": [
-//                        "7a968ac4-a1e3-4a37-a707-f22a839130c4",
-//                        "ff62a939-d946-4d6b-b742-b7115875ae75"
-//                    ]
-//                }
-//            ],
-//            "translations": {
-//                "en_US": {
-//                    "name": "Theme Mug",
-//                    "slug": "theme-mug"
-//                }
-//            }
-//        }
-//EOT;
-//
-//        $this->client->request('POST', '/api/v1/products/', [], [], static::$authorizedHeaderWithContentType, $data);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/create_with_select_attribute_response', Response::HTTP_CREATED);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_creating_product_with_images()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/locales.yml');
-//
-//        $data =
-//<<<EOT
-//        {
-//            "code": "MUG_TH",
-//            "images": [
-//                {
-//                    "type": "FORD_MUG"
-//                },
-//                {
-//                    "type": "MUGS"
-//                }
-//            ],
-//            "translations": {
-//                "en_US": {
-//                    "name": "Theme Mug",
-//                    "slug": "theme-mug"
-//                }
-//            }
-//        }
-//EOT;
-//
-//        $this->client->request(
-//            'POST',
-//            '/api/v1/products/',
-//            [],
-//            ['images' => [
-//                ['file' => new UploadedFile(sprintf('%s/../Resources/fixtures/ford.jpg', __DIR__), 'ford')],
-//                ['file' => new UploadedFile(sprintf('%s/../Resources/fixtures/mugs.jpg', __DIR__), 'mugs')],
-//            ]],
-//            static::$authorizedHeaderWithContentType,
-//            $data
-//        );
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/create_with_images_response', Response::HTTP_CREATED);
-//    }
-//
-//    /**
-//     * @test
-//     */
-//    public function it_allows_creating_product_with_associations()
-//    {
-//        $this->loadFixturesFromFile('authentication/api_administrator.yml');
-//        $this->loadFixturesFromFile('resources/associations.yml');
-//        $this->loadFixturesFromFile('resources/locales.yml');
-//        $this->loadFixturesFromFile('resources/products.yml');
-//
-//        $data =
-//<<<EOT
-//        {
-//            "code": "MUG_TH",
-//            "associations": {
-//                "similar": "MUG1,MUG_SW",
-//                "accessories": "MUG_LOTR,MUG_BB"
-//            },
-//            "translations": {
-//                "en_US": {
-//                    "name": "Theme Mug",
-//                    "slug": "theme-mug"
-//                }
-//            }
-//        }
-//EOT;
-//
-//        $this->client->request('POST', '/api/v1/products/', [], [], static::$authorizedHeaderWithContentType, $data);
-//
-//        $response = $this->client->getResponse();
-//        $this->assertResponse($response, 'product/create_with_associations_response', Response::HTTP_CREATED);
-//    }
-//
-//    /**
-//     * @return string
-//     */
-//    private function getProductUrl(ProductInterface $product)
-//    {
-//        return '/api/v1/products/' . $product->getCode();
-//    }
+    /**
+     * @test
+     */
+    public function it_allows_indexing_stock_movements(): void
+    {
+        $this->loadFixturesFromFile('authentication/api_administrator.yaml');
+        $this->loadFixturesFromFile('resources/stock_movements.yaml');
+        $this->loadFixturesFromFile('resources/many_stock_movements.yaml');
+
+        $this->client->request('GET', '/api/v1/stock-movements/', [], [], static::$authorizedHeaderWithAccept);
+
+        $response = $this->client->getResponse();
+        $this->assertResponse($response, 'stock_movement/index_response', Response::HTTP_OK);
+    }
+
+    /**
+     * @test
+     */
+    public function it_does_not_allow_delete_stock_movement_if_it_does_not_exist(): void
+    {
+        $this->loadFixturesFromFile('authentication/api_administrator.yaml');
+
+        $this->client->request('DELETE', '/api/v1/products/-1', [], [], static::$authorizedHeaderWithAccept);
+
+        $response = $this->client->getResponse();
+
+        $this->assertResponse($response, 'error/not_found_response', Response::HTTP_NOT_FOUND);
+    }
+
+    /**
+     * @test
+     */
+    public function it_allows_delete_stock_movement(): void
+    {
+        $this->loadFixturesFromFile('authentication/api_administrator.yaml');
+        $stockMovements = $this->loadFixturesFromFile('resources/stock_movements.yaml');
+        $stockMovement = $stockMovements['stockMovement1'];
+        $stockMovementUrl = $this->getStockMovementUrl($stockMovement);
+
+        $this->client->request('DELETE', $stockMovementUrl, [], [], static::$authorizedHeaderWithContentType);
+
+        $response = $this->client->getResponse();
+        $this->assertResponseCode($response, Response::HTTP_NO_CONTENT);
+
+        $this->client->request('GET', $stockMovementUrl, [], [], static::$authorizedHeaderWithAccept);
+
+        $response = $this->client->getResponse();
+        $this->assertResponse($response, 'error/not_found_response', Response::HTTP_NOT_FOUND);
+    }
+
+    /**
+     * @test
+     */
+    public function it_does_not_allow_to_create_stock_movement_without_required_fields(): void
+    {
+        $this->loadFixturesFromFile('authentication/api_administrator.yaml');
+
+        $this->client->request('POST', '/api/v1/stock-movements/', [], [], static::$authorizedHeaderWithContentType);
+
+        $response = $this->client->getResponse();
+        $this->assertResponse($response, 'stock_movement/create_validation_fail_response', Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
+     * @test
+     */
+    public function it_allows_create_stock_movement(): void
+    {
+        $this->loadFixturesFromFile('authentication/api_administrator.yaml');
+        $productVariants = $this->loadFixturesFromFile('../../../vendor/sylius/sylius/tests/DataFixtures/ORM/resources/product_variants.yml');
+
+        /** @var ProductVariantInterface $productVariant */
+        $productVariant = $productVariants['productVariant1'];
+        $code = $productVariant->getCode();
+
+        $data =
+<<<EOT
+        {
+            "quantity": 1,
+            "variant": "$code",
+            "price": "EUR 100"
+        }
+EOT;
+
+        $this->client->request('POST', '/api/v1/stock-movements/', [], [], static::$authorizedHeaderWithContentType, $data);
+
+        $response = $this->client->getResponse();
+        $this->assertResponse($response, 'stock_movement/create_response', Response::HTTP_CREATED);
+    }
+
+    /**
+     * @test
+     */
+    public function it_allows_updating_partial_information_about_stock_movement(): void
+    {
+        $this->loadFixturesFromFile('authentication/api_administrator.yaml');
+        $stockMovements = $this->loadFixturesFromFile('resources/stock_movements.yaml');
+        $stockMovement = $stockMovements['stockMovement1'];
+
+        $data =
+<<<EOT
+        {
+            "quantity": 2
+        }
+EOT;
+        $this->client->request('PATCH', $this->getStockMovementUrl($stockMovement), [], [], static::$authorizedHeaderWithContentType, $data);
+        $response = $this->client->getResponse();
+
+        $this->assertResponseCode($response, Response::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * @test
+     */
+    public function it_allows_paginating_the_index_of_stock_movements(): void
+    {
+        $this->loadFixturesFromFile('authentication/api_administrator.yaml');
+        $this->loadFixturesFromFile('resources/stock_movements.yaml');
+        $this->loadFixturesFromFile('resources/many_stock_movements.yaml');
+
+        $this->client->request('GET', '/api/v1/stock-movements/', ['page' => 2], [], static::$authorizedHeaderWithAccept);
+        $response = $this->client->getResponse();
+        $this->assertResponse($response, 'stock_movement/paginated_index_response');
+    }
+
+    private function getStockMovementUrl(StockMovementInterface $stockMovement): string
+    {
+        return '/api/v1/stock-movements/' . $stockMovement->getId();
+    }
 }

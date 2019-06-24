@@ -1,4 +1,4 @@
-# Sylius Stock Plugin
+# Sylius Stock Movement Plugin
 
 [![Latest Version][ico-version]][link-packagist]
 [![Latest Unstable Version][ico-unstable-version]][link-packagist]

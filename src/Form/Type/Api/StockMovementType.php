@@ -62,6 +62,6 @@ final class StockMovementType extends AbstractResourceType
 
     public function getBlockPrefix(): string
     {
-        return 'setono_sylius_stock_movement_stock_movement';
+        return 'setono_sylius_stock_movement_api_stock_movement';
     }
 }

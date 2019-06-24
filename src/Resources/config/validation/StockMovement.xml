@@ -5,17 +5,17 @@
         <property name="quantity">
             <constraint name="NotNull">
                 <option name="message">setono_sylius_stock_movement.stock_movement.quantity.not_null</option>
-                <option name="groups">sylius</option>
+                <option name="groups">setono_sylius_stock_movement</option>
             </constraint>
             <constraint name="Type">
                 <option name="type">integer</option>
                 <option name="message">setono_sylius_stock_movement.stock_movement.quantity.type</option>
-                <option name="groups">sylius</option>
+                <option name="groups">setono_sylius_stock_movement</option>
             </constraint>
             <constraint name="NotIdenticalTo">
                 <option name="value">0</option>
                 <option name="message">setono_sylius_stock_movement.stock_movement.quantity.not_identical_to</option>
-                <option name="groups">sylius</option>
+                <option name="groups">setono_sylius_stock_movement</option>
             </constraint>
         </property>
 
@@ -24,21 +24,21 @@
         <property name="variantCode">
             <constraint name="NotBlank">
                 <option name="message">setono_sylius_stock_movement.stock_movement.variant_code.not_blank</option>
-                <option name="groups">sylius</option>
+                <option name="groups">setono_sylius_stock_movement</option>
             </constraint>
         </property>
 
         <property name="price">
             <constraint name="NotBlank">
                 <option name="message">setono_sylius_stock_movement.stock_movement.price.not_blank</option>
-                <option name="groups">sylius</option>
+                <option name="groups">setono_sylius_stock_movement</option>
             </constraint>
         </property>
 
         <property name="convertedPrice">
             <constraint name="NotBlank">
                 <option name="message">setono_sylius_stock_movement.stock_movement.converted_price.not_blank</option>
-                <option name="groups">sylius</option>
+                <option name="groups">setono_sylius_stock_movement</option>
             </constraint>
         </property>
     </class>

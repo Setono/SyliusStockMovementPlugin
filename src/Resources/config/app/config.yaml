@@ -20,6 +20,16 @@ framework:
         buses:
             setono_sylius_stock_movement.command_bus: ~
 
+jms_serializer:
+    metadata:
+        directories:
+            setono-sylius-stock-movement:
+                namespace_prefix: "Setono\\SyliusStockMovementPlugin\\Model"
+                path: "@SetonoSyliusStockMovementPlugin/Resources/config/serializer"
+            money:
+                namespace_prefix: "Money"
+                path: "@SetonoSyliusStockMovementPlugin/Resources/config/serializer"
+
 sylius_mailer:
     emails:
         setono_sylius_stock_movement_report:
