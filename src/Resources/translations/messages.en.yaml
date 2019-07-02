@@ -24,6 +24,7 @@ setono_sylius_stock_movement:
             type: Type
             email_configuration:
                 to: Recipient
+                to_placeholder: email1@example.com, email2@example.com
                 cc: CC
                 bcc: BCC
                 subject: Subject

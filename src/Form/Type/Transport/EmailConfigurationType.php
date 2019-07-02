@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class EmailConfigurationType extends AbstractType
 {
@@ -17,6 +18,15 @@ final class EmailConfigurationType extends AbstractType
         $builder
             ->add('to', TextType::class, [
                 'label' => 'setono_sylius_stock_movement.form.report_configuration_transport.email_configuration.to',
+                'attr' => [
+                    'placeholder' => 'setono_sylius_stock_movement.form.report_configuration_transport.email_configuration.to_placeholder',
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'setono_sylius_stock_movement.report_configuration_transport.email_configuration.to.not_blank',
+                        'groups' => 'setono_sylius_stock_movement',
+                    ]),
+                ],
             ])
             ->add('cc', TextType::class, [
                 'label' => 'setono_sylius_stock_movement.form.report_configuration_transport.email_configuration.cc',
