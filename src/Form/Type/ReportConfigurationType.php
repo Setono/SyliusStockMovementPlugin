@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Form\Type;
 
+use function Safe\array_flip;
+use Safe\Exceptions\ArrayException;
 use Setono\CronExpressionBundle\Form\Type\CronExpressionType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -22,6 +24,9 @@ final class ReportConfigurationType extends AbstractResourceType
         $this->templates = $templates;
     }
 
+    /**
+     * @throws ArrayException
+     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
