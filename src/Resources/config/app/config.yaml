@@ -13,7 +13,7 @@ flysystem:
         setono_sylius_stock_movement.storage.local.report:
             adapter: 'local'
             options:
-                directory: '%kernel.project_dir%/var/setono_sylius_stock_movement/report'
+                directory: '%kernel.project_dir%/var/storage/setono_sylius_stock_movement/report'
 
 framework:
     messenger:
