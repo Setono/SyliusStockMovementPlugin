@@ -69,13 +69,22 @@ setono_sylius_stock_movement:
           template: "@SetonoSyliusStockMovementPlugin/Template/default.txt.twig"
 ```
 
-### Step 5: Install assets
+### Step 5: Update database schema
+
+Use Dotrine migrations to create a migration file and update the database.
+
+```bash
+$ bin/console doctrine:migrations:diff
+$ bin/console doctrine:migrations:migrate
+```
+
+### Step 6: Install assets
 
 ```bash
 $ php bin/console assets:install
 ```
 
-### Step 6 (optional): Create or import fixtures
+### Step 7 (optional): Create or import fixtures
 
 - Import fixtures:
 
