@@ -4,3 +4,14 @@ setono_sylius_stock_movement:
             not_blank: Please enter a name
     stock_movement:
         variant_invalid: The variant does not exist
+        price_invalid: The price is invalid
+        quantity:
+            not_identical_to: Quantity should not be 0
+            type: Quantity should be integer
+            not_null: Please, enter quantity
+        variant_code:
+            not_blank: Please, enter product variant code
+        price:
+            not_blank: Please, enter price
+        converted_price:
+            not_blank: Please, enter converted price
