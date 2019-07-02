@@ -1,7 +1,11 @@
 setono_sylius_stock_movement:
     report_configuration:
         name:
-            not_blank: Please enter a name
+            not_blank: Please, enter a name
+        transports:
+            not_empty: Please, add at least one transport
+        filters:
+            not_empty: Please, add at least one filter
     stock_movement:
         variant_invalid: The variant does not exist
         price_invalid: The price is invalid
