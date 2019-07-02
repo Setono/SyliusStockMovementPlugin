@@ -103,16 +103,36 @@ $ php bin/console assets:install
 Create a stock movement on the variant `variant-code` with a quantity of 1 and a price of €100:
 
 ```bash
-curl -X POST \
-  http://127.0.0.1:8000/api/v1/stock-movements/ \
+brew install jq
+SYLIUS_HOST=http://127.0.0.1:8000
+SYLIUS_ADMIN_API_ACCESS_TOKEN=$(curl $SYLIUS_HOST/api/oauth/v2/token \
+    --silent --show-error \
+    -d "client_id"=demo_client \
+    -d "client_secret"=secret_demo_client \
+    -d "grant_type"=password \
+    -d "username"=api@example.com \
+    -d "password"=sylius-api | jq '.access_token' --raw-output)
+SYLIUS_SOME_PRODUCT_CODE=$(curl $SYLIUS_HOST/api/v1/products/?limit=1 \
+    --silent --show-error \
+    -H "Authorization: Bearer $SYLIUS_ADMIN_API_ACCESS_TOKEN" \
+    -H "Accept: application/json" | jq '._embedded.items[0].code' --raw-output)
+echo "Some product code: $SYLIUS_SOME_PRODUCT_CODE"
+SYLIUS_SOME_PRODUCT_VARIANT_CODE=$(curl $SYLIUS_HOST/api/v1/products/$SYLIUS_SOME_PRODUCT_CODE/variants/?limit=1 \
+    --silent --show-error \
+    -H "Authorization: Bearer $SYLIUS_ADMIN_API_ACCESS_TOKEN" \
+    -H "Accept: application/json"| jq '._embedded.items[0].code' --raw-output)
+echo "Some product variant code: $SYLIUS_SOME_PRODUCT_VARIANT_CODE"
+
+curl $SYLIUS_HOST/api/v1/stock-movements/ \
+  -X POST \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer SampleToken' \
+  -H "Authorization: Bearer $SYLIUS_ADMIN_API_ACCESS_TOKEN" \
   -H 'Content-Type: application/json' \
-  -d '{
-	"quantity": 1,
-	"variant": "variant-code",
-	"price": "EUR 10000"
-}'
+  -d "{
+	\"quantity\": 1,
+	\"variant\": \"$SYLIUS_SOME_PRODUCT_VARIANT_CODE\",
+	\"price\": \"EUR 10000\"
+}"
 ```
 
 ## Important
