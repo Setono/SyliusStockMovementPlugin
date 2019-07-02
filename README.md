@@ -76,7 +76,7 @@ curl -X POST \
   -d '{
 	"quantity": 1,
 	"variant": "variant-code",
-	"price": "EUR 100"
+	"price": "EUR 10000"
 }'
 ```
 
