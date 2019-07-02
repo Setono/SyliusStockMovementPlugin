@@ -6,6 +6,10 @@ setono_sylius_stock_movement:
             not_empty: Please, add at least one transport
         filters:
             not_empty: Please, add at least one filter
+    report_configuration_filter:
+        created_after_configuration:
+            date:
+                not_blank: Please, enter date and time
     report_configuration_transport:
         email_configuration:
             to:
