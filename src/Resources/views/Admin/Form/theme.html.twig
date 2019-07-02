@@ -1,0 +1,19 @@
+{% block setono_cron_expression_widget %}
+    <div class="ui five column stackable grid">
+        <div class="column">
+            {{ form_row(form.minutes) }}
+        </div>
+        <div class="column">
+            {{ form_row(form.hours) }}
+        </div>
+        <div class="column">
+            {{ form_row(form.days) }}
+        </div>
+        <div class="column">
+            {{ form_row(form.months) }}
+        </div>
+        <div class="column">
+            {{ form_row(form.weekdays) }}
+        </div>
+    </div>
+{% endblock %}

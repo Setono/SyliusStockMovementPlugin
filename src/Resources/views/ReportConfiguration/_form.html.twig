@@ -1,30 +1,12 @@
+{% form_theme form.schedule '@SetonoSyliusStockMovementPlugin/Admin/Form/theme.html.twig' %}
+
 <div class="ui segment">
     {{ form_errors(form) }}
     {{ form_row(form.name) }}
     {{ form_row(form.template) }}
 
-    <div class="ui five column stackable grid">
-        <div class="column">
-            {{ form_row(form.schedule.minutes) }}
-        </div>
-        <div class="column">
-            {{ form_row(form.schedule.hours) }}
-        </div>
-        <div class="column">
-            {{ form_row(form.schedule.days) }}
-        </div>
-        <div class="column">
-            {{ form_row(form.schedule.months) }}
-        </div>
-        <div class="column">
-            {{ form_row(form.schedule.weekdays) }}
-        </div>
-    </div>
+    {{ form_row(form.schedule) }}
 </div>
-
-
-
-
 
 <div class="ui segment">
     <h4 class="ui dividing header">{{ 'setono_sylius_stock_movement.ui.transports_and_filters'|trans }}</h4>
