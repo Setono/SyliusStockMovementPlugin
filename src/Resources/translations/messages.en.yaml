@@ -16,7 +16,7 @@ setono_sylius_stock_movement:
         report_configuration_filter:
             type: Type
             created_after_configuration:
-                date: Date
+                date: Date & time
             id_greater_than_configuration:
                 id: Id
                 id_placeholder: If you don't input anything here it will use the latest id when the report is created
