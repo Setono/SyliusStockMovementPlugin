@@ -10,6 +10,9 @@ setono_sylius_stock_movement:
         email_configuration:
             to:
                 not_blank: Please, enter at least one e-mail address
+        ftp_configuration:
+            host:
+                not_blank: Please, enter FTP host
     stock_movement:
         variant_invalid: The variant does not exist
         price_invalid: The price is invalid
