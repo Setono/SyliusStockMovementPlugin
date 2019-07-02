@@ -8,10 +8,10 @@ setono_sylius_stock_movement:
         quantity:
             not_identical_to: Quantity should not be 0
             type: Quantity should be integer
-            not_null: Please, enter quantity
+            not_null: Please, provide quantity
         variant_code:
-            not_blank: Please, enter product variant code
+            not_blank: Please, provide product variant code
         price:
-            not_blank: Please, enter price
+            not_blank: Please, provide price
         converted_price:
-            not_blank: Please, enter converted price
+            not_blank: Please, provide converted price
