@@ -67,6 +67,11 @@ class StockMovement implements StockMovementInterface
         return $this->variantCode;
     }
 
+    public function setVariantCode(?string $variantCode): void
+    {
+        $this->variantCode = $variantCode;
+    }
+
     public function getPrice(): ?Money
     {
         return $this->price;

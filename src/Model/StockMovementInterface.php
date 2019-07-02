@@ -29,6 +29,8 @@ interface StockMovementInterface extends ResourceInterface, TimestampableInterfa
 
     public function getVariantCode(): ?string;
 
+    public function setVariantCode(?string $variantCode): void;
+
     /**
      * This is the original sales price
      *
