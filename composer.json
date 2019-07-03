@@ -75,6 +75,7 @@
         "check-style": "./vendor/bin/ecs check src/ spec/",
         "checks": [
             "composer validate --strict",
+            "composer normalize --dry-run",
             "@check-style",
             "@analyse"
         ],
@@ -102,12 +103,12 @@
             "@ensure-schema-updated",
             "(cd tests/Application && bin/console sylius:fixtures:load --no-interaction -e ${SYMFONY_ENV:-'dev'})"
         ],
+        "phpspec": "./vendor/bin/phpspec run -vvv",
         "phpunit": [
             "SYMFONY_ENV=test composer ensure-database-created",
             "SYMFONY_ENV=test composer ensure-schema-updated",
             "./vendor/bin/phpunit"
         ],
-        "phpspec": "./vendor/bin/phpspec run -vvv",
         "run": [
             "@ensure-env-copied",
             "(cd tests/Application && bin/console server:run -d public -e ${SYMFONY_ENV:-'dev'})"
