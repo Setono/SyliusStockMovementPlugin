@@ -8,5 +8,19 @@
                 <option name="groups">setono_sylius_stock_movement</option>
             </constraint>
         </property>
+        <property name="transports">
+            <constraint name="Count">
+                <option name="min">1</option>
+                <option name="minMessage">setono_sylius_stock_movement.report_configuration.transports.not_empty</option>
+                <option name="groups">setono_sylius_stock_movement</option>
+            </constraint>
+        </property>
+        <property name="filters">
+            <constraint name="Count">
+                <option name="min">1</option>
+                <option name="minMessage">setono_sylius_stock_movement.report_configuration.filters.not_empty</option>
+                <option name="groups">setono_sylius_stock_movement</option>
+            </constraint>
+        </property>
     </class>
 </constraint-mapping>

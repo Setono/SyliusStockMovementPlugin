@@ -1,0 +1,54 @@
+{% extends '@SyliusAdmin/Form/theme.html.twig' %}
+
+{% block setono_cron_expression_widget %}
+    <div class="ui five column stackable grid">
+        <div class="column">
+            {{ form_row(form.minutes) }}
+        </div>
+        <div class="column">
+            {{ form_row(form.hours) }}
+        </div>
+        <div class="column">
+            {{ form_row(form.days) }}
+        </div>
+        <div class="column">
+            {{ form_row(form.months) }}
+        </div>
+        <div class="column">
+            {{ form_row(form.weekdays) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block _setono_sylius_stock_movement_report_configuration_filters_entry_configuration_date_widget %}
+<div class="ui stackable grid">
+    <div class="ten wide column">
+        {{- form_errors(form.date) -}}
+        <div class="ui stackable grid">
+            <div class="four wide column">
+                {{- form_widget(form.date.day, {'attr': {'style': 'height: 38px;'}}) -}}
+            </div>
+            <div class="seven wide column">
+                {{- form_widget(form.date.month, {'attr': {'style': 'height: 38px;'}}) -}}
+            </div>
+            <div class="five wide column">
+                {{- form_widget(form.date.year, {'attr': {'style': 'height: 38px;'}}) -}}
+            </div>
+        </div>
+    </div>
+    <div class="six wide column" style="margin-bottom: 10px">
+        {{- form_errors(form.time) -}}
+        <div class="ui stackable grid">
+            <div class="six wide column">
+                {{- form_widget(form.time.hour, {'attr': {'style': 'height: 38px;'}}) -}}
+            </div>
+            <div class="center aligned two wide column" style="line-height: 38px;">
+                :
+            </div>
+            <div class="six wide column">
+                {{- form_widget(form.time.minute, {'attr': {'style': 'height: 38px;'}}) -}}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

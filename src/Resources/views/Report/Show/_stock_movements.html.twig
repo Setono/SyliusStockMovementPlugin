@@ -20,7 +20,7 @@
                 {{ item.quantity }}
             </td>
             <td class="single line">
-                {{ item.variant }}
+                {% include "@SetonoSyliusStockMovementPlugin/Admin/Grid/Field/productVariantLink.html.twig" with {'data': item.variant} %}
             </td>
             <td class="right aligned">
                 {{ item.price|money }}

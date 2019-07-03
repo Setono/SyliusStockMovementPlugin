@@ -1,0 +1,9 @@
+{# @var Sylius\Component\Core\Model\ProductVariantInterface data #}
+
+<a href="{{ path('sylius_admin_product_variant_update', {'productId': data.product.id, 'id': data.id}) }}">
+    {{ data.inventoryName }}
+</a>
+
+<div>
+    {% for optionValue in data.optionValues %}{% if loop.index0 %}, {% endif %}{{ optionValue.option.name }}: <b>{{ optionValue.value }}</b>{% endfor %}
+</div>

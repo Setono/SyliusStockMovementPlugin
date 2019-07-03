@@ -16,7 +16,7 @@ setono_sylius_stock_movement:
         report_configuration_filter:
             type: Type
             created_after_configuration:
-                date: Date
+                date: Date & time
             id_greater_than_configuration:
                 id: Id
                 id_placeholder: If you don't input anything here it will use the latest id when the report is created
@@ -24,6 +24,7 @@ setono_sylius_stock_movement:
             type: Type
             email_configuration:
                 to: Recipient
+                to_placeholder: email1@example.com, email2@example.com
                 cc: CC
                 bcc: BCC
                 subject: Subject

@@ -32,4 +32,4 @@ script:
     - composer normalize --dry-run
     - composer analyse
     - composer check-style
-    - composer test
+    - composer tests

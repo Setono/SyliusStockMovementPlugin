@@ -1,6 +1,32 @@
 setono_sylius_stock_movement:
     report_configuration:
         name:
-            not_blank: Please enter a name
+            not_blank: Please, enter a name
+        transports:
+            not_empty: Please, add at least one transport
+        filters:
+            not_empty: Please, add at least one filter
+    report_configuration_filter:
+        created_after_configuration:
+            date:
+                not_blank: Please, enter date and time
+    report_configuration_transport:
+        email_configuration:
+            to:
+                not_blank: Please, enter at least one e-mail address
+        ftp_configuration:
+            host:
+                not_blank: Please, enter FTP host
     stock_movement:
         variant_invalid: The variant does not exist
+        price_invalid: The price is invalid
+        quantity:
+            not_identical_to: Quantity should not be 0
+            type: Quantity should be integer
+            not_null: Please, provide quantity
+        variant_code:
+            not_blank: Please, provide product variant code
+        price:
+            not_blank: Please, provide price
+        converted_price:
+            not_blank: Please, provide converted price

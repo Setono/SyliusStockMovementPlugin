@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class FtpConfigurationType extends AbstractType
 {
@@ -17,6 +18,12 @@ final class FtpConfigurationType extends AbstractType
         $builder
             ->add('host', TextType::class, [
                 'label' => 'setono_sylius_stock_movement.form.report_configuration_transport.ftp_configuration.host',
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'setono_sylius_stock_movement.report_configuration_transport.ftp_configuration.host.not_blank',
+                        'groups' => 'setono_sylius_stock_movement',
+                    ]),
+                ],
             ])
             ->add('port', IntegerType::class, [
                 'label' => 'setono_sylius_stock_movement.form.report_configuration_transport.ftp_configuration.port',

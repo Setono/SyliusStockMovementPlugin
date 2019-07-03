@@ -3,20 +3,20 @@
   "message": "Validation Failed",
   "errors": {
     "errors": [
-      "setono_sylius_stock_movement.stock_movement.variant_code.not_blank",
-      "setono_sylius_stock_movement.stock_movement.converted_price.not_blank"
+      "Please, provide product variant code",
+      "Please, provide converted price"
     ],
     "children": {
       "quantity": {
         "errors": [
-          "setono_sylius_stock_movement.stock_movement.quantity.not_null"
+          "Please, provide quantity"
         ]
       },
       "reference": {},
       "variant": {},
       "price": {
         "errors": [
-          "setono_sylius_stock_movement.stock_movement.price.not_blank"
+          "Please, provide price"
         ]
       }
     }

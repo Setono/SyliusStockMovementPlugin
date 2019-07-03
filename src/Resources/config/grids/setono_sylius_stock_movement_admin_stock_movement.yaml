@@ -15,8 +15,10 @@ sylius_grid:
                     type: string
                     label: setono_sylius_stock_movement.ui.quantity
                 variant:
-                    type: string
+                    type: twig
                     label: setono_sylius_stock_movement.ui.variant
+                    options:
+                        template: "@SetonoSyliusStockMovementPlugin/Admin/Grid/Field/productVariantLink.html.twig"
                 price:
                     type: twig
                     label: setono_sylius_stock_movement.ui.price

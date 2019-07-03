@@ -1,3 +1,7 @@
+imports:
+    - { resource: "@SetonoSyliusStockMovementPlugin/Resources/config/app/config.yaml" }
+    - { resource: "@SetonoSyliusStockMovementPlugin/Resources/config/app/fixtures.yaml" }
+    
 setono_sylius_stock_movement:
     base_currency: USD
     templates:

@@ -34,6 +34,7 @@ return [
     // ...
     
     JK\MoneyBundle\JKMoneyBundle::class => ['all' => true],
+    League\FlysystemBundle\FlysystemBundle::class => ['all' => true],
     Setono\CronExpressionBundle\SetonoCronExpressionBundle::class => ['all' => true],
     Setono\SyliusStockMovementPlugin\SetonoSyliusStockMovementPlugin::class => ['all' => true],
     
@@ -46,38 +47,101 @@ return [
 
 **NOTE** that you must instantiate the plugin before the grid bundle, else you will see an exception like `You have requested a non-existent parameter "setono_sylius_stock_movement.model.report_configuration.class".`
 
-### Step 3: Import config
-Import the config file somewhere in your application. Could be the `config/packages/_sylius.yaml` file.
+### Step 3: Import routing
 
 ```yaml
-imports:
-    # ...
-    
-    - { resource: "@SetonoSyliusStockMovementPlugin/Resources/config/app/config.yaml" }
-    
-    # ...
+# config/routes/setono_sylius_stock_movement.yaml
+setono_sylius_stock_movement:
+    resource: "@SetonoSyliusStockMovementPlugin/Resources/config/routing.yaml"
 ```
 
-### Step 4: Install assets
+### Step 4: Configure plugin
+
+```yaml
+# config/packages/setono_sylius_stock_movement.yaml
+imports:
+    - { resource: "@SetonoSyliusStockMovementPlugin/Resources/config/app/config.yaml" }
+
+setono_sylius_stock_movement:
+    base_currency: USD
+    templates:
+        - label: Default
+          template: "@SetonoSyliusStockMovementPlugin/Template/default.txt.twig"
+```
+
+### Step 5: Update database schema
+
+Use Dotrine migrations to create a migration file and update the database.
+
+```bash
+$ bin/console doctrine:migrations:diff
+$ bin/console doctrine:migrations:migrate
+```
+
+### Step 6: Install assets
 
 ```bash
 $ php bin/console assets:install
 ```
 
+### Step 7 (optional): Create or import fixtures
+
+- Import fixtures:
+
+    ```yaml
+    # config/packages/_sylius.yaml
+    imports:
+        # ...
+        - { resource: "@SetonoSyliusStockMovementPlugin/Resources/config/app/fixtures.yaml" }
+    ```
+
+- Or create your own:
+    
+    ```yaml
+    # config/fixtures.yaml
+    sylius_fixtures:
+        suites:
+            YOUR_SUITE:
+                fixtures:
+                    setono_stock_movement:
+                        options:
+                            amount: 1000
+    ```
+
 ## API
 Create a stock movement on the variant `variant-code` with a quantity of 1 and a price of €100:
 
 ```bash
-curl -X POST \
-  http://127.0.0.1:8000/api/v1/stock-movements/ \
+brew install jq
+SYLIUS_HOST=http://127.0.0.1:8000
+SYLIUS_ADMIN_API_ACCESS_TOKEN=$(curl $SYLIUS_HOST/api/oauth/v2/token \
+    --silent --show-error \
+    -d "client_id"=demo_client \
+    -d "client_secret"=secret_demo_client \
+    -d "grant_type"=password \
+    -d "username"=api@example.com \
+    -d "password"=sylius-api | jq '.access_token' --raw-output)
+SYLIUS_SOME_PRODUCT_CODE=$(curl $SYLIUS_HOST/api/v1/products/?limit=1 \
+    --silent --show-error \
+    -H "Authorization: Bearer $SYLIUS_ADMIN_API_ACCESS_TOKEN" \
+    -H "Accept: application/json" | jq '._embedded.items[0].code' --raw-output)
+echo "Some product code: $SYLIUS_SOME_PRODUCT_CODE"
+SYLIUS_SOME_PRODUCT_VARIANT_CODE=$(curl $SYLIUS_HOST/api/v1/products/$SYLIUS_SOME_PRODUCT_CODE/variants/?limit=1 \
+    --silent --show-error \
+    -H "Authorization: Bearer $SYLIUS_ADMIN_API_ACCESS_TOKEN" \
+    -H "Accept: application/json"| jq '._embedded.items[0].code' --raw-output)
+echo "Some product variant code: $SYLIUS_SOME_PRODUCT_VARIANT_CODE"
+
+curl $SYLIUS_HOST/api/v1/stock-movements/ \
+  -X POST \
   -H 'Accept: application/json' \
-  -H 'Authorization: Bearer SampleToken' \
+  -H "Authorization: Bearer $SYLIUS_ADMIN_API_ACCESS_TOKEN" \
   -H 'Content-Type: application/json' \
-  -d '{
-	"quantity": 1,
-	"variant": "variant-code",
-	"price": "EUR 10000"
-}'
+  -d "{
+	\"quantity\": 1,
+	\"variant\": \"$SYLIUS_SOME_PRODUCT_VARIANT_CODE\",
+	\"price\": \"EUR 10000\"
+}"
 ```
 
 ## Important
