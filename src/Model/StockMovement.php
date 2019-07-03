@@ -21,7 +21,7 @@ class StockMovement implements StockMovementInterface
     /** @var ProductVariantInterface|null */
     protected $variant;
 
-    /** @var string */
+    /** @var string|null */
     protected $variantCode;
 
     /** @var Money */
