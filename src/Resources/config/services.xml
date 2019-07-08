@@ -4,7 +4,6 @@
     <imports>
         <import resource="services/command.xml"/>
         <import resource="services/controller.xml"/>
-        <import resource="services/currency_converter.xml"/>
         <import resource="services/event_listener.xml"/>
         <import resource="services/factory.xml"/>
         <import resource="services/filter.xml"/>

@@ -2,15 +2,9 @@ Setono\SyliusStockMovementPlugin\Model\StockMovement:
     stockMovement1:
         quantity: 1
         variantCode: variant_code_1
-        price: <money()>
-        convertedPrice: <money()>
     stockMovement2:
         quantity: 1
         variantCode: variant_code_2
-        price: <money()>
-        convertedPrice: <money()>
     stockMovement3:
         quantity: 1
         variantCode: variant_code_2
-        price: <money()>
-        convertedPrice: <money()>

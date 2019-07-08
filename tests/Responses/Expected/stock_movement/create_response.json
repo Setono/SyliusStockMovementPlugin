@@ -2,13 +2,5 @@
   "variant": "@string@",
   "id": @integer@,
   "quantity": 1,
-  "price": {
-    "amount": 100,
-    "currency": "EUR"
-  },
-  "convertedPrice": {
-    "amount": @integer@,
-    "currency": "@string@"
-  },
   "createdAt": "@string@.isDateTime()"
 }

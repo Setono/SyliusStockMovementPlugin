@@ -2,5 +2,3 @@ Setono\SyliusStockMovementPlugin\Model\StockMovement:
     stockMovement1{4..22}:
         quantity: 1
         variantCode: variant_code_<current()>
-        price: <money()>
-        convertedPrice: <money()>

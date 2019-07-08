@@ -3,6 +3,5 @@ imports:
     - { resource: "@SetonoSyliusStockMovementPlugin/Resources/config/app/fixtures.yaml" }
     
 setono_sylius_stock_movement:
-    base_currency: USD
     templates:
         - { label: Default, template: "@SetonoSyliusStockMovementPlugin/Template/default.txt.twig" }
