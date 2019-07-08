@@ -1,9 +1,0 @@
-services:
-    _defaults:
-        autoconfigure: true
-        
-    Tests\Setono\SyliusStockMovementPlugin\DataFixtures\Faker\Provider\MoneyProvider:
-        arguments:
-            - "@nelmio_alice.faker.generator"
-        tags:
-            - { name: nelmio_alice.faker.provider }
