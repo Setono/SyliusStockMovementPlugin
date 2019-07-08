@@ -39,10 +39,6 @@ final class StockMovementType extends AbstractResourceType
                 'label' => 'setono_sylius_stock_movement.form.stock_movement.variant',
                 'invalid_message' => 'setono_sylius_stock_movement.stock_movement.variant_invalid',
             ])
-            ->add('price', TextType::class, [
-                'label' => 'setono_sylius_stock_movement.form.stock_movement.price',
-                'invalid_message' => 'setono_sylius_stock_movement.stock_movement.price_invalid',
-            ])
         ;
 
         $builder->get('variant')->addModelTransformer(
