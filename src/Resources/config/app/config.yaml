@@ -26,9 +26,6 @@ jms_serializer:
             setono-sylius-stock-movement:
                 namespace_prefix: "Setono\\SyliusStockMovementPlugin\\Model"
                 path: "@SetonoSyliusStockMovementPlugin/Resources/config/serializer"
-            money:
-                namespace_prefix: "Money"
-                path: "@SetonoSyliusStockMovementPlugin/Resources/config/serializer"
 
 sylius_mailer:
     emails:
