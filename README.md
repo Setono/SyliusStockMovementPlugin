@@ -33,7 +33,6 @@ in the `config/bundles.php` file of your project:
 return [
     // ...
     
-    JK\MoneyBundle\JKMoneyBundle::class => ['all' => true],
     League\FlysystemBundle\FlysystemBundle::class => ['all' => true],
     Setono\CronExpressionBundle\SetonoCronExpressionBundle::class => ['all' => true],
     Setono\SyliusStockMovementPlugin\SetonoSyliusStockMovementPlugin::class => ['all' => true],
@@ -63,7 +62,6 @@ imports:
     - { resource: "@SetonoSyliusStockMovementPlugin/Resources/config/app/config.yaml" }
 
 setono_sylius_stock_movement:
-    base_currency: USD
     templates:
         - label: Default
           template: "@SetonoSyliusStockMovementPlugin/Template/default.txt.twig"
@@ -71,7 +69,7 @@ setono_sylius_stock_movement:
 
 ### Step 5: Update database schema
 
-Use Dotrine migrations to create a migration file and update the database.
+Use Doctrine migrations to create a migration file and update the database.
 
 ```bash
 $ bin/console doctrine:migrations:diff
@@ -139,13 +137,9 @@ curl $SYLIUS_HOST/api/v1/stock-movements/ \
   -H 'Content-Type: application/json' \
   -d "{
 	\"quantity\": 1,
-	\"variant\": \"$SYLIUS_SOME_PRODUCT_VARIANT_CODE\",
-	\"price\": \"EUR 10000\"
+	\"variant\": \"$SYLIUS_SOME_PRODUCT_VARIANT_CODE\"
 }"
 ```
-
-## Important
-If you use the `StaticExchangeRateCurrencyConverter` (which is default) you **must** have an existing exchange rate between all your accepted currencies and your base currency.
 
 [ico-version]: https://poser.pugx.org/setono/sylius-stock-movement-plugin/v/stable
 [ico-unstable-version]: https://poser.pugx.org/setono/sylius-stock-movement-plugin/v/unstable
