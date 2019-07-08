@@ -107,7 +107,7 @@ $ php bin/console assets:install
     ```
 
 ## API
-Create a stock movement on the variant `variant-code` with a quantity of 1 and a price of €100:
+Create a stock movement on the variant `variant-code` with a quantity of 1:
 
 ```bash
 brew install jq
