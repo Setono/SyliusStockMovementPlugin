@@ -132,8 +132,7 @@ final class StockMovementApiTest extends JsonApiTestCase
 <<<EOT
         {
             "quantity": 1,
-            "variant": "$code",
-            "price": "EUR 100"
+            "variant": "$code"
         }
 EOT;
 
