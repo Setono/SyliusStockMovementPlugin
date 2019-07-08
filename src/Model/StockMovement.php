@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Model;
 
-use Money\Money;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 
@@ -23,12 +22,6 @@ class StockMovement implements StockMovementInterface
 
     /** @var string|null */
     protected $variantCode;
-
-    /** @var Money */
-    protected $price;
-
-    /** @var Money */
-    protected $convertedPrice;
 
     /** @var string|null */
     protected $reference;
@@ -70,26 +63,6 @@ class StockMovement implements StockMovementInterface
     public function setVariantCode(?string $variantCode): void
     {
         $this->variantCode = $variantCode;
-    }
-
-    public function getPrice(): ?Money
-    {
-        return $this->price;
-    }
-
-    public function setPrice(Money $price): void
-    {
-        $this->price = $price;
-    }
-
-    public function getConvertedPrice(): ?Money
-    {
-        return $this->convertedPrice;
-    }
-
-    public function setConvertedPrice(Money $convertedPrice): void
-    {
-        $this->convertedPrice = $convertedPrice;
     }
 
     public function getReference(): ?string

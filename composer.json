@@ -5,9 +5,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
-        "kucharovic/money-bundle": "^1.1",
         "league/flysystem-bundle": "^1.1",
-        "moneyphp/money": "^3.2",
         "setono/cron-expression-bundle": "^1.0.0",
         "sylius/resource-bundle": "^1.6@beta",
         "sylius/sylius": "^1.3",

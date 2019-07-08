@@ -19,16 +19,6 @@ sylius_grid:
                     label: setono_sylius_stock_movement.ui.variant
                     options:
                         template: "@SetonoSyliusStockMovementPlugin/Admin/Grid/Field/productVariantLink.html.twig"
-                price:
-                    type: twig
-                    label: setono_sylius_stock_movement.ui.price
-                    options:
-                        template: "@SetonoSyliusStockMovementPlugin/Admin/Grid/Field/money.html.twig"
-                convertedPrice:
-                    type: twig
-                    label: setono_sylius_stock_movement.ui.converted_price
-                    options:
-                        template: "@SetonoSyliusStockMovementPlugin/Admin/Grid/Field/money.html.twig"
                 reference:
                     type: string
                     label: setono_sylius_stock_movement.ui.reference

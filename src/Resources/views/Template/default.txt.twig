@@ -3,6 +3,6 @@
 Id;Date;Quantity;Variant code;Price
 {# @var \Setono\SyliusStockMovementPlugin\Model\StockMovementInterface[] stockMovements #}
 {% for stockMovement in stockMovements %}
-{{ stockMovement.id }};{{ stockMovement.createdAt|date }};{{ stockMovement.quantity }};{{ stockMovement.variantCode }};{{ stockMovement.convertedPrice|money }}
+{{ stockMovement.id }};{{ stockMovement.createdAt|date }};{{ stockMovement.quantity }};{{ stockMovement.variantCode }}
 {% endfor %}
 {% endblock %}

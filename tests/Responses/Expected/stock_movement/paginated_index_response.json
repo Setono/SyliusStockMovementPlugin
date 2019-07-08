@@ -26,140 +26,60 @@
                 "variant": "variant_code_11",
                 "id": @integer@,
                 "quantity": 1,
-                "price": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
-                "convertedPrice": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
                 "createdAt": "@string@.isDateTime()"
             },
             {
                 "variant": "variant_code_12",
                 "id": @integer@,
                 "quantity": 1,
-                "price": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
-                "convertedPrice": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
                 "createdAt": "@string@.isDateTime()"
             },
             {
                 "variant": "variant_code_13",
                 "id": @integer@,
                 "quantity": 1,
-                "price": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
-                "convertedPrice": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
                 "createdAt": "@string@.isDateTime()"
             },
             {
                 "variant": "variant_code_14",
                 "id": @integer@,
                 "quantity": 1,
-                "price": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
-                "convertedPrice": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
                 "createdAt": "@string@.isDateTime()"
             },
             {
                 "variant": "variant_code_15",
                 "id": @integer@,
                 "quantity": 1,
-                "price": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
-                "convertedPrice": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
                 "createdAt": "@string@.isDateTime()"
             },
             {
                 "variant": "variant_code_16",
                 "id": @integer@,
                 "quantity": 1,
-                "price": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
-                "convertedPrice": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
                 "createdAt": "@string@.isDateTime()"
             },
             {
                 "variant": "variant_code_17",
                 "id": @integer@,
                 "quantity": 1,
-                "price": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
-                "convertedPrice": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
                 "createdAt": "@string@.isDateTime()"
             },
             {
                 "variant": "variant_code_18",
                 "id": @integer@,
                 "quantity": 1,
-                "price": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
-                "convertedPrice": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
                 "createdAt": "@string@.isDateTime()"
             },
             {
                 "variant": "variant_code_19",
                 "id": @integer@,
                 "quantity": 1,
-                "price": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
-                "convertedPrice": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
                 "createdAt": "@string@.isDateTime()"
             },
             {
                 "variant": "variant_code_20",
                 "id": @integer@,
                 "quantity": 1,
-                "price": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
-                "convertedPrice": {
-                    "amount": @integer@,
-                    "currency": "@string@"
-                },
                 "createdAt": "@string@.isDateTime()"
             }
         ]

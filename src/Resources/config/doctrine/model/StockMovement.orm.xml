@@ -26,10 +26,6 @@
         <field name="quantity" type="integer" />
         <field name="variantCode" type="string" />
         <field name="reference" type="text" nullable="true"/>
-
-        <embedded name="price" class="Money\Money" />
-        <embedded name="convertedPrice" class="Money\Money" />
-
     </mapped-superclass>
 
 </doctrine-mapping>

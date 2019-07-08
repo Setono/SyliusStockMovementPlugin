@@ -3,8 +3,7 @@
   "message": "Validation Failed",
   "errors": {
     "errors": [
-      "Please, provide product variant code",
-      "Please, provide converted price"
+      "Please, provide product variant code"
     ],
     "children": {
       "quantity": {
@@ -13,12 +12,7 @@
         ]
       },
       "reference": {},
-      "variant": {},
-      "price": {
-        "errors": [
-          "Please, provide price"
-        ]
-      }
+      "variant": {}
     }
   }
 }

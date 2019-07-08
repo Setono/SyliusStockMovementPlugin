@@ -6,7 +6,6 @@
             <argument type="service" id="setono_sylius_stock_movement.factory.stock_movement"/>
             <argument type="service" id="setono_sylius_stock_movement.manager.stock_movement"/>
             <argument type="service" id="sylius.repository.product_variant"/>
-            <argument type="service" id="sylius.repository.currency"/>
             <tag name="sylius_fixtures.fixture" />
         </service>
     </services>

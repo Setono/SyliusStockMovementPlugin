@@ -41,12 +41,10 @@ setono_sylius_stock_movement:
             quantity: Quantity
             reference: Reference
             variant: Product variant
-            price: Price
     transport:
         email: Email
         ftp: FTP
     ui:
-        converted_price: Converted price
         created_at: Created
         download_report: Download report
         edit_report_configuration: Edit report configuration
@@ -57,7 +55,6 @@ setono_sylius_stock_movement:
         name: Name
         new_report_configuration: New report configuration
         new_stock_movement: New stock movement
-        price: Price
         process: Process
         reference: Reference
         report: Stock movement report

@@ -22,7 +22,6 @@ final class SetonoSyliusStockMovementExtension extends AbstractResourceExtension
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
 
-        $container->setParameter('setono_sylius_stock_movement.base_currency', $config['base_currency']);
         $container->setParameter('setono_sylius_stock_movement.filesystem.report', $config['report_filesystem']);
 
         $this->registerTemplateParameter($container, $config['templates']);

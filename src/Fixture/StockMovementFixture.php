@@ -8,13 +8,9 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Faker\Generator;
 use Faker\Provider\Biased;
-use Money\Currency;
-use Money\Money;
 use Setono\SyliusStockMovementPlugin\Factory\StockMovementFactoryInterface;
 use Sylius\Bundle\FixturesBundle\Fixture\AbstractFixture;
 use Sylius\Component\Core\Repository\ProductVariantRepositoryInterface;
-use Sylius\Component\Currency\Model\CurrencyInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 
 final class StockMovementFixture extends AbstractFixture
@@ -28,22 +24,17 @@ final class StockMovementFixture extends AbstractFixture
     /** @var ProductVariantRepositoryInterface */
     private $productVariantRepository;
 
-    /** @var RepositoryInterface */
-    private $currencyRepository;
-
     /** @var Generator */
     private $faker;
 
     public function __construct(
         StockMovementFactoryInterface $stockMovementFactory,
         ObjectManager $stockMovementManager,
-        ProductVariantRepositoryInterface $productVariantRepository,
-        RepositoryInterface $currencyRepository
+        ProductVariantRepositoryInterface $productVariantRepository
     ) {
         $this->stockMovementFactory = $stockMovementFactory;
         $this->stockMovementManager = $stockMovementManager;
         $this->productVariantRepository = $productVariantRepository;
-        $this->currencyRepository = $currencyRepository;
 
         $this->faker = Factory::create();
     }
@@ -56,16 +47,13 @@ final class StockMovementFixture extends AbstractFixture
     public function load(array $options): void
     {
         $productVariants = $this->productVariantRepository->findAll();
-        $currencies = $this->currencyRepository->findAll();
 
         for ($i = 0; $i < $options['amount']; ++$i) {
             $quantity = (int) $this->faker->biasedNumberBetween(1, 10, [Biased::class, 'linearLow']);
             $productVariant = $this->faker->randomElement($productVariants);
-            $currency = $this->faker->randomElement($currencies);
-            $price = $this->generatePrice($currency);
             $reference = $this->faker->text(40);
 
-            $stockMovement = $this->stockMovementFactory->createValid($quantity, $productVariant, $price, $reference);
+            $stockMovement = $this->stockMovementFactory->createValid($quantity, $productVariant, $reference);
 
             $this->stockMovementManager->persist($stockMovement);
 
@@ -84,12 +72,5 @@ final class StockMovementFixture extends AbstractFixture
                 ->integerNode('amount')->min(1)->isRequired()->end()
             ->end()
         ;
-    }
-
-    private function generatePrice(CurrencyInterface $currency): Money
-    {
-        $amount = $this->faker->numberBetween(100, 10000);
-
-        return new Money($amount, new Currency($currency->getCode()));
     }
 }
