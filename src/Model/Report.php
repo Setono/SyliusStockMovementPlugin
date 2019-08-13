@@ -21,9 +21,13 @@ class Report implements ReportInterface
     /** @var StockMovementInterface[]|Collection */
     protected $stockMovements;
 
+    /** @var ErrorInterface[]|Collection */
+    protected $errors;
+
     public function __construct()
     {
         $this->stockMovements = new ArrayCollection();
+        $this->errors = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -49,5 +53,25 @@ class Report implements ReportInterface
     public function addStockMovement(StockMovementInterface $stockMovement): void
     {
         $this->stockMovements->add($stockMovement);
+    }
+
+    public function getErrors(): Collection
+    {
+        return $this->errors;
+    }
+
+    public function addError(ErrorInterface $error): void
+    {
+        if ($this->hasError($error)) {
+            return;
+        }
+
+        $this->errors->add($error);
+        $error->setReport($this);
+    }
+
+    public function hasError(ErrorInterface $error): bool
+    {
+        return $this->errors->contains($error);
     }
 }

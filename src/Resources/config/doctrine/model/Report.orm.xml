@@ -34,6 +34,12 @@
             </join-table>
         </many-to-many>
 
+        <one-to-many field="errors" target-entity="Setono\SyliusStockMovementPlugin\Model\ErrorInterface" mapped-by="order" orphan-removal="true">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
+
     </mapped-superclass>
 
 </doctrine-mapping>

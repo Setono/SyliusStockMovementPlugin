@@ -20,4 +20,13 @@ interface ReportInterface extends ResourceInterface, TimestampableInterface
     public function getStockMovements(): Collection;
 
     public function addStockMovement(StockMovementInterface $stockMovement): void;
+
+    /**
+     * @return Collection|ErrorInterface[]
+     */
+    public function getErrors(): Collection;
+
+    public function addError(ErrorInterface $error): void;
+
+    public function hasError(ErrorInterface $error): bool;
 }
