@@ -43,15 +43,11 @@ class ReportGenerator implements ReportGeneratorInterface
         $report = $this->reportFactory->createNew();
         $report->setReportConfiguration($reportConfiguration);
 
-        $hasStockMovements = false;
-
         foreach ($this->stockMovementProvider->getStockMovements($reportConfiguration) as $stockMovement) {
             $report->addStockMovement($stockMovement);
-
-            $hasStockMovements = true;
         }
 
-        if (!$hasStockMovements) {
+        if ($report->getStockMovements()->count() === 0) {
             return null;
         }
 
