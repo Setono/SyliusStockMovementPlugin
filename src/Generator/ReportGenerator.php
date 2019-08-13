@@ -52,7 +52,7 @@ class ReportGenerator implements ReportGeneratorInterface
         }
 
         // todo this should be improved by adding these violations to the report object so the user can see the errors
-        $constraintViolationList = $this->validator->validate($report);
+        $constraintViolationList = $this->validator->validate($report, null, 'setono_sylius_stock_movement_report_validation');
         if ($constraintViolationList->count() > 0) {
             return null;
         }
