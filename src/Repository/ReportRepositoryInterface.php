@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setono\SyliusStockMovementPlugin\Repository;
 
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 interface ReportRepositoryInterface extends RepositoryInterface
@@ -16,4 +17,9 @@ interface ReportRepositoryInterface extends RepositoryInterface
      * Returns 0 if there are no stock movements on the respective reports
      */
     public function getLatestStockMovementIdOnAReport(ReportConfigurationInterface $reportConfiguration = null): int;
+
+    /**
+     * Will try to find a report based on the UUID property on the report
+     */
+    public function findByUuid(string $uuid): ?ReportInterface;
 }

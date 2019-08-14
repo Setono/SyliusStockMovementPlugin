@@ -62,16 +62,7 @@ setono_sylius_stock_movement_admin_report_configuration_process:
         _sylius:
             section: admin
             permission: true
-            
-setono_sylius_stock_movement_admin_report_download:
-    path: /reports/download/{id}
-    methods: [GET]
-    defaults:
-        _controller: setono_sylius_stock_movement.controller.action.download_report
-        _sylius:
-            section: admin
-            permission: true
-            
+    
 setono_sylius_stock_movement_admin_report_send:
     path: /reports/send/{id}
     methods: [GET]

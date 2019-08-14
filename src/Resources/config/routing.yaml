@@ -1,3 +1,6 @@
+setono_sylius_stock_movement_shop:
+    resource: "routing/shop.yaml"
+
 setono_sylius_stock_movement_admin:
     resource: "routing/admin.yaml"
     prefix: /admin

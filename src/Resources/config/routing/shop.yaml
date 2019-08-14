@@ -1,0 +1,6 @@
+# TODO Move this to a shop.yaml routing file
+setono_sylius_stock_movement_report_download:
+    path: /stock-movement-report/{uuid}
+    methods: [GET]
+    defaults:
+        _controller: setono_sylius_stock_movement.controller.action.download_report

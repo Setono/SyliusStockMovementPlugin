@@ -48,12 +48,12 @@ final class DownloadReportAction
      * @throws StringsException
      * @throws FileNotFoundException
      */
-    public function __invoke($id): StreamedResponse
+    public function __invoke(string $uuid): StreamedResponse
     {
         /** @var ReportInterface|null $report */
-        $report = $this->reportRepository->find($id);
+        $report = $this->reportRepository->findByUuid($uuid);
         if (null === $report) {
-            throw new NotFoundHttpException(sprintf('The report with id %s does not exist', $id));
+            throw new NotFoundHttpException(sprintf('The report with uuid %s does not exist', $uuid));
         }
 
         $reportPath = $this->reportPathResolver->resolve($report);

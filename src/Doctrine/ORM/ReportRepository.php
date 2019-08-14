@@ -6,6 +6,7 @@ namespace Setono\SyliusStockMovementPlugin\Doctrine\ORM;
 
 use Doctrine\ORM\NonUniqueResultException;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
+use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Setono\SyliusStockMovementPlugin\Repository\ReportRepositoryInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 
@@ -28,5 +29,15 @@ final class ReportRepository extends EntityRepository implements ReportRepositor
         }
 
         return (int) $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function findByUuid(string $uuid): ?ReportInterface
+    {
+        /** @var ReportInterface|null $report */
+        $report = $this->findOneBy([
+            'uuid' => $uuid,
+        ]);
+
+        return $report;
     }
 }

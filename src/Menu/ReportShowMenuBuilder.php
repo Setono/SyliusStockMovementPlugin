@@ -62,8 +62,8 @@ final class ReportShowMenuBuilder
 
         $menu
             ->addChild('download_report', [
-                'route' => 'setono_sylius_stock_movement_admin_report_download',
-                'routeParameters' => ['id' => $report->getId()],
+                'route' => 'setono_sylius_stock_movement_report_download',
+                'routeParameters' => ['uuid' => $report->getUuid()],
             ])
             ->setAttribute('type', 'link')
             ->setLabel('setono_sylius_stock_movement.ui.download_report')
