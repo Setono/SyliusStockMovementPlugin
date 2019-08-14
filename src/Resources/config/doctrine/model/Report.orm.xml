@@ -11,6 +11,8 @@
             <generator strategy="AUTO" />
         </id>
 
+        <field name="uuid" type="string" unique="true"/>
+
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create"/>
         </field>

@@ -6,6 +6,7 @@
     "require": {
         "php": "^7.2",
         "league/flysystem-bundle": "^1.1",
+        "ramsey/uuid": "^3.8",
         "setono/cron-expression-bundle": "^1.0.0",
         "sylius/resource-bundle": "^1.6@beta",
         "sylius/sylius": "^1.3",

@@ -6,7 +6,9 @@ namespace Setono\SyliusStockMovementPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Exception;
 use InvalidArgumentException;
+use Ramsey\Uuid\Uuid;
 use Safe\Exceptions\StringsException;
 use function Safe\sprintf;
 use Sylius\Component\Resource\Model\TimestampableTrait;
@@ -17,6 +19,9 @@ class Report implements ReportInterface
 
     /** @var int */
     protected $id;
+
+    /** @var string */
+    protected $uuid;
 
     /** @var string */
     protected $status = self::STATUS_SUCCESS;
@@ -30,8 +35,12 @@ class Report implements ReportInterface
     /** @var ErrorInterface[]|Collection */
     protected $errors;
 
+    /**
+     * @throws Exception
+     */
     public function __construct()
     {
+        $this->uuid = Uuid::uuid4()->toString();
         $this->stockMovements = new ArrayCollection();
         $this->errors = new ArrayCollection();
     }
@@ -39,6 +48,11 @@ class Report implements ReportInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getUuid(): string
+    {
+        return $this->uuid;
     }
 
     public function getStatus(): ?string

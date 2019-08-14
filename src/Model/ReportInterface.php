@@ -14,6 +14,8 @@ interface ReportInterface extends ResourceInterface, TimestampableInterface
 
     public const STATUS_ERROR = 'error';
 
+    public function getUuid(): string;
+
     public function getStatus(): ?string;
 
     public function setStatus(string $status): void;
