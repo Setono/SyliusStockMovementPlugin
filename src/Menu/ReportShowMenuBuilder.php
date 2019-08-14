@@ -6,14 +6,12 @@ namespace Setono\SyliusStockMovementPlugin\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
 use Setono\SyliusStockMovementPlugin\Event\ReportShowMenuBuilderEvent;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 final class ReportShowMenuBuilder
 {
-    public const EVENT_NAME = 'setono_sylius_stock_movement.menu.admin.report.show';
-
     /** @var FactoryInterface */
     private $factory;
 
