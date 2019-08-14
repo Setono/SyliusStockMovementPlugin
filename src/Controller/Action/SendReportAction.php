@@ -33,6 +33,8 @@ final class SendReportAction
 
     public function __invoke($id)
     {
+        // todo fetch the report from the repository and make a check if it's successful. If not set a property flash message to enhance the UX
+
         $this->commandBus->dispatch(new SendReport($id));
 
         $this->flashBag->add('success', 'setono_sylius_stock_movement.report_sent');
