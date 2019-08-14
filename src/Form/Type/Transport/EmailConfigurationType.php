@@ -40,14 +40,14 @@ final class EmailConfigurationType extends AbstractType
                 'label' => 'setono_sylius_stock_movement.form.report_configuration_transport.email_configuration.subject',
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'setono_sylius_stock_movement.form.report_configuration_transport.email_configuration.email_subject_body_placeholder',
+                    'placeholder' => 'setono_sylius_stock_movement.form.report_configuration_transport.email_configuration.subject_placeholder',
                 ],
             ])
             ->add('body', TextareaType::class, [
                 'label' => 'setono_sylius_stock_movement.form.report_configuration_transport.email_configuration.body',
                 'required' => false,
                 'attr' => [
-                    'placeholder' => 'setono_sylius_stock_movement.form.report_configuration_transport.email_configuration.email_subject_body_placeholder',
+                    'placeholder' => 'setono_sylius_stock_movement.form.report_configuration_transport.email_configuration.body_placeholder',
                 ],
             ])
         ;

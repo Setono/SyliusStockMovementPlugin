@@ -9,38 +9,47 @@ setono_sylius_stock_movement:
             filters: Filters
             name: Name
             name_placeholder: The name is only used as a reference
-            type: Type
             schedule: Schedule
             template: Template
             transports: Transports
-        report_configuration_filter:
             type: Type
+        report_configuration_filter:
             created_after_configuration:
                 date: Date & time
             id_greater_than_configuration:
                 id: Id
                 id_placeholder: If you don't input anything here it will use the latest id when the report is created
-        report_configuration_transport:
             type: Type
+        report_configuration_transport:
             email_configuration:
+                bcc: BCC
+                body: Body
+                body_placeholder: You can use the variable %report_id% to insert the report id and %report_url% to insert the link to the report
+                cc: CC
+                subject: Subject
+                subject_placeholder: You can use the variable %report_id% to insert the report id
                 to: Recipient
                 to_placeholder: email1@example.com, email2@example.com
-                cc: CC
-                bcc: BCC
-                subject: Subject
-                body: Body
-                email_subject_body_placeholder: You can use the variable %report_id% to insert the report id
             ftp_configuration:
                 host: Host
-                username: Username
                 password: Password
+                path: Path
                 port: Port
                 port_placeholder: Default port is 21
-                path: Path
+                username: Username
+            type: Type
         stock_movement:
             quantity: Quantity
             reference: Reference
             variant: Product variant
+    menu:
+        admin:
+            main:
+                stock:
+                    header: Stock
+                    stock_movements: Stock movements
+                    report_configurations: Report configurations
+                    reports: Reports
     transport:
         email: Email
         ftp: FTP
@@ -57,6 +66,7 @@ setono_sylius_stock_movement:
         new_report_configuration: New report configuration
         new_stock_movement: New stock movement
         process: Process
+        quantity: Quantity
         reference: Reference
         report: Stock movement report
         reports: Stock movement reports
@@ -68,12 +78,4 @@ setono_sylius_stock_movement:
         stock_movements: Stock movements
         transports_and_filters: Transports and filters
         variant: Product variant
-        quantity: Quantity
-    menu:
-        admin:
-            main:
-                stock:
-                    header: Stock
-                    stock_movements: Stock movements
-                    report_configurations: Report configurations
-                    reports: Reports
+    
