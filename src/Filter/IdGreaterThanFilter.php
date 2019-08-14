@@ -28,9 +28,6 @@ final class IdGreaterThanFilter extends Filter
         $latestId = $configuration['id'] ?? null;
         if (null === $latestId) {
             $latestId = $this->reportRepository->getLatestStockMovementIdOnAReport($reportConfiguration);
-            if (null === $latestId) {
-                return;
-            }
         }
 
         $alias = $this->getRootAlias($queryBuilder);

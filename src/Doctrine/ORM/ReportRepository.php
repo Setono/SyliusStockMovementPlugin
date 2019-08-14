@@ -14,7 +14,7 @@ final class ReportRepository extends EntityRepository implements ReportRepositor
     /**
      * @throws NonUniqueResultException
      */
-    public function getLatestStockMovementIdOnAReport(ReportConfigurationInterface $reportConfiguration = null): ?int
+    public function getLatestStockMovementIdOnAReport(ReportConfigurationInterface $reportConfiguration = null): int
     {
         $qb = $this->createQueryBuilder('r');
         $qb->select('MAX(s.id)')
@@ -27,11 +27,6 @@ final class ReportRepository extends EntityRepository implements ReportRepositor
             ;
         }
 
-        $res = $qb->getQuery()->getSingleScalarResult();
-        if (null === $res) {
-            return null;
-        }
-
-        return (int) $res;
+        return (int) $qb->getQuery()->getSingleScalarResult();
     }
 }
