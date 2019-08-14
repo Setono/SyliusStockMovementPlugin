@@ -49,7 +49,7 @@ final class EmailTransport implements TransportInterface
             return "Hi\n\nDownload the stock movement report here:\n\n$reportUrl";
         }
 
-        if(strpos($body, '%report_url%') === false) {
+        if (strpos($body, '%report_url%') === false) {
             $body .= "\n\n%report_url%";
         }
 
