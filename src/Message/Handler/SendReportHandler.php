@@ -46,6 +46,10 @@ class SendReportHandler implements MessageHandlerInterface
             throw new InvalidArgumentException(sprintf('The report with id %s was not found', $message->getReportId())); // todo better exception
         }
 
+        if (!$report->isSuccessful()) {
+            throw new InvalidArgumentException(sprintf('The status of the report with id %s is not successful', $report->getId())); // todo better exception
+        }
+
         $reportConfiguration = $report->getReportConfiguration();
 
         if (null === $reportConfiguration) {
