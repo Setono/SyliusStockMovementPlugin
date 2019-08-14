@@ -45,7 +45,7 @@ class ProcessReportConfigurationHandler implements MessageHandlerInterface
         $reportConfiguration = $this->reportConfigurationRepository->find($message->getReportConfigurationId());
 
         if (null === $reportConfiguration) {
-            throw new InvalidArgumentException(sprintf('The report configuration with id %s was not found', $message->getReportConfigurationId())); // todo better exception
+            throw new InvalidArgumentException(sprintf('The report configuration with id %s was not found', $message->getReportConfigurationId()));
         }
 
         $report = $this->reportGenerator->generate($reportConfiguration);

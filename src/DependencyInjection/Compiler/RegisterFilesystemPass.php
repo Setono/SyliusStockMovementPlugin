@@ -4,18 +4,42 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\DependencyInjection\Compiler;
 
+use League\Flysystem\FilesystemInterface;
+use Safe\Exceptions\StringsException;
+use function Safe\sprintf;
+use Symfony\Component\Config\Definition\Exception\InvalidDefinitionException;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class RegisterFilesystemPass implements CompilerPassInterface
 {
+    private const PARAMETER = 'setono_sylius_stock_movement.filesystem.report';
+
+    /**
+     * @throws StringsException
+     */
     public function process(ContainerBuilder $container): void
     {
-        if (!$container->hasParameter('setono_sylius_stock_movement.filesystem.report')) {
+        if (!$container->hasParameter(self::PARAMETER)) {
             return;
         }
 
-        // todo add some check for existence of service and interface
-        $container->setAlias('setono_sylius_stock_movement.storage.report', $container->getParameter('setono_sylius_stock_movement.filesystem.report'));
+        $parameterValue = $container->getParameter(self::PARAMETER);
+        if (!$container->hasDefinition($parameterValue)) {
+            return;
+        }
+
+        $definition = $container->getDefinition($parameterValue);
+        if (!is_a($definition->getClass(), FilesystemInterface::class, true)) {
+            throw new InvalidDefinitionException(sprintf(
+                'The config parameter "%s" references a service %s, which is not an instance of %s. Fix this by creating a valid service that implements %s.',
+                self::PARAMETER,
+                $definition->getClass(),
+                FilesystemInterface::class,
+                FilesystemInterface::class
+            ));
+        }
+
+        $container->setAlias('setono_sylius_stock_movement.storage.report', $parameterValue);
     }
 }

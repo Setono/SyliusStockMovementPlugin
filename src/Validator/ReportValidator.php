@@ -31,7 +31,7 @@ final class ReportValidator implements ReportValidatorInterface
         $report->clearErrors();
         $report->setStatus(ReportInterface::STATUS_SUCCESS);
 
-        $constraintViolationList = $this->validator->validate($report, null, $this->validationGroups); // todo make this validation group a parameter
+        $constraintViolationList = $this->validator->validate($report, null, $this->validationGroups);
         if ($constraintViolationList->count() > 0) {
             foreach ($constraintViolationList as $constraintViolation) {
                 $error = $this->errorFactory->createFromConstraintViolation($constraintViolation);

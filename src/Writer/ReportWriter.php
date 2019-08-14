@@ -54,7 +54,6 @@ class ReportWriter implements ReportWriterInterface
     public function write(ReportInterface $report): string
     {
         $key = $this->reportPathResolver->resolve($report);
-        // todo should we provide some kind of 'overwrite' parameter?
         if ($this->filesystem->has($key)) {
             return $key;
         }

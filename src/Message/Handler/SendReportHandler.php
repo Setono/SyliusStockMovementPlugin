@@ -7,6 +7,7 @@ namespace Setono\SyliusStockMovementPlugin\Message\Handler;
 use InvalidArgumentException;
 use Safe\Exceptions\StringsException;
 use function Safe\sprintf;
+use Setono\SyliusStockMovementPlugin\Exception\UnexpectedStatusException;
 use Setono\SyliusStockMovementPlugin\Message\Command\SendReport;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Setono\SyliusStockMovementPlugin\Repository\ReportRepositoryInterface;
@@ -43,17 +44,17 @@ class SendReportHandler implements MessageHandlerInterface
         /** @var ReportInterface|null $report */
         $report = $this->reportRepository->find($message->getReportId());
         if (null === $report) {
-            throw new InvalidArgumentException(sprintf('The report with id %s was not found', $message->getReportId())); // todo better exception
+            throw new InvalidArgumentException(sprintf('The report with id %s was not found', $message->getReportId()));
         }
 
         if (!$report->isSuccessful()) {
-            throw new InvalidArgumentException(sprintf('The status of the report with id %s is not successful', $report->getId())); // todo better exception
+            throw new UnexpectedStatusException($report->getStatus(), ReportInterface::STATUS_SUCCESS);
         }
 
         $reportConfiguration = $report->getReportConfiguration();
 
         if (null === $reportConfiguration) {
-            throw new InvalidArgumentException(sprintf('No report configuration associated with report %s', $report->getId())); // todo better exception
+            throw new InvalidArgumentException(sprintf('No report configuration associated with report %s', $report->getId()));
         }
 
         $file = $this->reportWriter->write($report);
