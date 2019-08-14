@@ -6,6 +6,9 @@ namespace Setono\SyliusStockMovementPlugin\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use InvalidArgumentException;
+use Safe\Exceptions\StringsException;
+use function Safe\sprintf;
 use Sylius\Component\Resource\Model\TimestampableTrait;
 
 class Report implements ReportInterface
@@ -14,6 +17,9 @@ class Report implements ReportInterface
 
     /** @var int */
     protected $id;
+
+    /** @var string */
+    protected $status = self::STATUS_SUCCESS;
 
     /** @var ReportConfigurationInterface */
     protected $reportConfiguration;
@@ -33,6 +39,40 @@ class Report implements ReportInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    /**
+     * @throws StringsException
+     */
+    public function setStatus(string $status): void
+    {
+        if (!in_array($status, self::getStatuses(), true)) {
+            throw new InvalidArgumentException(sprintf('The status "%s" is not allowed. Allowed statuses are: ["%s"]', $status, implode('", "', self::getStatuses())));
+        }
+        $this->status = $status;
+    }
+
+    public function isSuccessful(): bool
+    {
+        return self::STATUS_SUCCESS === $this->status;
+    }
+
+    public function isErrored(): bool
+    {
+        return self::STATUS_ERROR === $this->status;
+    }
+
+    public static function getStatuses(): array
+    {
+        return [
+            self::STATUS_SUCCESS => self::STATUS_SUCCESS,
+            self::STATUS_ERROR => self::STATUS_ERROR,
+        ];
     }
 
     public function getReportConfiguration(): ?ReportConfigurationInterface
@@ -73,5 +113,14 @@ class Report implements ReportInterface
     public function hasError(ErrorInterface $error): bool
     {
         return $this->errors->contains($error);
+    }
+
+    public function clearErrors(): void
+    {
+        foreach ($this->errors as $error) {
+            $error->setReport(null);
+        }
+
+        $this->errors->clear();
     }
 }
