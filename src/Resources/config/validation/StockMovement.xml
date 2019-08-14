@@ -19,7 +19,13 @@
             </constraint>
         </property>
 
-        <!-- todo validate the property 'variant' on creation -->
+        <property name="variant">
+            <constraint name="Type">
+                <option name="type">Sylius\Component\Product\Model\ProductVariantInterface</option>
+                <option name="message">setono_sylius_stock_movement.stock_movement.variant.type</option>
+                <option name="groups">setono_sylius_stock_movement</option>
+            </constraint>
+        </property>
 
         <property name="variantCode">
             <constraint name="NotBlank">
