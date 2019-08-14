@@ -30,7 +30,7 @@ class Error implements ErrorInterface
         return $this->report;
     }
 
-    public function setReport(ReportInterface $report): void
+    public function setReport(?ReportInterface $report): void
     {
         $this->report = $report;
     }

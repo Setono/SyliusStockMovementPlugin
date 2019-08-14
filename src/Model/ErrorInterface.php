@@ -12,7 +12,7 @@ interface ErrorInterface extends ResourceInterface
 
     public function getReport(): ?ReportInterface;
 
-    public function setReport(ReportInterface $report): void;
+    public function setReport(?ReportInterface $report): void;
 
     public function getMessage(): ?string;
 
