@@ -14,6 +14,7 @@ use function Safe\fopen;
 use function Safe\fwrite;
 use function Safe\ob_end_clean;
 use function Safe\sprintf;
+use function Safe\unlink;
 use Setono\SyliusStockMovementPlugin\Exception\BlockNotPresentException;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Setono\SyliusStockMovementPlugin\Resolver\ReportPathResolverInterface;
@@ -91,6 +92,8 @@ class ReportWriter implements ReportWriterInterface
         try {
             // tries to close the file pointer although it may already have been closed by flysystem
             fclose($fp);
+
+            unlink($path);
         } catch (FilesystemException $e) {
         }
 
