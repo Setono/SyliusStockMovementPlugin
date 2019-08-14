@@ -6,7 +6,7 @@ namespace Setono\SyliusStockMovementPlugin\Message\Command;
 
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 
-final class ProcessReportConfiguration
+final class ProcessReportConfiguration implements CommandInterface
 {
     /** @var mixed */
     private $reportConfigurationId;
