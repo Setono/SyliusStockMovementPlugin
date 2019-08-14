@@ -6,6 +6,7 @@ namespace Setono\SyliusStockMovementPlugin\Writer;
 
 use InvalidArgumentException;
 use League\Flysystem\FilesystemInterface;
+use RuntimeException;
 use Safe\Exceptions\FilesystemException;
 use Safe\Exceptions\OutcontrolException;
 use Safe\Exceptions\StringsException;
@@ -58,7 +59,7 @@ class ReportWriter implements ReportWriterInterface
 
         $reportConfiguration = $report->getReportConfiguration();
         if (null === $reportConfiguration) {
-            throw new \RuntimeException(sprintf('No report configuration associated with report %s', $report->getId()));
+            throw new RuntimeException(sprintf('No report configuration associated with report %s', $report->getId()));
         }
 
         $template = $this->twig->load($reportConfiguration->getTemplate());

@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace Setono\SyliusStockMovementPlugin\Resolver;
 
 use InvalidArgumentException;
+use RuntimeException;
 use Safe\Exceptions\StringsException;
 use function Safe\sprintf;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
+use Throwable;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -25,7 +27,7 @@ final class ReportPathResolver implements ReportPathResolverInterface
 
     /**
      * @throws StringsException
-     * @throws \Throwable
+     * @throws Throwable
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -34,7 +36,7 @@ final class ReportPathResolver implements ReportPathResolverInterface
     {
         $reportConfiguration = $report->getReportConfiguration();
         if (null === $reportConfiguration) {
-            throw new \RuntimeException(sprintf('No report configuration associated with report %s', $report->getId()));
+            throw new RuntimeException(sprintf('No report configuration associated with report %s', $report->getId()));
         }
 
         $template = $this->twig->load($reportConfiguration->getTemplate());

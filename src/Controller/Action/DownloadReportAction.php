@@ -6,6 +6,7 @@ namespace Setono\SyliusStockMovementPlugin\Controller\Action;
 
 use League\Flysystem\FileNotFoundException;
 use League\Flysystem\FilesystemInterface;
+use RuntimeException;
 use Safe\Exceptions\StringsException;
 use function Safe\fread;
 use function Safe\sprintf;
@@ -63,7 +64,7 @@ final class DownloadReportAction
 
         $stream = $this->filesystem->readStream($reportPath);
         if (false === $stream) {
-            throw new \RuntimeException(sprintf('Could not open %s for reading', $reportPath));
+            throw new RuntimeException(sprintf('Could not open %s for reading', $reportPath));
         }
 
         $response = new StreamedResponse();
