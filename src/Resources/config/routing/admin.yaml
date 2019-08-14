@@ -80,3 +80,12 @@ setono_sylius_stock_movement_admin_report_send:
         _sylius:
             section: admin
             permission: true
+            
+setono_sylius_stock_movement_admin_report_revalidate:
+    path: /reports/revalidate/{id}
+    methods: [GET]
+    defaults:
+        _controller: setono_sylius_stock_movement.controller.action.revalidate
+        _sylius:
+            section: admin
+            permission: true

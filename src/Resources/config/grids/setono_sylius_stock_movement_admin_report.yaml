@@ -9,6 +9,9 @@ sylius_grid:
                 id:
                     type: string
                     label: setono_sylius_stock_movement.ui.id
+                status:
+                    type: string
+                    label: setono_sylius_stock_movement.ui.status
                 reportConfiguration:
                     type: string
                     label: setono_sylius_stock_movement.ui.report_configuration

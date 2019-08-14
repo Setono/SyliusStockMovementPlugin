@@ -7,9 +7,9 @@ namespace Setono\SyliusStockMovementPlugin\Generator;
 use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Setono\SyliusStockMovementPlugin\Provider\StockMovementProviderInterface;
+use Setono\SyliusStockMovementPlugin\Validator\ReportValidatorInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ReportGenerator implements ReportGeneratorInterface
 {
@@ -22,19 +22,19 @@ class ReportGenerator implements ReportGeneratorInterface
     /** @var StockMovementProviderInterface */
     private $stockMovementProvider;
 
-    /** @var ValidatorInterface */
-    private $validator;
+    /** @var ReportValidatorInterface */
+    private $reportValidator;
 
     public function __construct(
         FactoryInterface $reportFactory,
         RepositoryInterface $reportRepository,
         StockMovementProviderInterface $stockMovementProvider,
-        ValidatorInterface $validator
+        ReportValidatorInterface $reportValidator
     ) {
         $this->reportFactory = $reportFactory;
         $this->reportRepository = $reportRepository;
         $this->stockMovementProvider = $stockMovementProvider;
-        $this->validator = $validator;
+        $this->reportValidator = $reportValidator;
     }
 
     public function generate(ReportConfigurationInterface $reportConfiguration): ?ReportInterface
@@ -51,11 +51,7 @@ class ReportGenerator implements ReportGeneratorInterface
             return null;
         }
 
-        // todo this should be improved by adding these violations to the report object so the user can see the errors
-        $constraintViolationList = $this->validator->validate($report, null, 'setono_sylius_stock_movement_report_validation');
-        if ($constraintViolationList->count() > 0) {
-            return null;
-        }
+        $this->reportValidator->validate($report);
 
         $this->reportRepository->add($report);
 

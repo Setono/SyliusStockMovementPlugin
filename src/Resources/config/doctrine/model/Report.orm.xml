@@ -19,6 +19,8 @@
             <gedmo:timestampable on="update"/>
         </field>
 
+        <field name="status" type="string"/>
+
         <many-to-one field="reportConfiguration" target-entity="Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface">
             <join-column on-delete="SET NULL" />
         </many-to-one>
@@ -33,6 +35,12 @@
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
+
+        <one-to-many field="errors" target-entity="Setono\SyliusStockMovementPlugin\Model\ErrorInterface" mapped-by="report" orphan-removal="true">
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
 
     </mapped-superclass>
 

@@ -7,6 +7,8 @@
             <argument type="service" id="setono_sylius_stock_movement.factory.report"/>
             <argument type="service" id="setono_sylius_stock_movement.repository.report"/>
             <argument type="service" id="setono_sylius_stock_movement.provider.stock_movement"/>
+            <argument type="service" id="validator"/>
+            <argument type="service" id="setono_sylius_stock_movement.factory.error"/>
         </service>
 
     </services>

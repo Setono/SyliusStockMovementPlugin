@@ -30,5 +30,11 @@
 
             {{ sonata_block_render_event('setono_sylius_stock_movement.admin.report.show.after_stock_movements', {'resource': resource}) }}
 
+            {{ sonata_block_render_event('setono_sylius_stock_movement.admin.report.show.before_errors', {'resource': resource}) }}
+
+            {% include '@SetonoSyliusStockMovementPlugin/Report/Show/_errors.html.twig' %}
+
+            {{ sonata_block_render_event('setono_sylius_stock_movement.admin.report.show.after_errors', {'resource': resource}) }}
+
     {{ sonata_block_render_event('setono_sylius_stock_movement.admin.report.show.after_content', {'resource': resource}) }}
 {% endblock %}

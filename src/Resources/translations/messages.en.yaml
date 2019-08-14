@@ -48,6 +48,7 @@ setono_sylius_stock_movement:
         created_at: Created
         download_report: Download report
         edit_report_configuration: Edit report configuration
+        error: Error
         id: Id
         manage_reports: Manage stock movement reports
         manage_report_configurations: Manage report configurations
@@ -61,7 +62,9 @@ setono_sylius_stock_movement:
         reports: Stock movement reports
         report_configuration: Report configuration
         report_configurations: Report configurations
+        revalidate: Revalidate
         send_report: Send report
+        status: Status
         stock_movements: Stock movements
         transports_and_filters: Transports and filters
         variant: Product variant

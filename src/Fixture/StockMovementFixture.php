@@ -49,7 +49,10 @@ final class StockMovementFixture extends AbstractFixture
         $productVariants = $this->productVariantRepository->findAll();
 
         for ($i = 0; $i < $options['amount']; ++$i) {
-            $quantity = (int) $this->faker->biasedNumberBetween(1, 10, [Biased::class, 'linearLow']);
+            do {
+                $quantity = (int) $this->faker->biasedNumberBetween(-10, 10, [Biased::class, 'linearLow']);
+            } while (0 === $quantity);
+
             $productVariant = $this->faker->randomElement($productVariants);
             $reference = $this->faker->text(40);
 

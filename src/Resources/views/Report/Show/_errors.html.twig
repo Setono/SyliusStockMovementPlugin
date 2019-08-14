@@ -1,0 +1,21 @@
+{# @var \Setono\SyliusStockMovementPlugin\Model\ReportInterface report #}
+{% if not report.errors.empty %}
+    <div class="ui segment">
+        <table class="ui celled compact small table">
+            <thead>
+            <tr>
+                <th class="center aligned">{{ 'setono_sylius_stock_movement.ui.error'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in report.errors %}
+                <tr>
+                    <td class="left aligned">
+                        {{ item }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endif %}
