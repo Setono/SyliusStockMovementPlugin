@@ -5,7 +5,6 @@
         <service id="setono_sylius_stock_movement.controller.action.download_report" class="Setono\SyliusStockMovementPlugin\Controller\Action\DownloadReportAction">
             <argument type="service" id="setono_sylius_stock_movement.repository.report"/>
             <argument type="service" id="setono_sylius_stock_movement.writer.report"/>
-            <argument type="service" id="setono_sylius_stock_movement.resolver.report_path"/>
             <argument type="service" id="setono_sylius_stock_movement.storage.report"/>
             <tag name="controller.service_arguments"/>
         </service>
@@ -21,6 +20,7 @@
             <argument type="service" id="setono_sylius_stock_movement.command_bus"/>
             <argument type="service" id="router"/>
             <argument type="service" id="session.flash_bag"/>
+            <argument type="service" id="setono_sylius_stock_movement.repository.report"/>
             <tag name="controller.service_arguments"/>
         </service>
 

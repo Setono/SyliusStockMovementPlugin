@@ -2,5 +2,6 @@ setono_sylius_stock_movement:
     report_configuration_processed: Report configuration processed
     report_is_valid: Report is valid
     report_is_invalid: Report is invalid
+    report_not_sent: The report was not sent because the status not 'success'
     report_sent: Report sent
     
