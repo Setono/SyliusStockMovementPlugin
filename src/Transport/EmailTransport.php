@@ -43,10 +43,14 @@ final class EmailTransport implements TransportInterface
 
     private function resolveBody(?string $body, ReportInterface $report): string
     {
-        $reportUrl = $this->router->generate('setono_sylius_stock_movement_admin_report_download', ['id' => $report->getId()], RouterInterface::ABSOLUTE_URL);
+        $reportUrl = $this->router->generate('setono_sylius_stock_movement_report_download', ['uuid' => $report->getUuid()], RouterInterface::ABSOLUTE_URL);
 
-        if (null === $body) {
+        if (null === $body || '' === $body) {
             return "Hi\n\nDownload the stock movement report here:\n\n$reportUrl";
+        }
+
+        if(strpos($body, '%report_url%') === false) {
+            $body .= "\n\n%report_url%";
         }
 
         $body = str_replace('%report_url%', $reportUrl, $body);
