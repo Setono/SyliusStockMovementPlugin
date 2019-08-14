@@ -35,7 +35,7 @@ final class EmailTransport implements TransportInterface
     private function resolveSubject(?string $subject, ReportInterface $report): string
     {
         if (null === $subject) {
-            return 'Report';
+            return 'Stock movement report ' . $report->getId();
         }
 
         return $this->resolvePlaceholders($subject, $report);
