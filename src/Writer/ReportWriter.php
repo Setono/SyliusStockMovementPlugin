@@ -21,6 +21,7 @@ use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
+use function Safe\fclose;
 
 class ReportWriter implements ReportWriterInterface
 {
@@ -90,7 +91,18 @@ class ReportWriter implements ReportWriterInterface
 
         ob_end_clean();
 
-        $this->filesystem->writeStream($key, $fp); // todo throw exception if it returns false
+        $res = $this->filesystem->writeStream($key, $fp);
+
+        try {
+            // tries to close the file pointer although it may already have been closed by flysystem
+            fclose($fp);
+        } catch (FilesystemException $e) {
+
+        }
+
+        if(false === $res) {
+            throw new RuntimeException(sprintf('An error occurred when trying to write the report %s', $key));
+        }
 
         return $key;
     }
