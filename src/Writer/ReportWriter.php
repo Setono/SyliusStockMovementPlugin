@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Writer;
 
-use InvalidArgumentException;
 use League\Flysystem\FilesystemInterface;
 use RuntimeException;
 use Safe\Exceptions\FilesystemException;
 use Safe\Exceptions\OutcontrolException;
 use Safe\Exceptions\StringsException;
+use function Safe\fclose;
 use function Safe\fopen;
 use function Safe\fwrite;
 use function Safe\ob_end_clean;
 use function Safe\sprintf;
+use Setono\SyliusStockMovementPlugin\Exception\BlockNotPresentException;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Setono\SyliusStockMovementPlugin\Resolver\ReportPathResolverInterface;
 use Throwable;
@@ -21,7 +22,6 @@ use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
-use function Safe\fclose;
 
 class ReportWriter implements ReportWriterInterface
 {
@@ -68,12 +68,7 @@ class ReportWriter implements ReportWriterInterface
         $definedBlocks = $template->getBlockNames();
         foreach (['extension', 'body'] as $block) {
             if (!in_array($block, $definedBlocks, true)) {
-                throw new InvalidArgumentException(sprintf(
-                    'The block "%s" is not present in the defined blocks ["%s"] of your template %s',
-                    $block,
-                    implode('", "', $definedBlocks),
-                    $reportConfiguration->getTemplate()
-                )); // todo better exception
+                throw new BlockNotPresentException($block, $definedBlocks, (string) $reportConfiguration->getTemplate());
             }
         }
 
@@ -97,10 +92,9 @@ class ReportWriter implements ReportWriterInterface
             // tries to close the file pointer although it may already have been closed by flysystem
             fclose($fp);
         } catch (FilesystemException $e) {
-
         }
 
-        if(false === $res) {
+        if (false === $res) {
             throw new RuntimeException(sprintf('An error occurred when trying to write the report %s', $key));
         }
 
