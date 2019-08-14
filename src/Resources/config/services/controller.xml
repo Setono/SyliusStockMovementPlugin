@@ -23,5 +23,15 @@
             <argument type="service" id="session.flash_bag"/>
             <tag name="controller.service_arguments"/>
         </service>
+
+        <service id="setono_sylius_stock_movement.controller.action.revalidate" class="Setono\SyliusStockMovementPlugin\Controller\Action\RevalidateAction">
+            <argument type="service" id="router"/>
+            <argument type="service" id="session.flash_bag"/>
+            <argument type="service" id="setono_sylius_stock_movement.repository.report"/>
+            <argument type="service" id="setono_sylius_stock_movement.manager.report"/>
+            <argument type="service" id="setono_sylius_stock_movement.validator.report"/>
+            <argument>%setono_sylius_stock_movement.validation_groups.report_validation%</argument>
+            <tag name="controller.service_arguments"/>
+        </service>
     </services>
 </container>

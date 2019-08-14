@@ -11,6 +11,14 @@
                 <div class="item">
                     {{ report.createdAt|format_datetime }}
                 </div>
+                <div class="item">
+                    {# todo make this better #}
+                    {% if report.successful %}
+                        <span class="ui green label">{{ report.status }}</span>
+                    {% else %}
+                        <span class="ui red label">{{ report.status }}</span>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
