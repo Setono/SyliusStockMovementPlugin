@@ -22,6 +22,7 @@ class DueReportConfigurationProvider implements ReportConfigurationProviderInter
         /** @var ReportConfigurationInterface[] $reportConfigurations */
         $reportConfigurations = $this->reportConfigurationRepository->findAll();
 
+        // notice that array keys are preserved when using array_filter (https://www.php.net/array_filter)
         return array_filter($reportConfigurations, static function (ReportConfigurationInterface $reportConfiguration) {
             $schedule = $reportConfiguration->getSchedule();
 
