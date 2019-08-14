@@ -7,6 +7,7 @@ namespace Setono\SyliusStockMovementPlugin\Menu;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 use Setono\SyliusStockMovementPlugin\Event\ReportShowMenuBuilderEvent;
+use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 final class ReportShowMenuBuilder
@@ -35,15 +36,29 @@ final class ReportShowMenuBuilder
 
         $report = $options['report'];
 
-        $menu
-            ->addChild('send_report', [
-                'route' => 'setono_sylius_stock_movement_admin_report_send',
-                'routeParameters' => ['id' => $report->getId()],
-            ])
-            ->setAttribute('type', 'link')
-            ->setLabel('setono_sylius_stock_movement.ui.send_report')
-            ->setLabelAttribute('icon', 'paper plane')
-        ;
+        if (!$report instanceof ReportInterface) {
+            return $menu;
+        }
+
+        if ($report->isSuccessful()) {
+            $menu
+                ->addChild('send_report', [
+                    'route' => 'setono_sylius_stock_movement_admin_report_send',
+                    'routeParameters' => ['id' => $report->getId()],
+                ])
+                ->setAttribute('type', 'link')
+                ->setLabel('setono_sylius_stock_movement.ui.send_report')
+                ->setLabelAttribute('icon', 'paper plane');
+        } else {
+            $menu
+                ->addChild('revalidate', [
+                    'route' => 'setono_sylius_stock_movement_admin_report_revalidate',
+                    'routeParameters' => ['id' => $report->getId()],
+                ])
+                ->setAttribute('type', 'link')
+                ->setLabel('setono_sylius_stock_movement.ui.revalidate')
+                ->setLabelAttribute('icon', 'redo');
+        }
 
         $menu
             ->addChild('download_report', [
