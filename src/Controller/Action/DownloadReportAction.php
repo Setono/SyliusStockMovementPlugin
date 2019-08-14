@@ -12,7 +12,6 @@ use function Safe\fread;
 use function Safe\sprintf;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Setono\SyliusStockMovementPlugin\Repository\ReportRepositoryInterface;
-use Setono\SyliusStockMovementPlugin\Resolver\ReportPathResolverInterface;
 use Setono\SyliusStockMovementPlugin\Writer\ReportWriterInterface;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 use Symfony\Component\HttpFoundation\StreamedResponse;
@@ -26,21 +25,16 @@ final class DownloadReportAction
     /** @var ReportWriterInterface */
     private $reportWriter;
 
-    /** @var ReportPathResolverInterface */
-    private $reportPathResolver;
-
     /** @var FilesystemInterface */
     private $filesystem;
 
     public function __construct(
         ReportRepositoryInterface $reportRepository,
         ReportWriterInterface $reportWriter,
-        ReportPathResolverInterface $reportPathResolver,
         FilesystemInterface $filesystem
     ) {
         $this->reportRepository = $reportRepository;
         $this->reportWriter = $reportWriter;
-        $this->reportPathResolver = $reportPathResolver;
         $this->filesystem = $filesystem;
     }
 
@@ -56,11 +50,7 @@ final class DownloadReportAction
             throw new NotFoundHttpException(sprintf('The report with uuid %s does not exist', $uuid));
         }
 
-        $reportPath = $this->reportPathResolver->resolve($report);
-
-        if (!$this->filesystem->has($reportPath)) {
-            $this->reportWriter->write($report);
-        }
+        $reportPath = $this->reportWriter->write($report);
 
         $stream = $this->filesystem->readStream($reportPath);
         if (false === $stream) {
