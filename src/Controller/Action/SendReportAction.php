@@ -25,9 +25,8 @@ final class SendReportAction
 
     /** @var FlashBagInterface */
     private $flashBag;
-    /**
-     * @var ReportRepositoryInterface
-     */
+
+    /** @var ReportRepositoryInterface */
     private $reportRepository;
 
     public function __construct(
@@ -49,11 +48,11 @@ final class SendReportAction
     {
         /** @var ReportInterface|null $report */
         $report = $this->reportRepository->find($id);
-        if(null === $report) {
+        if (null === $report) {
             throw new NotFoundHttpException(sprintf('The report with id %s was not found', $id));
         }
 
-        if($report->isSuccessful()) {
+        if ($report->isSuccessful()) {
             $this->commandBus->dispatch(new SendReport($id));
 
             $this->flashBag->add('success', 'setono_sylius_stock_movement.report_sent');
