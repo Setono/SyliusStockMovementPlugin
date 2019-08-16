@@ -32,6 +32,8 @@ final class EmailTransport implements TransportInterface
         ]);
     }
 
+    // todo these private methods should be put out in their own service, maybe Resolver/EmailContentResolverInterface
+
     private function resolveSubject(?string $subject, ReportInterface $report): string
     {
         if (null === $subject) {

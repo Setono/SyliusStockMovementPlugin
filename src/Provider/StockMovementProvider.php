@@ -6,7 +6,6 @@ namespace Setono\SyliusStockMovementPlugin\Provider;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
 use Doctrine\ORM\EntityManagerInterface;
-use Generator;
 use InvalidArgumentException;
 use Safe\Exceptions\StringsException;
 use function Safe\sprintf;
@@ -34,11 +33,11 @@ class StockMovementProvider implements StockMovementProviderInterface
     }
 
     /**
-     * @return StockMovementInterface[]|Generator
+     * @return StockMovementInterface[]|iterable
      *
      * @throws StringsException
      */
-    public function getStockMovements(ReportConfigurationInterface $reportConfiguration): Generator
+    public function getStockMovements(ReportConfigurationInterface $reportConfiguration): iterable
     {
         $em = $this->managerRegistry->getManagerForClass($this->stockMovementClass);
         if (!$em instanceof EntityManagerInterface) {

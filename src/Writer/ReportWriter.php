@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Writer;
 
+use InvalidArgumentException;
 use League\Flysystem\FilesystemInterface;
 use RuntimeException;
 use Safe\Exceptions\FilesystemException;
@@ -16,6 +17,7 @@ use function Safe\ob_end_clean;
 use function Safe\sprintf;
 use function Safe\unlink;
 use Setono\SyliusStockMovementPlugin\Exception\BlockNotPresentException;
+use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Setono\SyliusStockMovementPlugin\Resolver\ReportPathResolverInterface;
 use Throwable;
@@ -23,6 +25,7 @@ use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
+use Twig\TemplateWrapper;
 
 class ReportWriter implements ReportWriterInterface
 {
@@ -58,19 +61,11 @@ class ReportWriter implements ReportWriterInterface
             return $key;
         }
 
-        $reportConfiguration = $report->getReportConfiguration();
-        if (null === $reportConfiguration) {
-            throw new RuntimeException(sprintf('No report configuration associated with report %s', $report->getId()));
-        }
+        $reportConfiguration = $this->getReportConfiguration($report);
 
         $template = $this->twig->load($reportConfiguration->getTemplate());
 
-        $definedBlocks = $template->getBlockNames();
-        foreach (['extension', 'body'] as $block) {
-            if (!in_array($block, $definedBlocks, true)) {
-                throw new BlockNotPresentException($block, $definedBlocks, (string) $reportConfiguration->getTemplate());
-            }
-        }
+        $this->validateTemplate($template, (string) $reportConfiguration->getTemplate());
 
         $path = $this->generateTempPath();
 
@@ -101,6 +96,30 @@ class ReportWriter implements ReportWriterInterface
         }
 
         return $key;
+    }
+
+    /**
+     * @throws StringsException
+     */
+    private function getReportConfiguration(ReportInterface $report): ReportConfigurationInterface
+    {
+        $reportConfiguration = $report->getReportConfiguration();
+        if (null === $reportConfiguration) {
+            throw new InvalidArgumentException(sprintf('No report configuration associated with report %s', $report->getId()));
+        }
+    }
+
+    /**
+     * @throws StringsException
+     */
+    private function validateTemplate(TemplateWrapper $template, string $templateName): void
+    {
+        $definedBlocks = $template->getBlockNames();
+        foreach (['extension', 'body'] as $block) {
+            if (!in_array($block, $definedBlocks, true)) {
+                throw new BlockNotPresentException($block, $definedBlocks, $templateName);
+            }
+        }
     }
 
     private function generateTempPath(): string

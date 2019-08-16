@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Setono\SyliusStockMovementPlugin\Filter;
 
+use DateTimeInterface;
 use Doctrine\ORM\QueryBuilder;
 use Safe\Exceptions\StringsException;
 use function Safe\sprintf;
@@ -18,6 +19,10 @@ final class CreatedAfterFilter extends Filter
     {
         $date = $configuration['date'] ?? null;
         if (null === $date) {
+            return;
+        }
+
+        if (!$date instanceof DateTimeInterface) {
             return;
         }
 
