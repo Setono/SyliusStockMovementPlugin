@@ -15,6 +15,12 @@ parameters:
 
     ignoreErrors:
         - '/Parameter #1 $configuration of method Symfony\Component\DependencyInjection\Extension\Extension::processConfiguration() expects Symfony\Component\Config\Definition\ConfigurationInterface, Symfony\Component\Config\Definition\ConfigurationInterface|null given./'
-        # Effectively this will disable strict rules regarding type hints
-        # The reason for this is that it clashes with Easy Coding Standard which removes superflous phpdocs, i.e. @param mixed $param
-        - '/.*no.*typehint specified.*/'
+        - '/Method Setono\\SyliusStockMovementPlugin\\Message\\Command\\SendReport\:\:getReportId\(\) has no return typehint specified\./'
+        - '/Method Setono\\SyliusStockMovementPlugin\\Message\\Command\\ProcessReportConfiguration\:\:getReportConfigurationId\(\) has no return typehint specified\./'
+        - '/Method Setono\\SyliusStockMovementPlugin\\Controller\\Action\\ProcessReportConfigurationAction\:\:__invoke\(\) has parameter \$id with no typehint specified\./'
+        - '/Method Setono\\SyliusStockMovementPlugin\\Controller\\Action\\RevalidateAction\:\:__invoke\(\) has parameter \$id with no typehint specified./'
+        - '/Method Setono\\SyliusStockMovementPlugin\\Form\\DataTransformer\\UrlToHostTransformer\:\:transform\(\) has parameter \$host with no typehint specified\./'
+        - '/Method Setono\\SyliusStockMovementPlugin\\Form\\DataTransformer\\UrlToHostTransformer\:\:reverseTransform\(\) has parameter \$url with no typehint specified\./'
+        - '/Method Setono\\SyliusStockMovementPlugin\\Form\\DataTransformer\\EmailsToArrayTransformer\:\:transform\(\) has parameter \$arr with no typehint specified\./'
+        - '/Method Setono\\SyliusStockMovementPlugin\\Form\\DataTransformer\\EmailsToArrayTransformer\:\:reverseTransform\(\) has parameter \$str with no typehint specified\./'
+        - '/Method Setono\\SyliusStockMovementPlugin\\Controller\\Action\\SendReportAction\:\:__invoke\(\) has parameter \$id with no typehint specified\./'

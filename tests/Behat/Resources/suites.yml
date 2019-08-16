@@ -1,0 +1,13 @@
+default:
+    suites:
+        processing_reports:
+            contexts:
+                - sylius.behat.context.hook.doctrine_orm
+
+                - setono_sylius_stock_movement.behat.context.setup.report_configuration
+                - setono_sylius_stock_movement.behat.context.setup.stock_movement
+                
+                - setono_sylius_stock_movement.behat.context.cli.process_reports
+
+            filters:
+                tags: "@cli"

@@ -107,6 +107,8 @@ class ReportWriter implements ReportWriterInterface
         if (null === $reportConfiguration) {
             throw new InvalidArgumentException(sprintf('No report configuration associated with report %s', $report->getId()));
         }
+
+        return $reportConfiguration;
     }
 
     /**

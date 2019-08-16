@@ -8,6 +8,12 @@ use Setono\SyliusStockMovementPlugin\Model\ReportConfigurationInterface;
 use Setono\SyliusStockMovementPlugin\Model\ReportInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
+/**
+ * @method ReportInterface[] findAll()
+ * @method ?ReportInterface findOneBy(array $criteria)
+ * @method ?ReportInterface find($id)
+ * @method ?ReportInterface findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null)
+ */
 interface ReportRepositoryInterface extends RepositoryInterface
 {
     /**
