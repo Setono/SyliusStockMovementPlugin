@@ -31,7 +31,7 @@ final class ProcessReportConfigurationAction
         $this->flashBag = $flashBag;
     }
 
-    public function __invoke($id)
+    public function __invoke($id): RedirectResponse
     {
         $this->commandBus->dispatch(new ProcessReportConfiguration($id));
 

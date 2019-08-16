@@ -44,7 +44,7 @@ final class SendReportAction
     /**
      * @throws StringsException
      */
-    public function __invoke($id)
+    public function __invoke($id): RedirectResponse
     {
         /** @var ReportInterface|null $report */
         $report = $this->reportRepository->find($id);
