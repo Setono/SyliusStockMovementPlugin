@@ -5,7 +5,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
-        "league/flysystem-bundle": "^1.1",
+        "league/flysystem-bundle": "^2.0",
         "psr/event-dispatcher": "^1.0",
         "ramsey/uuid": "^3.8",
         "setono/cron-expression-bundle": "^1.0",
